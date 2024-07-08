@@ -1,0 +1,23 @@
+.drawer {
+  display: block;
+
+  & .MuiDrawer-paper {
+    box-sizing: border-box;
+    width: 240px;
+    box-shadow: -4px 0px 5px black;
+    color: rgba(0, 0, 0, 0.804);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 10px 5px 0px;
+  }
+
+  &__subheader.MuiTypography-root {
+    text-align: left;
+    color: black;
+    margin: 20px 10px 5px 16px;
+  }
+}
