@@ -23,18 +23,32 @@
 }
 
 .list__item {
+  padding: 10px;
   & .MuiListItemIcon-root {
     color: black;
   }
 
-  &:hover,
-  :focus {
-    transition: 0.2s all;
-    color: white;
-    background-color: rgb(4, 73, 113);
+  &__btn.MuiListItemButton-root {
+    border-radius: 10px;
 
-    & .MuiListItemIcon-root {
-      color: white;
+    &:hover,
+    :focus {
+      transition: 0.2s all;
+      color: rgb(31 86 120);
+      background-color: rgb(190 221 238 / 61%);
+
+      & .MuiListItemIcon-root {
+        color: rgb(31 86 120);
+      }
+    }
+  }
+
+  &__text .MuiListItemText-primary {
+    font-weight: 400;
+
+    &:hover,
+    :focus {
+      font-weight: 500;
     }
   }
 }

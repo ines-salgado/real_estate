@@ -37,7 +37,7 @@ function SideDrawer() {
           "Activities"
         ].map((text, index) => (
           <ListItem key={text} className="list__item" disablePadding>
-            <ListItemButton>
+            <ListItemButton className="list__item__btn">
               <ListItemIcon>
                 {index === 0 ? (
                   <TrendingUpIcon />
@@ -49,7 +49,7 @@ function SideDrawer() {
                   index === 3 && <FactCheckIcon />
                 )}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={text} className="list__item__text" />
             </ListItemButton>
           </ListItem>
         ))}
@@ -60,11 +60,11 @@ function SideDrawer() {
       <List>
         {["Get Started", "Settings"].map((text, index) => (
           <ListItem key={text} className="list__item" disablePadding>
-            <ListItemButton>
+            <ListItemButton className="list__item__btn">
               <ListItemIcon>
                 {index === 0 ? <LightbulbIcon /> : <SettingsIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={text} className="list__item__text" />
             </ListItemButton>
           </ListItem>
         ))}
