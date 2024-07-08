@@ -21,3 +21,20 @@
     margin: 20px 10px 5px 16px;
   }
 }
+
+.list__item {
+  & .MuiListItemIcon-root {
+    color: black;
+  }
+
+  &:hover,
+  :focus {
+    transition: 0.2s all;
+    color: white;
+    background-color: rgb(4, 73, 113);
+
+    & .MuiListItemIcon-root {
+      color: white;
+    }
+  }
+}

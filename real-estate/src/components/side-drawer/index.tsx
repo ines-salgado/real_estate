@@ -36,17 +36,17 @@ function SideDrawer() {
           "Investment Analysis",
           "Activities"
         ].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <ListItem key={text} className="list__item" disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {index === 0 ? (
-                  <TrendingUpIcon htmlColor="black" />
+                  <TrendingUpIcon />
                 ) : index === 1 ? (
-                  <FlashOnIcon htmlColor="black" />
+                  <FlashOnIcon />
                 ) : index === 2 ? (
                   <PeopleOutlineIcon />
                 ) : (
-                  index === 3 && <FactCheckIcon htmlColor="black" />
+                  index === 3 && <FactCheckIcon />
                 )}
               </ListItemIcon>
               <ListItemText primary={text} />
@@ -59,14 +59,10 @@ function SideDrawer() {
       </Typography>
       <List>
         {["Get Started", "Settings"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <ListItem key={text} className="list__item" disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index === 0 ? (
-                  <LightbulbIcon htmlColor="black" />
-                ) : (
-                  <SettingsIcon htmlColor="black" />
-                )}
+                {index === 0 ? <LightbulbIcon /> : <SettingsIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
