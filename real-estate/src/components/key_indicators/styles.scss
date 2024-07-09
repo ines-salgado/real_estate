@@ -2,8 +2,16 @@
 
 .ind {
   background-color: white;
-  padding: 44px;
   border-radius: 4px;
+  width: 85%;
+
+  &__title.MuiTypography-root {
+    margin: 20px 30px 10px;
+  }
+
+  &__grids {
+    padding: 20px 35px 35px;
+  }
 
   &__keys {
     &.MuiGrid2-root {

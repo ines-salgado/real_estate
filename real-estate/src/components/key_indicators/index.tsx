@@ -1,4 +1,4 @@
-import { Box, Unstable_Grid2 as Grid } from "@mui/material";
+import { Box, Unstable_Grid2 as Grid, Typography } from "@mui/material";
 import "./styles.scss";
 
 function KeyIndicatores() {
@@ -15,18 +15,23 @@ function KeyIndicatores() {
 
   return (
     <Box className="ind">
-      <Grid container spacing={2} gap="8px" marginBottom="16px">
-        {keyValues}
-        {keyValues}
-        {keyValues}
-        {keyValues}
-      </Grid>
-      <Grid container spacing={2} gap="8px">
-        {keyValues}
-        {keyValues}
-        {keyValues}
-        {keyValues}
-      </Grid>
+      <Typography variant="h6" className="ind__title">
+        Key Indicators of Portugal's Real Estate Market
+      </Typography>
+      <div className="ind__grids">
+        <Grid container spacing={2} gap="10px" marginBottom="20px">
+          {keyValues}
+          {keyValues}
+          {keyValues}
+          {keyValues}
+        </Grid>
+        <Grid container spacing={2} gap="10px">
+          {keyValues}
+          {keyValues}
+          {keyValues}
+          {keyValues}
+        </Grid>
+      </div>
     </Box>
   );
 }
