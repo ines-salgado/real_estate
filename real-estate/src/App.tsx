@@ -1,12 +1,22 @@
 import React from "react";
-import "./App.css";
-import { SideDrawer } from "./components";
+import { Box, CssBaseline } from "@mui/material";
+import { KeyIndicatores, SideDrawer } from "./components";
+import "./App.scss";
 
 function App() {
   return (
-    <div className="App">
+    <>
+      <CssBaseline />
       <SideDrawer />
-    </div>
+      <Box
+        className="box"
+        children={
+          <div className="box__children">
+            <KeyIndicatores />
+          </div>
+        }
+      />
+    </>
   );
 }
 

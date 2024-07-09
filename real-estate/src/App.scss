@@ -1,0 +1,14 @@
+@import "./utils/colors.scss";
+
+.box {
+  background-color: $bg_base_color;
+  height: 98vh;
+  margin: 8px;
+  border-radius: 8px;
+
+  &__children {
+    width: calc(100vw - 300px);
+    margin: 20px;
+    float: inline-end;
+  }
+}

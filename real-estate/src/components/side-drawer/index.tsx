@@ -1,6 +1,5 @@
 import {
   Box,
-  CssBaseline,
   Drawer,
   List,
   ListItem,
@@ -74,7 +73,6 @@ function SideDrawer() {
 
   return (
     <Box>
-      <CssBaseline />
       <Box component="nav" aria-label="menu">
         <Drawer variant="permanent" className="drawer" open>
           {drawerContents}

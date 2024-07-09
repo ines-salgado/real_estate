@@ -1,3 +1,5 @@
+@import "../../utils/colors.scss";
+
 .drawer {
   display: block;
 
@@ -5,7 +7,7 @@
     box-sizing: border-box;
     width: 240px;
     box-shadow: -4px 0px 5px black;
-    color: rgba(0, 0, 0, 0.804);
+    color: $text_base_color;
   }
 
   &__header {
@@ -18,7 +20,7 @@
   &__subheader.MuiTypography-root {
     text-align: left;
     color: black;
-    margin: 20px 10px 5px 16px;
+    margin: 20px 10px 5px 26px;
   }
 }
 
@@ -34,11 +36,11 @@
     &:hover,
     :focus {
       transition: 0.2s all;
-      color: rgb(31 86 120);
-      background-color: rgb(190 221 238 / 61%);
+      color: $text_menu_color;
+      background-color: $bg_menu_color;
 
       & .MuiListItemIcon-root {
-        color: rgb(31 86 120);
+        color: $text_menu_color;
       }
     }
   }

@@ -1,0 +1,42 @@
+@import "../../utils/colors.scss";
+
+.ind {
+  background-color: white;
+  padding: 44px;
+  border-radius: 4px;
+
+  &__keys {
+    &.MuiGrid2-root {
+      padding: 10px 15px;
+      box-shadow: $box-shadow;
+      width: 24%;
+      border-radius: 15px;
+    }
+
+    &__title {
+      font-weight: 500;
+      font-size: 14px;
+      margin: 2px auto;
+    }
+
+    &__value {
+      font-weight: bolder;
+      font-size: x-large;
+    }
+
+    section {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__percentage {
+      color: $text_menu_color;
+      font-weight: bold;
+    }
+
+    &__date {
+      font-size: small;
+    }
+  }
+}
