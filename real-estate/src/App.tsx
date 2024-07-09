@@ -1,6 +1,5 @@
-import React from "react";
 import { Box, CssBaseline } from "@mui/material";
-import { KeyIndicatores, SideDrawer } from "./components";
+import { SideDrawer, CollapsibleTable } from "./components";
 import "./App.scss";
 
 function App() {
@@ -12,7 +11,7 @@ function App() {
         className="box"
         children={
           <div className="box__children">
-            <KeyIndicatores />
+            <CollapsibleTable />
           </div>
         }
       />

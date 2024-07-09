@@ -5,7 +5,7 @@
 
   & .MuiDrawer-paper {
     box-sizing: border-box;
-    width: 240px;
+    width: 230px;
     box-shadow: -4px 0px 5px black;
     color: $text_base_color;
   }
@@ -25,7 +25,8 @@
 }
 
 .list__item {
-  padding: 10px;
+  padding: 5px 10px;
+  margin-right: -10px;
   & .MuiListItemIcon-root {
     color: black;
   }
