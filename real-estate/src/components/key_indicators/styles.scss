@@ -3,21 +3,21 @@
 .ind {
   background-color: white;
   border-radius: 4px;
-  width: 85%;
 
   &__title.MuiTypography-root {
-    margin: 20px 30px 10px;
+    padding: 20px 30px 10px;
   }
 
   &__grids {
     padding: 20px 35px 35px;
+    margin-right: -8%;
   }
 
   &__keys {
     &.MuiGrid2-root {
       padding: 10px 15px;
       box-shadow: $box-shadow;
-      width: 24%;
+      width: 22%;
       border-radius: 15px;
     }
 
@@ -36,6 +36,7 @@
       text-align: right;
       display: flex;
       flex-direction: column;
+      margin-top: -15px;
     }
 
     &__percentage {

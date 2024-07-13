@@ -1,5 +1,6 @@
 import { Box, CssBaseline } from "@mui/material";
-import { SideDrawer, CollapsibleTable } from "./components";
+import { SideDrawer } from "./components";
+import Dashboard from "./pages/dashboard";
 import "./App.scss";
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
         className="box"
         children={
           <div className="box__children">
-            <CollapsibleTable />
+            <Dashboard />
           </div>
         }
       />

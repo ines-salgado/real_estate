@@ -5,6 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* override */
+  background-color: rgb(238, 244, 247) !important;
+  overflow-x: hidden !important;
 }
 
 code {

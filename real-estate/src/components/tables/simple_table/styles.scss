@@ -1,0 +1,30 @@
+@import "../../../utils/colors.scss";
+
+// table head
+.th {
+  background-color: $text_menu_color;
+  &__row {
+    &__title {
+      &.MuiTableCell-root {
+        color: white;
+        padding: 10px 20px;
+      }
+    }
+  }
+}
+
+// table body
+.tb {
+  &__row {
+    &__data {
+      border-bottom: none;
+      &.MuiTableCell-root {
+        padding: 0;
+      }
+
+      th {
+        border: none;
+      }
+    }
+  }
+}

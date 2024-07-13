@@ -1,5 +1,6 @@
-import CollapsibleTable from "./tables/collapsible_table";
+import SimpleTable from "./tables/simple_table";
 import SideDrawer from "./side-drawer";
 import KeyIndicatores from "./key_indicators";
+import PageTitle from "./page_title";
 
-export { CollapsibleTable, SideDrawer, KeyIndicatores };
+export { SimpleTable, SideDrawer, KeyIndicatores, PageTitle };
