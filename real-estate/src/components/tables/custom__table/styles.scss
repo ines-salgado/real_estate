@@ -1,0 +1,47 @@
+@import "../../../utils/colors.scss";
+
+.customTable {
+  padding: 20px 35px 35px;
+  background-color: white;
+  border-radius: 4px;
+
+  &__title.MuiTypography-root {
+    padding-bottom: 15px;
+  }
+}
+
+// table head
+.th {
+  background-color: $text_menu_color;
+
+  &__row__cell {
+    &.MuiTableCell-root {
+      padding: 10px 15px;
+    }
+
+    &__label {
+      color: white !important;
+    }
+
+    & .Mui-active .MuiTableSortLabel-icon {
+      opacity: 0.5 !important;
+      color: white !important;
+    }
+  }
+}
+
+// table body
+.tb__row {
+  cursor: pointer;
+  line-height: 33px;
+
+  &__data {
+    border-bottom: none;
+    padding-right: 15px;
+
+    th {
+      border: none;
+      text-decoration: $text_menu_color underline;
+    }
+  }
+}

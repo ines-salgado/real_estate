@@ -1,5 +1,5 @@
 import { Box, Unstable_Grid2 as Grid } from "@mui/material";
-import { KeyIndicatores, PageTitle, SimpleTable } from "../../components";
+import { KeyIndicatores, PageTitle, CustomTable } from "../../components";
 import "./styles.scss";
 
 function Dashboard() {
@@ -15,14 +15,14 @@ function Dashboard() {
       <Box className="dashboard">
         <KeyIndicatores />
         {divider}
-        <SimpleTable />
+        <CustomTable />
         {divider}
         <Grid container spacing={2} direction="row">
           <Grid xs={6}>
-            <SimpleTable />
+            <CustomTable isSmallTable />
           </Grid>
           <Grid xs={6}>
-            <SimpleTable />
+            <CustomTable isSmallTable />
           </Grid>
         </Grid>
       </Box>
