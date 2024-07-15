@@ -18,7 +18,7 @@ function KeyIndicatores() {
       <Typography variant="h6" className="ind__title">
         Key Indicators of Portugal's Real Estate Market
       </Typography>
-      <div className="ind__grids">
+      <Grid className="ind__grids">
         <Grid container spacing={2} gap="10px" marginBottom="20px">
           {keyValues}
           {keyValues}
@@ -31,7 +31,7 @@ function KeyIndicatores() {
           {keyValues}
           {keyValues}
         </Grid>
-      </div>
+      </Grid>
     </Box>
   );
 }

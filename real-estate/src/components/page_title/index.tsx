@@ -1,5 +1,4 @@
-import * as React from "react";
-import { Typography, Divider, AppBar, Box } from "@mui/material";
+import { Typography, Divider, AppBar } from "@mui/material";
 import "./styles.scss";
 
 interface Props {

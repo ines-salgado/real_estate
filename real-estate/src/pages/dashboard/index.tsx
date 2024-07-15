@@ -1,5 +1,10 @@
 import { Box, Unstable_Grid2 as Grid } from "@mui/material";
-import { KeyIndicatores, PageTitle, CustomTable } from "../../components";
+import {
+  KeyIndicatores,
+  PageTitle,
+  CustomTable,
+  Links
+} from "../../components";
 import "./styles.scss";
 
 function Dashboard() {
@@ -25,6 +30,9 @@ function Dashboard() {
             <CustomTable isSmallTable />
           </Grid>
         </Grid>
+        {divider}
+        <Links />
+        {divider}
       </Box>
     </>
   );
