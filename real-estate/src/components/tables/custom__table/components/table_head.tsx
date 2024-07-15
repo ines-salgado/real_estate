@@ -7,109 +7,21 @@ import {
   Box
 } from "@mui/material";
 import { visuallyHidden } from "@mui/utils";
-import { Order } from "../../utils/dataComparator";
-import { Data, SmallData } from "..";
+import { smallTableHeadCells, headCells } from "../../utils/mock_data";
+import { Order } from "../../utils/data_comparator";
+import { DataType } from "../../utils/models";
 import "../styles.scss";
 
 interface Props {
-  onRequestSort: (
-    event: React.MouseEvent<unknown>,
-    property: keyof Data | keyof SmallData
-  ) => void;
+  onRequestSort: (event: React.MouseEvent<unknown>, property: DataType) => void;
   order: Order;
-  orderBy: keyof Data | keyof SmallData;
+  orderBy: DataType;
   isSmallTable?: boolean;
 }
 
-interface HeadCell {
-  disablePadding: boolean;
-  id: keyof Data | keyof SmallData;
-  label: string;
-  numeric: boolean;
-}
-
 function CustomTableHead(props: Props) {
-  const headCells: readonly HeadCell[] = [
-    {
-      id: "name",
-      numeric: false,
-      disablePadding: true,
-      label: "Dessert (100g serving)"
-    },
-    {
-      id: "calories",
-      numeric: true,
-      disablePadding: false,
-      label: "Calories"
-    },
-    {
-      id: "fat",
-      numeric: true,
-      disablePadding: false,
-      label: "Fat (g)"
-    },
-    {
-      id: "carbs",
-      numeric: true,
-      disablePadding: false,
-      label: "Carbs (g)"
-    },
-    {
-      id: "protein",
-      numeric: true,
-      disablePadding: false,
-      label: "Protein (g)"
-    },
-    {
-      id: "calories",
-      numeric: true,
-      disablePadding: false,
-      label: "Calories"
-    },
-    {
-      id: "fat",
-      numeric: true,
-      disablePadding: false,
-      label: "Fat (g)"
-    },
-    {
-      id: "carbs",
-      numeric: true,
-      disablePadding: false,
-      label: "Carbs (g)"
-    },
-    {
-      id: "protein",
-      numeric: true,
-      disablePadding: false,
-      label: "Protein (g)"
-    }
-  ];
-
-  const smallTableHeadCells: readonly HeadCell[] = [
-    {
-      id: "name",
-      numeric: false,
-      disablePadding: true,
-      label: "Dessert (100g serving)"
-    },
-    {
-      id: "calories",
-      numeric: true,
-      disablePadding: false,
-      label: "Calories"
-    },
-    {
-      id: "fat",
-      numeric: true,
-      disablePadding: false,
-      label: "Fat (g)"
-    }
-  ];
-
   const createSortHandler =
-    (property: keyof Data | keyof SmallData) =>
-    (event: React.MouseEvent<unknown>) =>
+    (property: DataType) => (event: React.MouseEvent<unknown>) =>
       props.onRequestSort(event, property);
 
   return (

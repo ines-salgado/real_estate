@@ -1,6 +1,6 @@
 import { Box, CssBaseline } from "@mui/material";
 import { SideDrawer } from "./components";
-import Dashboard from "./pages/dashboard";
+import { Dashboard } from "./pages";
 import "./App.scss";
 
 function App() {

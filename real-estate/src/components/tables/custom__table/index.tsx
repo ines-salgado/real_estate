@@ -1,68 +1,9 @@
 import * as React from "react";
 import { Table, TableContainer, Paper, Box, Typography } from "@mui/material";
-import { Order } from "../utils/dataComparator";
+import { Order } from "../utils/data_comparator";
+import { DataType } from "../utils/models";
 import { CustomTableHead, CustomTableBody } from "./components";
 import "./styles.scss";
-
-export interface Data {
-  id: number;
-  calories: number;
-  carbs: number;
-  name: string;
-  fat: number;
-  protein: number;
-  calories1: number;
-  fat1: number;
-  carbs1: number;
-  protein1: number;
-}
-
-export function createData(
-  id: number,
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-  calories1: number,
-  fat1: number,
-  carbs1: number,
-  protein1: number
-): Data {
-  return {
-    id,
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    calories1,
-    fat1,
-    carbs1,
-    protein1
-  };
-}
-
-export interface SmallData {
-  id: number;
-  calories: number;
-  carbs: number;
-  name: string;
-}
-
-export function createSmallTableData(
-  id: number,
-  name: string,
-  calories: number,
-  carbs: number
-): SmallData {
-  return {
-    id,
-    name,
-    calories,
-    carbs
-  };
-}
 
 interface Props {
   isSmallTable?: boolean;
@@ -70,14 +11,9 @@ interface Props {
 
 function CustomTable(props: Props) {
   const [order, setOrder] = React.useState<Order>("asc");
-  const [orderBy, setOrderBy] = React.useState<keyof Data | keyof SmallData>(
-    "calories"
-  );
+  const [orderBy, setOrderBy] = React.useState<DataType>("calories");
 
-  const handleRequestSort = (
-    _event: any,
-    property: keyof Data | keyof SmallData
-  ) => {
+  const handleRequestSort = (_event: any, property: DataType) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
