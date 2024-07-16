@@ -1,6 +1,6 @@
 import { Box, CssBaseline } from "@mui/material";
 import { SideDrawer } from "./components";
-import { Dashboard } from "./pages";
+import { Dashboard, MarketAnalysis } from "./pages";
 import "./App.scss";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         className="box"
         children={
           <div className="box__children">
-            <Dashboard />
+            <MarketAnalysis />
           </div>
         }
       />

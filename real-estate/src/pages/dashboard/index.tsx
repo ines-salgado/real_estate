@@ -1,27 +1,22 @@
 import { Box, Unstable_Grid2 as Grid } from "@mui/material";
+import customSpacing from "../../utils/custom_spacing";
 import {
   KeyIndicatores,
   PageTitle,
   CustomTable,
   Links
 } from "../../components";
-import "./styles.scss";
+import "../styles.scss";
 
 function Dashboard() {
-  const divider = (
-    <>
-      <br /> <br />
-    </>
-  );
-
   return (
     <>
       <PageTitle title="Dashboard" />
-      <Box className="dashboard">
+      <Box className="pageContainer">
         <KeyIndicatores />
-        {divider}
+        {customSpacing}
         <CustomTable />
-        {divider}
+        {customSpacing}
         <Grid container spacing={2} direction="row">
           <Grid xs={6}>
             <CustomTable isSmallTable />
@@ -30,9 +25,9 @@ function Dashboard() {
             <CustomTable isSmallTable />
           </Grid>
         </Grid>
-        {divider}
+        {customSpacing}
         <Links />
-        {divider}
+        {customSpacing}
       </Box>
     </>
   );
