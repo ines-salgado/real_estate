@@ -1,6 +1,6 @@
-import { Box, Unstable_Grid2 as Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import customSpacing from "../../utils/custom_spacing";
-import { KeyIndicatores, PageTitle } from "../../components";
+import { KeyIndicatores, PageTitle, SimpleTabs } from "../../components";
 import "../styles.scss";
 
 function MarketAnalysis() {
@@ -9,6 +9,8 @@ function MarketAnalysis() {
       <PageTitle title="Market Analysis" />
       <Box className="pageContainer">
         <KeyIndicatores isSmallComp />
+        {customSpacing}
+        <SimpleTabs />
         {customSpacing}
       </Box>
     </>

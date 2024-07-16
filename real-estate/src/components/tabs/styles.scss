@@ -1,0 +1,37 @@
+@import "../../utils/colors.scss";
+
+.boxTabs {
+  width: 100%;
+  padding: 20px 35px 35px;
+  background-color: white;
+  border-radius: 4px;
+
+  &__title.MuiTypography-root {
+    padding-bottom: 10px;
+  }
+
+  &__section.MuiBox-root {
+    border-bottom: 1px solid;
+    border-color: $divider-color;
+
+    .MuiTab-root {
+      text-transform: capitalize;
+      color: #1f5678a1;
+      &.Mui-selected {
+        color: $text-menu-color;
+      }
+    }
+
+    .MuiTabs-indicator {
+      background-color: $text-menu-color;
+    }
+
+    .MuiAreaElement-root {
+      fill: #1f567863;
+    }
+  }
+}
+
+.tabPanel {
+  padding: 24px;
+}
