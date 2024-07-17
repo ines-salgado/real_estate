@@ -4,10 +4,6 @@
   padding: 20px 35px 35px;
   background-color: white;
   border-radius: 4px;
-
-  &__title.MuiTypography-root {
-    padding-bottom: 15px;
-  }
 }
 
 // table head
@@ -17,10 +13,6 @@
   &__row__cell {
     &.MuiTableCell-root {
       padding: 10px 15px;
-    }
-
-    &__label {
-      color: white !important;
     }
 
     & .Mui-active .MuiTableSortLabel-icon {

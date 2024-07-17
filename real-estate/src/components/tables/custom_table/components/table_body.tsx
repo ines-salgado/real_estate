@@ -21,6 +21,12 @@ function CustomTableBody(props: Props) {
     [props.order, props.orderBy]
   );
 
+  const rowData = (data: string | number) => (
+    <TableCell className="tb__row__data" align="right">
+      {data}
+    </TableCell>
+  );
+
   return (
     <TableBody className="tb">
       {sortedRows.map((row) => (
@@ -37,32 +43,16 @@ function CustomTableBody(props: Props) {
               </TableCell>
             </Link>
           </TableCell>
-          <TableCell className="tb__row__data" align="right">
-            {row.calories}
-          </TableCell>
-          <TableCell className="tb__row__data" align="right">
-            {row.carbs}
-          </TableCell>
+          {rowData(row.calories)}
+          {rowData(row.carbs)}
           {!props.isSmallTable && (
             <>
-              <TableCell className="tb__row__data" align="right">
-                {row.fat}
-              </TableCell>
-              <TableCell className="tb__row__data" align="right">
-                {row.protein}
-              </TableCell>
-              <TableCell className="tb__row__data" align="right">
-                {row.calories1}
-              </TableCell>
-              <TableCell className="tb__row__data" align="right">
-                {row.fat1}
-              </TableCell>
-              <TableCell className="tb__row__data" align="right">
-                {row.carbs1}
-              </TableCell>
-              <TableCell className="tb__row__data" align="right">
-                {row.protein1}
-              </TableCell>
+              {rowData(row.fat)}
+              {rowData(row.protein)}
+              {rowData(row.calories1)}
+              {rowData(row.fat1)}
+              {rowData(row.carbs1)}
+              {rowData(row.protein1)}
             </>
           )}
         </TableRow>

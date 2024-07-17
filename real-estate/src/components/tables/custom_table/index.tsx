@@ -21,7 +21,7 @@ function CustomTable(props: Props) {
 
   return (
     <Box className="customTable">
-      <Typography variant="h6" className="customTable__title">
+      <Typography variant="h6" paddingBottom="15px">
         Comparative Market Analysis
       </Typography>
       <TableContainer component={Paper}>

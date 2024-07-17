@@ -3,7 +3,7 @@ import "./styles.scss";
 
 function PageTitle({ title }: { title: string }) {
   return (
-    <AppBar position="static" className="appBar">
+    <AppBar position="fixed" className="appBar">
       <Typography variant="h6" className="appBar__title">
         {title}
       </Typography>

@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Tabs, Tab, Box, Typography } from "@mui/material";
+import { Tabs, Tab, Box } from "@mui/material";
 import AreaChart from "../graphs";
 import "./styles.scss";
 
 function SimpleTabs() {
-  const [tabValue, setTabValue] = React.useState(0);
+  const [tabValue, setTabValue] = React.useState<number>(0);
 
   const tabLabelProps = (id: number) => ({
     id: `simple-tab-${id}`,
@@ -26,7 +26,7 @@ function SimpleTabs() {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
     >
-      {value === index && <Box className="tabPanel">{children}</Box>}
+      {value === index && <Box padding="24px">{children}</Box>}
     </div>
   );
 
@@ -35,20 +35,22 @@ function SimpleTabs() {
 
   return (
     <Box className="boxTabs">
-      <Typography className="boxTabs__title" variant="h6">
-        Market Trends
-      </Typography>
       <Box className="boxTabs__section">
         <Tabs value={tabValue} onChange={handleChange}>
-          <Tab label="Market Phases/Moment" {...tabLabelProps(0)} />
+          <Tab label="Market Phases Trends" {...tabLabelProps(0)} />
           <Tab
-            label="Property Market (Sales/Rental Square Meterage)"
+            label="Property Market Trends (Sales/Rental Square Meterage & Forecasts)"
             {...tabLabelProps(1)}
+          />
+          <Tab
+            label="Market Dynamics (City Market Analysis & Forecast)"
+            {...tabLabelProps(2)}
           />
         </Tabs>
       </Box>
       <CustomTabPanel value={tabValue} index={0} children={<AreaChart />} />
       <CustomTabPanel value={tabValue} index={1} children={<AreaChart />} />
+      <CustomTabPanel value={tabValue} index={2} children={<AreaChart />} />
     </Box>
   );
 }

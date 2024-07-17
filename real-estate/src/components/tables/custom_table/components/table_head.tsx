@@ -42,7 +42,7 @@ function CustomTableHead(props: Props) {
                 active={props.orderBy === headCell.id}
                 direction={props.orderBy === headCell.id ? props.order : "asc"}
                 onClick={createSortHandler(headCell.id)}
-                className="th__row__cell__label"
+                color="white"
               >
                 {headCell.label}
                 {props.orderBy === headCell.id ? (
