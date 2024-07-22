@@ -29,19 +29,24 @@ function SideDrawer() {
       id: 1,
       text: "Market Analysis",
       icon: <FlashOnIcon />,
-      url: "/marketAnalysis"
+      url: "/market-analysis"
     },
     {
       id: 2,
       text: "Investment Analysis",
       icon: <PeopleOutlineIcon />,
-      url: "/investmentAnalysis"
+      url: "/investment-analysis"
     },
     { id: 3, text: "Activities", icon: <FactCheckIcon />, url: "/activities" }
   ];
 
   const secondaryPages: Array<{}> = [
-    { id: 4, text: "Get Started", icon: <LightbulbIcon />, url: "/getStarted" },
+    {
+      id: 4,
+      text: "Get Started",
+      icon: <LightbulbIcon />,
+      url: "/get-started"
+    },
     { id: 5, text: "Settings", icon: <SettingsIcon />, url: "/settings" }
   ];
 
