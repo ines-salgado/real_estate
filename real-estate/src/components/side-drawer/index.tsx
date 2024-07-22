@@ -1,6 +1,7 @@
 import {
   Box,
   Drawer,
+  Link,
   List,
   ListItem,
   ListItemButton,
@@ -20,6 +21,30 @@ import {
 import "./styles.scss";
 
 function SideDrawer() {
+  const page_url: string = window.location.pathname;
+
+  const mainPages: Array<{}> = [
+    { id: 0, text: "Dashboard", icon: <TrendingUpIcon />, url: "/" },
+    {
+      id: 1,
+      text: "Market Analysis",
+      icon: <FlashOnIcon />,
+      url: "/marketAnalysis"
+    },
+    {
+      id: 2,
+      text: "Investment Analysis",
+      icon: <PeopleOutlineIcon />,
+      url: "/investmentAnalysis"
+    },
+    { id: 3, text: "Activities", icon: <FactCheckIcon />, url: "/activities" }
+  ];
+
+  const secondaryPages: Array<{}> = [
+    { id: 4, text: "Get Started", icon: <LightbulbIcon />, url: "/getStarted" },
+    { id: 5, text: "Settings", icon: <SettingsIcon />, url: "/settings" }
+  ];
+
   return (
     <Box component="nav" aria-label="menu">
       <Drawer variant="permanent" className="drawer" open>
@@ -30,26 +55,28 @@ function SideDrawer() {
           </Typography>
         </div>
         <List>
-          {[
-            "Dashboard",
-            "Market Analysis",
-            "Investment Analysis",
-            "Activities"
-          ].map((text, index) => (
-            <ListItem key={text} className="list__item" disablePadding>
-              <ListItemButton className="list__item__btn">
-                <ListItemIcon>
-                  {index === 0 ? (
-                    <TrendingUpIcon />
-                  ) : index === 1 ? (
-                    <FlashOnIcon />
-                  ) : index === 2 ? (
-                    <PeopleOutlineIcon />
-                  ) : (
-                    index === 3 && <FactCheckIcon />
-                  )}
-                </ListItemIcon>
-                <ListItemText primary={text} className="list__item__text" />
+          {mainPages.map((page: any) => (
+            <ListItem key={page.id} className="list__item">
+              <ListItemButton
+                component={Link}
+                href={page.url}
+                underline="none"
+                color="inherit"
+                className={
+                  page_url === page.url
+                    ? "list__item__btn activeBtn"
+                    : "list__item__btn"
+                }
+              >
+                <ListItemIcon>{page.icon}</ListItemIcon>
+                <ListItemText
+                  primary={page.text}
+                  className={
+                    page_url === page.url
+                      ? "list__item__text activeText"
+                      : "list__item__text"
+                  }
+                />
               </ListItemButton>
             </ListItem>
           ))}
@@ -58,13 +85,20 @@ function SideDrawer() {
           Support
         </Typography>
         <List>
-          {["Get Started", "Settings"].map((text, index) => (
-            <ListItem key={text} className="list__item" disablePadding>
-              <ListItemButton className="list__item__btn">
-                <ListItemIcon>
-                  {index === 0 ? <LightbulbIcon /> : <SettingsIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} className="list__item__text" />
+          {secondaryPages.map((page: any) => (
+            <ListItem key={page.id} className="list__item">
+              <ListItemButton
+                component={Link}
+                href={page.url}
+                underline="none"
+                color="inherit"
+                className="list__item__btn"
+              >
+                <ListItemIcon>{page.icon}</ListItemIcon>
+                <ListItemText
+                  primary={page.text}
+                  className="list__item__text"
+                />
               </ListItemButton>
             </ListItem>
           ))}

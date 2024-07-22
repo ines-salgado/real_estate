@@ -1,4 +1,5 @@
 import CustomTable from "./tables/custom_table";
+import CustomAccordion from "./accordion";
 import SelectInput from "./inputs/select";
 import SideDrawer from "./side-drawer";
 import KeyIndicatores from "./key_indicators";
@@ -9,6 +10,7 @@ import AreaChart from "./graphs";
 
 export {
   CustomTable,
+  CustomAccordion,
   SelectInput,
   SideDrawer,
   KeyIndicatores,

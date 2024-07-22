@@ -27,15 +27,18 @@
 .list__item {
   padding: 5px 10px;
   margin-right: -10px;
+
   & .MuiListItemIcon-root {
     color: black;
   }
 
   &__btn.MuiListItemButton-root {
     border-radius: 10px;
+    width: 208px;
 
     &:hover,
-    :focus {
+    :focus,
+    &.activeBtn {
       transition: 0.2s all;
       color: $text_menu_color;
       background-color: $bg_menu_color;
@@ -46,12 +49,18 @@
     }
   }
 
-  &__text .MuiListItemText-primary {
-    font-weight: 400;
-
-    &:hover,
-    :focus {
+  &__text {
+    &.activeText .MuiListItemText-primary {
       font-weight: 500;
+    }
+
+    .MuiListItemText-primary {
+      font-weight: 400;
+
+      &:hover,
+      :focus {
+        font-weight: 500;
+      }
     }
   }
 }

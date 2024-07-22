@@ -1,0 +1,15 @@
+.accordion {
+  section {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: aliceblue;
+    border-radius: 5px;
+  }
+
+  &__box {
+    .MuiAccordion-root.Mui-expanded {
+      margin: 0;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Tabs, Tab, Box } from "@mui/material";
-import AreaChart from "../graphs";
+import { CustomAccordion, AreaChart } from "..";
 import "./styles.scss";
 
 function SimpleTabs() {
@@ -37,20 +37,22 @@ function SimpleTabs() {
     <Box className="boxTabs">
       <Box className="boxTabs__section">
         <Tabs value={tabValue} onChange={handleChange}>
-          <Tab label="Market Phases Trends" {...tabLabelProps(0)} />
           <Tab
             label="Property Market Trends (Sales/Rental Square Meterage & Forecasts)"
-            {...tabLabelProps(1)}
+            {...tabLabelProps(0)}
           />
           <Tab
             label="Market Dynamics (City Market Analysis & Forecast)"
-            {...tabLabelProps(2)}
+            {...tabLabelProps(1)}
           />
         </Tabs>
       </Box>
       <CustomTabPanel value={tabValue} index={0} children={<AreaChart />} />
-      <CustomTabPanel value={tabValue} index={1} children={<AreaChart />} />
-      <CustomTabPanel value={tabValue} index={2} children={<AreaChart />} />
+      <CustomTabPanel
+        value={tabValue}
+        index={1}
+        children={<CustomAccordion />}
+      />
     </Box>
   );
 }
