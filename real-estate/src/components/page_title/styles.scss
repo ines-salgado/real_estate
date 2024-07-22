@@ -3,21 +3,21 @@
 .appBar {
   &.MuiAppBar-root {
     top: 0;
-    width: 90%;
     background-color: $bg_base_color;
     box-shadow: none;
+    width: calc(100vw - 290px);
+    margin: 0 25px 10px;
   }
 
   &__title.MuiTypography-root {
-    margin-left: 11%;
+    margin-left: 5%;
     padding: 15px 0;
     color: $text_base_color;
   }
 
   &__divider {
-    width: 82%;
     &.MuiDivider-root {
-      margin-left: 9%;
+      margin: auto 3%;
     }
   }
 }

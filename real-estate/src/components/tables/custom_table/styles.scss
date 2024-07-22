@@ -13,11 +13,16 @@
   &__row__cell {
     &.MuiTableCell-root {
       padding: 10px 15px;
+      color: white !important;
     }
 
-    & .Mui-active .MuiTableSortLabel-icon {
-      opacity: 0.5 !important;
+    .Mui-active {
       color: white !important;
+
+      .MuiTableSortLabel-icon {
+        color: white !important;
+        opacity: 0.5 !important;
+      }
     }
   }
 }
