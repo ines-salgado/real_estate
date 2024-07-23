@@ -1,9 +1,9 @@
-@import "../../utils/colors.scss";
+@import "../../utils/styles.scss";
 
 .appBar {
   &.MuiAppBar-root {
     top: 0;
-    background-color: $bg_base_color;
+    background-color: $bg_baseColor;
     box-shadow: none;
     width: calc(100vw - 290px);
     margin: 0 25px 10px;
@@ -12,12 +12,10 @@
   &__title.MuiTypography-root {
     margin-left: 5%;
     padding: 15px 0;
-    color: $text_base_color;
+    color: $text_baseColor;
   }
 
-  &__divider {
-    &.MuiDivider-root {
-      margin: auto 3%;
-    }
+  &__divider.MuiDivider-root {
+    margin: auto 3%;
   }
 }

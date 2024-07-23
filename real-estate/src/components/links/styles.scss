@@ -1,4 +1,4 @@
-@import "../../utils/colors.scss";
+@import "../../utils/styles.scss";
 
 .links {
   background-color: white;
@@ -21,8 +21,8 @@
     }
 
     &__item.MuiTypography-root {
-      color: $text_menu_color;
-      text-decoration: underline $text_menu_color;
+      color: $text_menuColor;
+      text-decoration: underline $text_menuColor;
       font-weight: 500;
       font-size: 16px;
     }

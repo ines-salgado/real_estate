@@ -34,25 +34,25 @@ const headCells: readonly HeadCell[] = [
     label: "Protein (g)"
   },
   {
-    id: "calories",
+    id: "calories1",
     numeric: true,
     disablePadding: false,
     label: "Calories"
   },
   {
-    id: "fat",
+    id: "fat1",
     numeric: true,
     disablePadding: false,
     label: "Fat (g)"
   },
   {
-    id: "carbs",
+    id: "carbs1",
     numeric: true,
     disablePadding: false,
     label: "Carbs (g)"
   },
   {
-    id: "protein",
+    id: "protein1",
     numeric: true,
     disablePadding: false,
     label: "Protein (g)"

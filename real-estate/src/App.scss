@@ -1,13 +1,11 @@
-@import "./utils/colors.scss";
+@import "./utils/styles.scss";
 
-.box {
-  &__children {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: calc(100vw - 290px);
-    margin: 100px 25px 10px;
-    float: inline-end;
-  }
+.box__children {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(100vw - 290px);
+  margin: 100px 25px 10px;
+  float: inline-end;
 }

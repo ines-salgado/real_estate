@@ -1,4 +1,4 @@
-@import "../../utils/colors.scss";
+@import "../../utils/styles.scss";
 
 .drawer {
   display: block;
@@ -7,7 +7,7 @@
     box-sizing: border-box;
     width: 230px;
     box-shadow: -4px 0px 5px black;
-    color: $text_base_color;
+    color: $text_baseColor;
   }
 
   &__header {
@@ -40,11 +40,11 @@
     :focus,
     &.activeBtn {
       transition: 0.2s all;
-      color: $text_menu_color;
-      background-color: $bg_menu_color;
+      color: $text_menuColor;
+      background-color: $bg_menuColor;
 
       & .MuiListItemIcon-root {
-        color: $text_menu_color;
+        color: $text_menuColor;
       }
     }
   }

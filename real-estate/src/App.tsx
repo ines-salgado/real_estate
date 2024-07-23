@@ -9,9 +9,9 @@ function App() {
     { path: "/", element: <Dashboard /> },
     { path: "/market-analysis", element: <MarketAnalysis /> },
     { path: "/investment-analysis", element: <h1>Investment Analysis</h1> },
-    { path: "/activities", element: <h1>activities</h1> },
-    { path: "/get-started", element: <h1> get started </h1> },
-    { path: "/settings", element: <h1> settings </h1> }
+    { path: "/activities", element: <h1>Activities</h1> },
+    { path: "/get-started", element: <h1>Get Started</h1> },
+    { path: "/settings", element: <h1>Settings</h1> }
   ]);
 
   return (

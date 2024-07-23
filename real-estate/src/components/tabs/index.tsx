@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Tabs, Tab, Box } from "@mui/material";
+import { Tabs, Tab, Box, Typography } from "@mui/material";
 import { CustomAccordion, AreaChart } from "..";
 import "./styles.scss";
 
@@ -26,25 +26,20 @@ function SimpleTabs() {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
     >
-      {value === index && <Box padding="24px">{children}</Box>}
+      {value === index && <Box className="boxTabs__tabPanel">{children}</Box>}
     </div>
   );
 
-  const handleChange = (_event: any, newTabValue: number) =>
+  const handleChangeTab = (_event: any, newTabValue: number) =>
     setTabValue(newTabValue);
 
   return (
     <Box className="boxTabs">
+      <Typography variant="h6">Market Forecasts</Typography>
       <Box className="boxTabs__section">
-        <Tabs value={tabValue} onChange={handleChange}>
-          <Tab
-            label="Property Market Trends (Sales/Rental Square Meterage & Forecasts)"
-            {...tabLabelProps(0)}
-          />
-          <Tab
-            label="Market Dynamics (City Market Analysis & Forecast)"
-            {...tabLabelProps(1)}
-          />
+        <Tabs value={tabValue} onChange={handleChangeTab}>
+          <Tab label="Property Market Trends" {...tabLabelProps(0)} />
+          <Tab label="Market Dynamics " {...tabLabelProps(1)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={tabValue} index={0} children={<AreaChart />} />

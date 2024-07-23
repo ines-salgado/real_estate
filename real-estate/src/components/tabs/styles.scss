@@ -1,4 +1,4 @@
-@import "../../utils/colors.scss";
+@import "../../utils/styles.scss";
 
 .boxTabs {
   width: 100%;
@@ -15,16 +15,20 @@
       color: #1f5678a1;
 
       &.Mui-selected {
-        color: $text-menu-color;
+        color: $text-menuColor;
       }
     }
 
     .MuiTabs-indicator {
-      background-color: $text-menu-color;
+      background-color: $text-menuColor;
     }
 
     .MuiAreaElement-root {
       fill: #1f567863;
     }
+  }
+
+  &__tabPanel {
+    margin: 20px -42px 0 5px !important;
   }
 }

@@ -13,16 +13,15 @@ import { DataType } from "../../utils/models";
 import "../styles.scss";
 
 interface Props {
-  onRequestSort: (event: React.MouseEvent<unknown>, property: DataType) => void;
+  onRequestSort: (event: any, property: DataType) => void;
   order: Order;
   orderBy: DataType;
   isSmallTable?: boolean;
 }
 
 function CustomTableHead(props: Props) {
-  const createSortHandler =
-    (property: DataType) => (event: React.MouseEvent<unknown>) =>
-      props.onRequestSort(event, property);
+  const createSortHandler = (property: DataType) => (event: any) =>
+    props.onRequestSort(event, property);
 
   return (
     <TableHead className="th">

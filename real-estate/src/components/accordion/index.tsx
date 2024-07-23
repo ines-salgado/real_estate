@@ -15,174 +15,69 @@ import "./styles.scss";
 function CustomAccordion() {
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
-  const handleChange =
+  const populationData = [
+    { title: "Population Density (nrº/km²)", value: 999999, percentage: "10%" },
+    { title: "Migration Balance (nrº)", value: 556200, percentage: "10%" },
+    { title: "Faro", value: 242700, percentage: "10%" }
+  ];
+
+  const handleExpand =
     (panel: string) => (_event: any, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
     };
 
+  const AccordionContent = ({
+    panel,
+    title
+  }: {
+    panel: string;
+    title: string;
+  }) => (
+    <Accordion expanded={expanded === panel} onChange={handleExpand(panel)}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls={`${panel}bh-content`}
+        id={`${panel}bh-header`}
+        className="accordion__summary"
+      >
+        <Typography variant="body1" fontSize="15px">
+          {title}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails className="accordion__details">
+        {/* replace with data */}
+        {populationData.map((data) => (
+          <Link component="button" className="accordion__details__link">
+            <Typography className="accordion__details__title">
+              {data.title}
+            </Typography>
+            <div className="accordion__details__values">
+              <Typography>{data.value}</Typography>
+              <Typography>{data.percentage}</Typography>
+            </div>
+          </Link>
+        ))}
+      </AccordionDetails>
+    </Accordion>
+  );
+
   return (
-    <Grid container direction="row">
-      <Grid className="accordion">
+    <Grid display="flex" justifyContent="space-between" direction="row">
+      <Grid className="accordion__grid">
         <section>
           <Typography variant="body1">Indicator</Typography>
           <Typography variant="body1">Value</Typography>
         </section>
         <Box className="accordion__box">
-          <Accordion
-            expanded={expanded === "panel1"}
-            onChange={handleChange("panel1")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
-            >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Population
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel2"}
-            onChange={handleChange("panel2")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2bh-content"
-              id="panel2bh-header"
-            >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Job Market
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel3"}
-            onChange={handleChange("panel3")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel3bh-content"
-              id="panel3bh-header"
-            >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Crime
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel4"}
-            onChange={handleChange("panel4")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel4bh-content"
-              id="panel4bh-header"
-            >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Construction
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel5"}
-            onChange={handleChange("panel5")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel5bh-content"
-              id="panel5bh-header"
-            >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Real Estate Market
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel6"}
-            onChange={handleChange("panel6")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel6bh-content"
-              id="panel6bh-header"
-            >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Industry
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-              <Link component="button" underline="none">
-                Link
-              </Link>
-            </AccordionDetails>
-          </Accordion>
+          <AccordionContent panel="panel1" title="Population" />
+          <AccordionContent panel="panel2" title="Job Market" />
+          <AccordionContent panel="panel3" title="Crime" />
+          <AccordionContent panel="panel4" title="Construction" />
+          <AccordionContent panel="panel5" title="Real Estate Market" />
+          <AccordionContent panel="panel6" title="Industry" />
         </Box>
       </Grid>
-      <Grid>
-        <AreaChart />
-      </Grid>
+      <AreaChart />
     </Grid>
   );
 }

@@ -1,4 +1,4 @@
-@import "../../../utils/colors.scss";
+@import "../../../utils/styles.scss";
 
 .customTable {
   padding: 20px 35px 35px;
@@ -8,7 +8,7 @@
 
 // table head
 .th {
-  background-color: $text_menu_color;
+  background-color: $text_menuColor;
 
   &__row__cell {
     &.MuiTableCell-root {
@@ -42,7 +42,7 @@
 
     th {
       border: none;
-      text-decoration: $text_menu_color underline;
+      text-decoration: $text_menuColor underline;
     }
   }
 }
