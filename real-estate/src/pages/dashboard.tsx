@@ -1,12 +1,7 @@
 import { Box, Unstable_Grid2 as Grid } from "@mui/material";
-import customSpacing from "../../utils/custom_spacing";
-import {
-  KeyIndicatores,
-  PageTitle,
-  CustomTable,
-  Links
-} from "../../components";
-import "../styles.scss";
+import customSpacing from "../utils/custom_spacing";
+import { KeyIndicatores, PageTitle, CustomTable, Links } from "../components";
+import "./styles.scss";
 
 function Dashboard() {
   return (

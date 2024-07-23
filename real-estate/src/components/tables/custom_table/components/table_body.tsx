@@ -37,7 +37,7 @@ function CustomTableBody(props: Props) {
             scope="row"
             padding="none"
           >
-            <Link href="#">
+            <Link href="/market-analysis">
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>

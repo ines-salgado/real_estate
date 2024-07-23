@@ -7,6 +7,7 @@ import PageTitle from "./page_title";
 import Links from "./links";
 import SimpleTabs from "./tabs";
 import AreaChart from "./graphs";
+import InvestmentCards from "./investment_cards";
 
 export {
   CustomTable,
@@ -17,5 +18,6 @@ export {
   PageTitle,
   Links,
   SimpleTabs,
-  AreaChart
+  AreaChart,
+  InvestmentCards
 };
