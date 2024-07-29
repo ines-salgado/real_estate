@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import "./styles.scss";
 
-function InvestmentCards() {
+function InvestmentSection() {
   const cardsData = [
     {
       image: "/images/luffy.png",
@@ -301,4 +301,4 @@ function InvestmentCards() {
   );
 }
 
-export default InvestmentCards;
+export default InvestmentSection;

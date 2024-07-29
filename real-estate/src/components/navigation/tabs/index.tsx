@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Tabs, Tab, Box, Typography } from "@mui/material";
-import { CustomAccordion, AreaChart } from "..";
+import { CustomAccordion, AreaChart } from "../..";
 import "./styles.scss";
 
 function SimpleTabs() {

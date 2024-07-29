@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import customSpacing from "../utils/custom_spacing";
-import { KeyIndicatores, PageTitle, PropertyOverview } from "../components";
+import { PageTitle } from "../components";
+import { PropertyOverview, KeyIndicatores } from "../sections";
 import "./styles.scss";
 
 function InvestmentAnalysis() {

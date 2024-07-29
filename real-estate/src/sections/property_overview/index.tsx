@@ -1,5 +1,6 @@
 import React from "react";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Unstable_Grid2 as Grid } from "@mui/material";
+import { BasicBreadcrumbs, ReportButton } from "../../components";
 import { imageDataJson, cardDataJson } from "./mock_data";
 import CardsContent from "./components/cards_content";
 import "./styles.scss";
@@ -10,7 +11,11 @@ function PropertyOverview() {
 
   return (
     <Box className="propertyViewContainer">
-      <Typography variant="h6">Property Overview</Typography>
+      <Grid className="header">
+        <Typography variant="h6">Property Overview</Typography>
+        <ReportButton />
+      </Grid>
+      <BasicBreadcrumbs country="Portugal" district="Lisboa" city="Cacém" />
       <CardsContent
         image={imageData.image}
         alt={imageData.alt}

@@ -1,12 +1,7 @@
 import { Box } from "@mui/material";
 import customSpacing from "../utils/custom_spacing";
-import {
-  InvestmentCards,
-  KeyIndicatores,
-  PageTitle,
-  SelectInput,
-  SimpleTabs
-} from "../components";
+import { PageTitle, SelectInput, SimpleTabs } from "../components";
+import { InvestmentSection, KeyIndicatores } from "../sections";
 import "./styles.scss";
 
 function MarketAnalysis() {
@@ -24,7 +19,7 @@ function MarketAnalysis() {
         {customSpacing}
         <SimpleTabs />
         {customSpacing}
-        <InvestmentCards />
+        <InvestmentSection />
         {customSpacing}
       </Box>
     </>
