@@ -279,9 +279,14 @@ function InvestmentCards() {
   );
 
   return (
-    <Box className="cardBox">
+    <Box className="investmentContainer">
       <Typography variant="h6">Real Estate Investment Analysis</Typography>
-      <Grid display="flex" direction="row" gap="10px">
+      <Grid
+        display="flex"
+        direction="row"
+        gap="10px"
+        justifyContent="space-evenly"
+      >
         {cardsData.map((card) => (
           <CardsContent
             image={card.image}

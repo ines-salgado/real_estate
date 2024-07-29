@@ -8,7 +8,7 @@ function Dashboard() {
     <>
       <PageTitle title="Dashboard" />
       <Box className="pageContainer">
-        <KeyIndicatores />
+        <KeyIndicatores title="Real Estate Price Index" hasPercentage />
         {customSpacing}
         <CustomTable />
         {customSpacing}

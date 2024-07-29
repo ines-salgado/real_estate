@@ -8,6 +8,7 @@ import Links from "./links";
 import SimpleTabs from "./tabs";
 import AreaChart from "./graphs";
 import InvestmentCards from "./investment_cards";
+import PropertyOverview from "./property_overview";
 
 export {
   CustomTable,
@@ -19,5 +20,6 @@ export {
   Links,
   SimpleTabs,
   AreaChart,
-  InvestmentCards
+  InvestmentCards,
+  PropertyOverview
 };

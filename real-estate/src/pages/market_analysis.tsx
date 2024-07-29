@@ -16,7 +16,11 @@ function MarketAnalysis() {
       <Box className="pageContainer">
         <SelectInput />
         {customSpacing}
-        <KeyIndicatores isSmallComp />
+        <KeyIndicatores
+          title="Real Estate Price Index"
+          isSmallComp
+          hasPercentage
+        />
         {customSpacing}
         <SimpleTabs />
         {customSpacing}
