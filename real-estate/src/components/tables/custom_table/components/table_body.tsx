@@ -1,5 +1,6 @@
 import * as React from "react";
-import { TableBody, TableCell, TableRow, Link } from "@mui/material";
+import { Link } from "react-router-dom";
+import { TableBody, TableCell, TableRow } from "@mui/material";
 import { stableSort, getComparator, Order } from "../../utils/data_comparator";
 import { rows, smallTableRows } from "../../utils/mock_data";
 import { DataType } from "../../utils/models";
@@ -37,7 +38,7 @@ function CustomTableBody(props: Props) {
             scope="row"
             padding="none"
           >
-            <Link href="/market-analysis">
+            <Link to="/market-analysis" state={{ city: row.name }}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>

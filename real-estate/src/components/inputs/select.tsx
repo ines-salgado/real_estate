@@ -9,6 +9,7 @@ import {
 
 interface Props {
   label: string;
+  routeValue?: string;
   options: string[];
 }
 
@@ -28,7 +29,7 @@ function SelectInput(props: Props) {
       <Select
         labelId="select-label"
         id="select"
-        value={state}
+        value={state || props.routeValue}
         label={props.label}
         onChange={handleChange}
       >
