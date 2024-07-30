@@ -1,11 +1,15 @@
 import { Typography, Divider, AppBar } from "@mui/material";
 import "./styles.scss";
 
-function PageTitle({ title }: { title: string }) {
+interface Props {
+  title: string;
+}
+
+function PageTitle(props: Props) {
   return (
     <AppBar position="fixed" className="appBar">
       <Typography variant="h6" className="appBar__title">
-        {title}
+        {props.title}
       </Typography>
       <Divider className="appBar__divider" />
     </AppBar>

@@ -7,11 +7,16 @@ import {
   SelectChangeEvent
 } from "@mui/material";
 
-function SelectInput() {
-  const [city, setCity] = React.useState<string>("2");
+interface Props {
+  label: string;
+  options: string[];
+}
+
+function SelectInput(props: Props) {
+  const [state, setState] = React.useState<string>("");
 
   const handleChange = (event: SelectChangeEvent) =>
-    setCity(event.target.value);
+    setState(event.target.value);
 
   return (
     <FormControl
@@ -19,17 +24,19 @@ function SelectInput() {
       size="small"
       sx={{ marginTop: "-10px", minWidth: "33%" }}
     >
-      <InputLabel id="select-label">City</InputLabel>
+      <InputLabel id="select-label">{props.label}</InputLabel>
       <Select
         labelId="select-label"
         id="select"
-        value={city}
-        label="City"
+        value={state}
+        label={props.label}
         onChange={handleChange}
       >
-        <MenuItem value={1}>Lisboa</MenuItem>
-        <MenuItem value={2}>Cacém</MenuItem>
-        <MenuItem value={3}>Mogadouro</MenuItem>
+        {props.options.map((option: string, index: number) => (
+          <MenuItem key={index} value={option}>
+            {option}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );

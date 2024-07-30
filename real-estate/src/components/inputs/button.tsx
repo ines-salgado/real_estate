@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button } from "@mui/material";
 import { GetApp as GetAppIcon } from "@mui/icons-material";
 import "./styles.scss";

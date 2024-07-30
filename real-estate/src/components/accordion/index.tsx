@@ -4,21 +4,51 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
-  Grid,
+  Unstable_Grid2 as Grid,
   Link,
   Typography
 } from "@mui/material";
 import { ExpandMore as ExpandMoreIcon } from "@mui/icons-material";
-import AreaChart from "../graphs";
 import "./styles.scss";
 
-function CustomAccordion() {
+interface Props {
+  width: string;
+}
+
+function CustomAccordion(props: Props) {
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const populationData = [
     { title: "Population Density (nrº/km²)", value: 999999, percentage: "10%" },
     { title: "Migration Balance (nrº)", value: 556200, percentage: "10%" },
     { title: "Faro", value: 242700, percentage: "10%" }
+  ];
+
+  const accordionData = [
+    {
+      title: "Population",
+      populationData: populationData
+    },
+    {
+      title: "Job Market",
+      populationData: populationData
+    },
+    {
+      title: "Crime",
+      populationData: populationData
+    },
+    {
+      title: "Construction",
+      populationData: populationData
+    },
+    {
+      title: "Real Estate Market",
+      populationData: populationData
+    },
+    {
+      title: "Industry",
+      populationData: populationData
+    }
   ];
 
   const handleExpand =
@@ -46,8 +76,12 @@ function CustomAccordion() {
       </AccordionSummary>
       <AccordionDetails className="accordion__details">
         {/* replace with data */}
-        {populationData.map((data) => (
-          <Link component="button" className="accordion__details__link">
+        {populationData.map((data, index) => (
+          <Link
+            key={index}
+            component="button"
+            className="accordion__details__link"
+          >
             <Typography className="accordion__details__title">
               {data.title}
             </Typography>
@@ -62,22 +96,20 @@ function CustomAccordion() {
   );
 
   return (
-    <Grid display="flex" justifyContent="space-between" direction="row">
-      <Grid className="accordion__grid">
-        <section>
-          <Typography variant="body1">Indicator</Typography>
-          <Typography variant="body1">Value</Typography>
-        </section>
-        <Box className="accordion__box">
-          <AccordionContent panel="panel1" title="Population" />
-          <AccordionContent panel="panel2" title="Job Market" />
-          <AccordionContent panel="panel3" title="Crime" />
-          <AccordionContent panel="panel4" title="Construction" />
-          <AccordionContent panel="panel5" title="Real Estate Market" />
-          <AccordionContent panel="panel6" title="Industry" />
-        </Box>
-      </Grid>
-      <AreaChart />
+    <Grid className="accordion__grid" width={props.width}>
+      <section>
+        <Typography variant="body1">Indicator</Typography>
+        <Typography variant="body1">Value</Typography>
+      </section>
+      <Box className="accordion__box">
+        {accordionData.map((data, index) => (
+          <AccordionContent
+            key={index}
+            panel={`panel${index}`}
+            title={data.title}
+          />
+        ))}
+      </Box>
     </Grid>
   );
 }

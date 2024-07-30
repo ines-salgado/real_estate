@@ -78,17 +78,7 @@ const cardData = {
       value: "7"
     }
   ],
-  details: [
-    {
-      name: "bla"
-    },
-    {
-      name: "bla"
-    },
-    {
-      name: "bla"
-    }
-  ]
+  chips: ["niku", "niku", "niku", "niku", "niku"]
 };
 
 const imageDataJson = JSON.stringify(imageData);
