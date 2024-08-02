@@ -6,9 +6,9 @@ import {
   Box
 } from "@mui/material";
 import { visuallyHidden } from "@mui/utils";
-import { smallTableHeadCells, headCells } from "../../utils/mock_data";
-import { Order } from "../../utils/data_comparator";
-import { DataType } from "../../utils/models";
+import { smallTableHeadCells, headCells } from "../utils/mock_data";
+import { Order } from "../utils/data_comparator";
+import { DataType } from "../utils/models";
 import "../styles.scss";
 
 interface Props {

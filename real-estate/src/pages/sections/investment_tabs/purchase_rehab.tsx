@@ -1,5 +1,9 @@
 import { Unstable_Grid2 as Grid } from "@mui/material";
-import { CustomAccordion, CustomPieChart } from "../../../components";
+import {
+  ChartDataTable,
+  CustomAccordion,
+  CustomPieChart
+} from "../../../components";
 
 function PurchaseAndRehab() {
   return (
@@ -9,7 +13,7 @@ function PurchaseAndRehab() {
       direction="row"
       paddingTop="10px"
     >
-      <CustomAccordion width="45%" />
+      <ChartDataTable />
       <CustomPieChart />
     </Grid>
   );

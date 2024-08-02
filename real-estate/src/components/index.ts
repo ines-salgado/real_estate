@@ -1,4 +1,3 @@
-import CustomTable from "./tables/custom_table";
 import CustomAccordion from "./accordion";
 import BasicChips from "./chips";
 import PageTitle from "./page_title";
@@ -7,9 +6,9 @@ import PropertyOverview from "./property_overview";
 import { AreaChart, CustomPieChart } from "./charts";
 import { SelectInput, ReportButton } from "./inputs";
 import { SimpleTabs, SideDrawer, Links, BasicBreadcrumbs } from "./navigation";
+import { CustomTable, ChartDataTable } from "./tables";
 
 export {
-  CustomTable,
   CustomAccordion,
   BasicChips,
   PageTitle,
@@ -25,5 +24,8 @@ export {
   BasicBreadcrumbs,
   // charts
   AreaChart,
-  CustomPieChart
+  CustomPieChart,
+  // tables
+  CustomTable,
+  ChartDataTable
 };

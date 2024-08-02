@@ -22,7 +22,7 @@ function MarketAnalysis() {
       const { city } = location.state;
       setRouteCity(city);
     }
-  }, []);
+  }, [location.state]);
 
   const options: string[] = ["Frozen yoghurt", "Ice cream sandwich"];
 

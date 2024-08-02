@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { TableBody, TableCell, TableRow } from "@mui/material";
-import { stableSort, getComparator, Order } from "../../utils/data_comparator";
-import { rows, smallTableRows } from "../../utils/mock_data";
-import { DataType } from "../../utils/models";
+import { stableSort, getComparator, Order } from "../utils/data_comparator";
+import { rows, smallTableRows } from "../utils/mock_data";
+import { DataType } from "../utils/models";
 import "../styles.scss";
 
 interface Props {
