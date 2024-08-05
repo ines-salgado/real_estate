@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Table, TableContainer, Paper, Box, Typography } from "@mui/material";
-import { Order } from "./utils/data_comparator";
-import { DataType } from "./utils/models";
+import { Order } from "../utils/data_comparator";
+import { DataType } from "../utils/models";
 import { CustomTableHead, CustomTableBody } from "./components";
 import "./styles.scss";
 

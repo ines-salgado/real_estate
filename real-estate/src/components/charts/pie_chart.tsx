@@ -9,7 +9,7 @@ function CustomPieChart() {
   ];
 
   return (
-    <Grid height="100%" width="47%">
+    <Grid height="100%" width="47%" marginRight="-8%">
       <PieChart
         series={[
           {

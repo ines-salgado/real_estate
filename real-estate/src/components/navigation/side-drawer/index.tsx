@@ -51,7 +51,7 @@ function SideDrawer() {
   ];
 
   return (
-    <Box component="nav" aria-label="menu">
+    <Box component="nav">
       <Drawer variant="permanent" className="drawer" open>
         <div className="drawer__header">
           <BarChartIcon />

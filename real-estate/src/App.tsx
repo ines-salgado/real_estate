@@ -12,9 +12,10 @@ function App() {
       path: "/investment-analysis",
       element: <InvestmentAnalysis />
     },
-    { path: "/activities", element: <h1>Activities</h1> },
-    { path: "/get-started", element: <h1>Get Started</h1> },
-    { path: "/settings", element: <h1>Settings</h1> }
+    {
+      path: "/activities" || "/get-started" || "/settings",
+      element: <h1>work in progress...</h1>
+    }
   ]);
 
   return (
@@ -22,9 +23,9 @@ function App() {
       <CssBaseline />
       <SideDrawer />
       <Box
-        className="box"
+        className="app"
         children={
-          <div className="box__children">
+          <div className="app__children">
             <RouterProvider router={router} />
           </div>
         }

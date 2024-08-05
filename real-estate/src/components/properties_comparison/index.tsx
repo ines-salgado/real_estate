@@ -14,15 +14,14 @@ function PropertiesComparison() {
     <Box className="investmentContainer">
       <Typography variant="h6">Real Estate Investment Analysis</Typography>
       <section>
-        <SelectInput label="Typology" options={typeOptions} />
-        <SelectInput label="Projected yeild" options={yeildOptions} />
+        <SelectInput label="Typology" options={typeOptions} routeValue="" />
+        <SelectInput
+          label="Projected yeild"
+          options={yeildOptions}
+          routeValue=""
+        />
       </section>
-      <Grid
-        display="flex"
-        direction="row"
-        gap="10px"
-        justifyContent="space-evenly"
-      >
+      <Grid display="flex" direction="row" gap="10px" justifyContent="center">
         {cardsData.map((card: any, index: number) => (
           <PropertyCard
             key={index}

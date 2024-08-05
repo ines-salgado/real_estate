@@ -9,7 +9,7 @@ interface Props {
 function BasicBreadcrumbs(props: Props) {
   return (
     <div role="presentation" onClick={() => {}}>
-      <Breadcrumbs separator="›" aria-label="breadcrumb">
+      <Breadcrumbs separator="›">
         <Link underline="hover" color="inherit" href="#">
           {props.country}
         </Link>

@@ -12,53 +12,67 @@ import {
   KeyboardArrowDown as ArrowDownIcon,
   KeyboardArrowUp as ArrowUpIcon
 } from "@mui/icons-material";
-import { RowData } from "../utils/model";
+import { CostsData, RowData } from "../../utils/chart_data_model";
+import "../styles.scss";
 
-function CollapsibleRows(props: { row: RowData }) {
-  const { row } = props;
-  const [open, setOpen] = React.useState(false);
+interface Props {
+  row: RowData;
+  isIconCell?: boolean;
+}
 
-  const renderTableRow = (array: any) =>
-    array.map((row: any, index: number) => (
-      <TableRow key={index}>
-        <TableCell component="th" scope="row">
-          {row.name}
-        </TableCell>
-        <TableCell align="right">{row.amount}</TableCell>
-      </TableRow>
-    ));
+function CollapsibleRows(props: Props) {
+  const renderTableRows = (costs: CostsData) => {
+    const [open, setOpen] = React.useState<boolean>(false);
+
+    const borderBottom = open ? "1px solid rgba(224, 224, 224, 1)" : "initial";
+
+    return (
+      <>
+        <TableRow>
+          <TableCell
+            sx={{ borderBottom: borderBottom }}
+            component="th"
+            align="left"
+          >
+            {costs.name}
+            <IconButton size="small" onClick={() => setOpen(!open)}>
+              {open ? <ArrowUpIcon /> : <ArrowDownIcon />}
+            </IconButton>
+          </TableCell>
+          <TableCell sx={{ borderBottom: borderBottom }} align="right">
+            {costs.amount}
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <Box>
+                <Table size="small">
+                  <TableBody>
+                    {costs.data.map((cost, index) => (
+                      <TableRow key={index}>
+                        <TableCell sx={{ borderBottom: "none" }} component="th">
+                          {cost.name}
+                        </TableCell>
+                        <TableCell sx={{ borderBottom: "none" }} align="right">
+                          {cost.amount}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Box>
+            </Collapse>
+          </TableCell>
+        </TableRow>
+      </>
+    );
+  };
 
   return (
     <>
-      <TableRow>
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <ArrowUpIcon /> : <ArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-        <TableCell component="th" scope="row">
-          {row.name}
-        </TableCell>
-        <TableCell align="right">{row.amount}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box>
-              <Table size="small">
-                <TableBody>
-                  {renderTableRow(row.purchaseCosts)}
-                  {renderTableRow(row.rehabCosts)}
-                </TableBody>
-              </Table>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
+      {renderTableRows(props.row.purchaseCosts)}
+      {renderTableRows(props.row.rehabCosts)}
     </>
   );
 }

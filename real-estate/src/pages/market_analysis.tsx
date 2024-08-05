@@ -1,7 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { Box } from "@mui/material";
-import customSpacing from "../utils/custom_spacing";
 import {
   PageTitle,
   SelectInput,
@@ -45,17 +44,17 @@ function MarketAnalysis() {
       <PageTitle title="Market Analysis" />
       <Box className="pageContainer">
         <SelectInput label="City" options={options} routeValue={routeCity} />
-        {customSpacing}
+        <br /> <br />
         <KeyIndicatores
           title="Real Estate Price Index"
           isSmallComp
           hasPercentage
         />
-        {customSpacing}
+        <br /> <br />
         <SimpleTabs tabsData={tabsData} />
-        {customSpacing}
+        <br /> <br />
         <PropertiesComparison />
-        {customSpacing}
+        <br /> <br />
       </Box>
     </>
   );

@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import customSpacing from "../utils/custom_spacing";
 import { PageTitle, PropertyOverview, SimpleTabs } from "../components";
 import { MarketDynamics, KeyIndicatores, PurchaseAndRehab } from "./sections";
 import "./styles.scss";
@@ -28,14 +27,14 @@ function InvestmentAnalysis() {
       <PageTitle title="Investment Analysis" />
       <Box className="pageContainer">
         <PropertyOverview />
-        {customSpacing}
+        <br /> <br />
         <KeyIndicatores
           title="Financial Summary / Performance Metrics"
           isSmallComp
         />
-        {customSpacing}
+        <br /> <br />
         <SimpleTabs tabsData={tabsData} />
-        {customSpacing}
+        <br /> <br />
       </Box>
     </>
   );
