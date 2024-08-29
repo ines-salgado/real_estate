@@ -1,20 +1,20 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { Box } from "@mui/material";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { Box } from '@mui/material';
 import {
   PageTitle,
   SelectInput,
   SimpleTabs,
   PropertiesComparison,
-  AreaChart
-} from "../components";
-import { MarketDynamics, KeyIndicatores } from "./sections";
-import "./styles.scss";
+  AreaChart,
+} from '../components';
+import { MarketDynamics, KeyIndicatores } from './sections';
+import './styles.scss';
 
 function MarketAnalysis() {
   const location = useLocation();
 
-  const [routeCity, setRouteCity] = React.useState<string>("");
+  const [routeCity, setRouteCity] = React.useState<string>('');
 
   React.useMemo(() => {
     if (location.state) {
@@ -23,20 +23,20 @@ function MarketAnalysis() {
     }
   }, [location.state]);
 
-  const options: string[] = ["Frozen yoghurt", "Ice cream sandwich"];
+  const options: string[] = ['Frozen yoghurt', 'Ice cream sandwich'];
 
   const tabsData = {
-    title: "Market Forecasts",
+    title: 'Market Forecasts',
     data: [
       {
-        tabLabel: "Property Market Trends",
-        comp: <AreaChart />
+        tabLabel: 'Property Market Trends',
+        comp: <AreaChart />,
       },
       {
-        tabLabel: "Market Dynamics",
-        comp: <MarketDynamics />
-      }
-    ]
+        tabLabel: 'Market Dynamics',
+        comp: <MarketDynamics />,
+      },
+    ],
   };
 
   return (

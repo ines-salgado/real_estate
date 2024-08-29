@@ -1,4 +1,4 @@
-import { Typography, Breadcrumbs, Link } from "@mui/material";
+import { Typography, Breadcrumbs, Link } from '@mui/material';
 
 interface Props {
   country: string;

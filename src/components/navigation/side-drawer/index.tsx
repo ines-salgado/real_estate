@@ -7,8 +7,8 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Typography
-} from "@mui/material";
+  Typography,
+} from '@mui/material';
 import {
   TrendingUpOutlined as TrendingUpIcon,
   FlashOnOutlined as FlashOnIcon,
@@ -16,37 +16,36 @@ import {
   BarChartOutlined as BarChartIcon,
   SettingsOutlined as SettingsIcon,
   LightbulbOutlined as LightbulbIcon,
-  FactCheckOutlined as FactCheckIcon
-} from "@mui/icons-material";
-import "./styles.scss";
+} from '@mui/icons-material';
+import './styles.scss';
 
 function SideDrawer() {
   const page_url: string = window.location.pathname;
 
   const mainPages: Array<{}> = [
-    { id: 0, text: "Dashboard", icon: <TrendingUpIcon />, url: "/" },
+    { id: 0, text: 'Dashboard', icon: <TrendingUpIcon />, url: '/' },
     {
       id: 1,
-      text: "Market Analysis",
+      text: 'Market Analysis',
       icon: <FlashOnIcon />,
-      url: "/market-analysis"
+      url: '/market-analysis',
     },
     {
       id: 2,
-      text: "Investment Analysis",
+      text: 'Investment Analysis',
       icon: <PeopleOutlineIcon />,
-      url: "/investment-analysis"
-    }
+      url: '/investment-analysis',
+    },
   ];
 
   const secondaryPages: Array<{}> = [
     {
       id: 4,
-      text: "Get Started",
+      text: 'Get Started',
       icon: <LightbulbIcon />,
-      url: "/get-started"
+      url: '/get-started',
     },
-    { id: 5, text: "Settings", icon: <SettingsIcon />, url: "/settings" }
+    { id: 5, text: 'Settings', icon: <SettingsIcon />, url: '/settings' },
   ];
 
   return (
@@ -68,8 +67,8 @@ function SideDrawer() {
                 color="inherit"
                 className={
                   page_url === page.url
-                    ? "list__item__btn activeBtn"
-                    : "list__item__btn"
+                    ? 'list__item__btn activeBtn'
+                    : 'list__item__btn'
                 }
               >
                 <ListItemIcon>{page.icon}</ListItemIcon>
@@ -77,8 +76,8 @@ function SideDrawer() {
                   primary={page.text}
                   className={
                     page_url === page.url
-                      ? "list__item__text activeText"
-                      : "list__item__text"
+                      ? 'list__item__text activeText'
+                      : 'list__item__text'
                   }
                 />
               </ListItemButton>

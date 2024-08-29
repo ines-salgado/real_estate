@@ -1,5 +1,5 @@
 // Type definition for the Order enum.
-type Order = "asc" | "desc";
+type Order = 'asc' | 'desc';
 
 // Function to compare two objects for sorting.
 function descComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -17,12 +17,12 @@ function descComparator<T>(a: T, b: T, orderBy: keyof T) {
 // Function to get the correct comparator for sorting.
 function getComparator<Key extends keyof any>(
   order: Order,
-  orderBy: Key
+  orderBy: Key,
 ): (
   a: { [key in Key]: number | string },
-  b: { [key in Key]: number | string }
+  b: { [key in Key]: number | string },
 ) => number {
-  return order === "desc"
+  return order === 'desc'
     ? (a, b) => descComparator(a, b, orderBy)
     : (a, b) => -descComparator(a, b, orderBy);
 }

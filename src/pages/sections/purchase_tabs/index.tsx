@@ -1,5 +1,5 @@
-import { Unstable_Grid2 as Grid } from "@mui/material";
-import { ChartDataTable, CustomPieChart } from "../../../components";
+import { Unstable_Grid2 as Grid } from '@mui/material';
+import { ChartDataTable, CustomPieChart } from '../../../components';
 
 interface Props {
   hasPieChart?: boolean;

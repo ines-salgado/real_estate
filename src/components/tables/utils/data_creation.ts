@@ -1,4 +1,4 @@
-import { Data, SmallData } from "./models";
+import { Data, SmallData } from './models';
 
 // Functions for mock data creation
 function createData(
@@ -11,7 +11,7 @@ function createData(
   calories1: number,
   fat1: number,
   carbs1: number,
-  protein1: number
+  protein1: number,
 ): Data {
   return {
     id,
@@ -23,7 +23,7 @@ function createData(
     calories1,
     fat1,
     carbs1,
-    protein1
+    protein1,
   };
 }
 
@@ -31,13 +31,13 @@ function createSmallTableData(
   id: number,
   name: string,
   calories: number,
-  carbs: number
+  carbs: number,
 ): SmallData {
   return {
     id,
     name,
     calories,
-    carbs
+    carbs,
   };
 }
 

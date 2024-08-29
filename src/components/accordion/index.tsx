@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Accordion,
   AccordionDetails,
@@ -6,10 +6,10 @@ import {
   Box,
   Unstable_Grid2 as Grid,
   Link,
-  Typography
-} from "@mui/material";
-import { ExpandMore as ExpandMoreIcon } from "@mui/icons-material";
-import "./styles.scss";
+  Typography,
+} from '@mui/material';
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import './styles.scss';
 
 interface Props {
   width: string;
@@ -19,36 +19,36 @@ function CustomAccordion(props: Props) {
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const populationData = [
-    { title: "Population Density (nrº/km²)", value: 999999, percentage: "10%" },
-    { title: "Migration Balance (nrº)", value: 556200, percentage: "10%" },
-    { title: "Faro", value: 242700, percentage: "10%" }
+    { title: 'Population Density (nrº/km²)', value: 999999, percentage: '10%' },
+    { title: 'Migration Balance (nrº)', value: 556200, percentage: '10%' },
+    { title: 'Faro', value: 242700, percentage: '10%' },
   ];
 
   const accordionData = [
     {
-      title: "Population",
-      populationData: populationData
+      title: 'Population',
+      populationData: populationData,
     },
     {
-      title: "Job Market",
-      populationData: populationData
+      title: 'Job Market',
+      populationData: populationData,
     },
     {
-      title: "Crime",
-      populationData: populationData
+      title: 'Crime',
+      populationData: populationData,
     },
     {
-      title: "Construction",
-      populationData: populationData
+      title: 'Construction',
+      populationData: populationData,
     },
     {
-      title: "Real Estate Market",
-      populationData: populationData
+      title: 'Real Estate Market',
+      populationData: populationData,
     },
     {
-      title: "Industry",
-      populationData: populationData
-    }
+      title: 'Industry',
+      populationData: populationData,
+    },
   ];
 
   const handleExpand =
@@ -58,7 +58,7 @@ function CustomAccordion(props: Props) {
 
   const AccordionContent = ({
     panel,
-    title
+    title,
   }: {
     panel: string;
     title: string;

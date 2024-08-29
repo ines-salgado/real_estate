@@ -1,5 +1,5 @@
-import { Chip, Stack } from "@mui/material";
-import "./styles.scss";
+import { Chip, Stack } from '@mui/material';
+import './styles.scss';
 
 interface Props {
   data: string[];

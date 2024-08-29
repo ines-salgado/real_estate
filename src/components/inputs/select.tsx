@@ -1,11 +1,11 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   InputLabel,
   MenuItem,
   FormControl,
   Select,
-  SelectChangeEvent
-} from "@mui/material";
+  SelectChangeEvent,
+} from '@mui/material';
 
 interface Props {
   label: string;
@@ -14,7 +14,7 @@ interface Props {
 }
 
 function SelectInput(props: Props) {
-  const [state, setState] = React.useState<string>("");
+  const [state, setState] = React.useState<string>('');
 
   const handleChange = (event: SelectChangeEvent) =>
     setState(event.target.value);
@@ -23,7 +23,7 @@ function SelectInput(props: Props) {
     <FormControl
       className="selectInput"
       size="small"
-      sx={{ marginTop: "-10px", minWidth: "33%" }}
+      sx={{ marginTop: '-10px', minWidth: '33%' }}
     >
       <InputLabel id="select-label">{props.label}</InputLabel>
       <Select

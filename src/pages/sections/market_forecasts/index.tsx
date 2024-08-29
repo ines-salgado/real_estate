@@ -1,5 +1,5 @@
-import { Unstable_Grid2 as Grid } from "@mui/material";
-import { CustomAccordion, AreaChart } from "../../../components";
+import { Unstable_Grid2 as Grid } from '@mui/material';
+import { CustomAccordion, AreaChart } from '../../../components';
 
 function MarketDynamics() {
   return (

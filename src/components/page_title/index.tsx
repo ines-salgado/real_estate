@@ -1,5 +1,5 @@
-import { Typography, Divider, AppBar } from "@mui/material";
-import "./styles.scss";
+import { Typography, Divider, AppBar } from '@mui/material';
+import './styles.scss';
 
 interface Props {
   title: string;

@@ -1,5 +1,5 @@
-import { Typography, Box, Link, Unstable_Grid2 as Grid } from "@mui/material";
-import "./styles.scss";
+import { Typography, Box, Link, Unstable_Grid2 as Grid } from '@mui/material';
+import './styles.scss';
 
 function Links() {
   const link = (

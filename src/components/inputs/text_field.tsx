@@ -1,5 +1,5 @@
-import { Box, TextField } from "@mui/material";
-import "./styles.scss";
+import { Box, TextField } from '@mui/material';
+import './styles.scss';
 
 interface Props {
   value: string;

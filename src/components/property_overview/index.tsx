@@ -5,11 +5,11 @@ import {
   Divider,
   Card,
   CardContent,
-  CardMedia
-} from "@mui/material";
-import { BasicBreadcrumbs, BasicChips, ReportButton } from "..";
-import { imageDataJson, cardDataJson } from "./mock_data";
-import "./styles.scss";
+  CardMedia,
+} from '@mui/material';
+import { BasicBreadcrumbs, BasicChips, ReportButton } from '..';
+import { imageDataJson, cardDataJson } from './mock_data';
+import './styles.scss';
 
 function PropertyOverview() {
   const imageData = JSON.parse(imageDataJson);

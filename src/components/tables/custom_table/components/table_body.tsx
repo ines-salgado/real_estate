@@ -1,10 +1,10 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import { TableBody, TableCell, TableRow } from "@mui/material";
-import { stableSort, getComparator, Order } from "../../utils/data_comparator";
-import { rows, smallTableRows } from "../../utils/mock_data";
-import { DataType } from "../../utils/models";
-import "../styles.scss";
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import { TableBody, TableCell, TableRow } from '@mui/material';
+import { stableSort, getComparator, Order } from '../../utils/data_comparator';
+import { rows, smallTableRows } from '../../utils/mock_data';
+import { DataType } from '../../utils/models';
+import '../styles.scss';
 
 interface Props {
   order: Order;
@@ -17,9 +17,9 @@ function CustomTableBody(props: Props) {
     () =>
       stableSort(
         props.isSmallTable ? smallTableRows : rows,
-        getComparator(props.order, props.orderBy)
+        getComparator(props.order, props.orderBy),
       ).slice(),
-    [props.order, props.orderBy]
+    [props.order, props.orderBy, props.isSmallTable],
   );
 
   const rowData = (data: string | number) => (

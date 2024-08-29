@@ -1,4 +1,4 @@
-import { Unstable_Grid2 as Grid } from "@mui/material";
+import { Unstable_Grid2 as Grid } from '@mui/material';
 
 function InvestmentProjections() {
   return (

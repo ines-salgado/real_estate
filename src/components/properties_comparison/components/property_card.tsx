@@ -4,9 +4,9 @@ import {
   CardMedia,
   CardActionArea,
   Typography,
-  Divider
-} from "@mui/material";
-import "../styles.scss";
+  Divider,
+} from '@mui/material';
+import '../styles.scss';
 
 interface Props {
   image: string;

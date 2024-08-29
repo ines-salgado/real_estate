@@ -1,13 +1,13 @@
-import { Table, TableBody, TableCell, TableRow } from "@mui/material";
-import { createData } from "../utils/chart_data_model";
-import CollapsibleRows from "./components/collapsible_rows";
-import InputRows from "./components/input_rows";
+import { Table, TableBody, TableCell, TableRow } from '@mui/material';
+import { createData } from '../utils/chart_data_model';
+import CollapsibleRows from './components/collapsible_rows';
+import InputRows from './components/input_rows';
 
 function ChartDataTable() {
   const rows = [createData()];
 
   return (
-    <Table sx={{ width: "53%" }}>
+    <Table sx={{ width: '53%' }}>
       <TableBody>
         {rows.map((row, index) => (
           <TableRow key={index}>

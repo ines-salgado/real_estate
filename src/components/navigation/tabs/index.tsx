@@ -1,6 +1,6 @@
-import * as React from "react";
-import { Tabs, Tab, Box, Typography } from "@mui/material";
-import "./styles.scss";
+import * as React from 'react';
+import { Tabs, Tab, Box, Typography } from '@mui/material';
+import './styles.scss';
 
 interface Props {
   tabsData: {
@@ -14,7 +14,7 @@ function SimpleTabs(props: Props) {
 
   const tabLabelProps = (id: number) => ({
     id: `simple-tab-${id}`,
-    "aria-controls": `simple-tabpanel-${id}`
+    'aria-controls': `simple-tabpanel-${id}`,
   });
 
   const handleChangeTab = (_event: any, newTabValue: number) =>

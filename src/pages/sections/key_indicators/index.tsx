@@ -1,5 +1,5 @@
-import { Box, Unstable_Grid2 as Grid, Typography } from "@mui/material";
-import "./styles.scss";
+import { Box, Unstable_Grid2 as Grid, Typography } from '@mui/material';
+import './styles.scss';
 
 interface Props {
   title: string;
@@ -27,7 +27,7 @@ function KeyIndicatores(props: Props) {
         container
         spacing={2}
         gap="10px"
-        marginBottom={props.isSmallComp ? 0 : "20px"}
+        marginBottom={props.isSmallComp ? 0 : '20px'}
       >
         {keyValues}
         {keyValues}

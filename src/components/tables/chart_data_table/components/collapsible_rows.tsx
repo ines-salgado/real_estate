@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Box,
   Collapse,
@@ -6,24 +6,24 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableRow
-} from "@mui/material";
+  TableRow,
+} from '@mui/material';
 import {
   KeyboardArrowDown as ArrowDownIcon,
-  KeyboardArrowUp as ArrowUpIcon
-} from "@mui/icons-material";
-import { CostsData, RowData } from "../../utils/chart_data_model";
-import "../styles.scss";
+  KeyboardArrowUp as ArrowUpIcon,
+} from '@mui/icons-material';
+import { CostsData, RowData } from '../../utils/chart_data_model';
+import '../styles.scss';
 
 interface Props {
   row: RowData;
 }
 
 function CollapsibleRows(props: Props) {
-  const renderTableRows = (costs: CostsData) => {
+  const RenderTableRows = (costs: CostsData) => {
     const [open, setOpen] = React.useState<boolean>(false);
 
-    const borderBottom = open ? "1px solid rgba(224, 224, 224, 1)" : "initial";
+    const borderBottom = open ? '1px solid rgba(224, 224, 224, 1)' : 'initial';
 
     return (
       <>
@@ -50,10 +50,10 @@ function CollapsibleRows(props: Props) {
                   <TableBody>
                     {costs.data.map((cost, index) => (
                       <TableRow key={index}>
-                        <TableCell sx={{ borderBottom: "none" }} component="th">
+                        <TableCell sx={{ borderBottom: 'none' }} component="th">
                           {cost.name}
                         </TableCell>
-                        <TableCell sx={{ borderBottom: "none" }} align="right">
+                        <TableCell sx={{ borderBottom: 'none' }} align="right">
                           {cost.amount}
                         </TableCell>
                       </TableRow>
@@ -70,8 +70,8 @@ function CollapsibleRows(props: Props) {
 
   return (
     <>
-      {renderTableRows(props.row.purchaseCosts)}
-      {renderTableRows(props.row.rehabCosts)}
+      {RenderTableRows(props.row.purchaseCosts)}
+      {RenderTableRows(props.row.rehabCosts)}
     </>
   );
 }
