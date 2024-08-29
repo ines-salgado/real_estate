@@ -1,11 +1,11 @@
 import { Unstable_Grid2 as Grid } from "@mui/material";
-import {
-  ChartDataTable,
-  CustomAccordion,
-  CustomPieChart
-} from "../../../components";
+import { ChartDataTable, CustomPieChart } from "../../../components";
 
-function PurchaseAndRehab() {
+interface Props {
+  hasPieChart?: boolean;
+}
+
+function PurchaseTabs(props: Props) {
   return (
     <Grid
       display="flex"
@@ -14,9 +14,9 @@ function PurchaseAndRehab() {
       paddingTop="10px"
     >
       <ChartDataTable />
-      <CustomPieChart />
+      {props.hasPieChart && <CustomPieChart />}
     </Grid>
   );
 }
 
-export default PurchaseAndRehab;
+export default PurchaseTabs;

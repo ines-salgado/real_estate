@@ -1,6 +1,10 @@
 import { Box } from "@mui/material";
 import { PageTitle, PropertyOverview, SimpleTabs } from "../components";
-import { MarketDynamics, KeyIndicatores, PurchaseAndRehab } from "./sections";
+import {
+  InvestmentProjections,
+  KeyIndicatores,
+  PurchaseTabs
+} from "./sections";
 import "./styles.scss";
 
 function InvestmentAnalysis() {
@@ -9,15 +13,15 @@ function InvestmentAnalysis() {
     data: [
       {
         tabLabel: "Purchase & Rehab",
-        comp: <PurchaseAndRehab />
+        comp: <PurchaseTabs hasPieChart />
       },
       {
         tabLabel: "Financing (Purchase)",
-        comp: <MarketDynamics />
+        comp: <PurchaseTabs />
       },
       {
         tabLabel: "Cash Flow (1 year)",
-        comp: <PurchaseAndRehab />
+        comp: <PurchaseTabs hasPieChart />
       }
     ]
   };
@@ -34,6 +38,8 @@ function InvestmentAnalysis() {
         />
         <br /> <br />
         <SimpleTabs tabsData={tabsData} />
+        <br /> <br />
+        <InvestmentProjections />
         <br /> <br />
       </Box>
     </>

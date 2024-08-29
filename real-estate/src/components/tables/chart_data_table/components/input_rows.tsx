@@ -14,10 +14,10 @@ function InputRows(props: Props) {
     <>
       {props.row.inputData.map((data, index) => (
         <TableRow key={index} sx={{ justifyContent: "space-between" }}>
-          <TableCell component="th" scope="row">
+          <TableCell component="th" width="auto">
             {data.name}
           </TableCell>
-          <TableCell align="right">
+          <TableCell align="right" width="30%">
             <BasicTextField value={value || data.value} setValue={setValue} />
           </TableCell>
         </TableRow>

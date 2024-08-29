@@ -1,5 +1,6 @@
-import MarketDynamics from "./market_forecasts/market_dynamics";
-import PurchaseAndRehab from "./investment_tabs/purchase_rehab";
+import MarketDynamics from "./market_forecasts";
+import PurchaseTabs from "./purchase_tabs";
 import KeyIndicatores from "./key_indicators";
+import InvestmentProjections from "./investment_projections";
 
-export { MarketDynamics, PurchaseAndRehab, KeyIndicatores };
+export { MarketDynamics, PurchaseTabs, KeyIndicatores, InvestmentProjections };

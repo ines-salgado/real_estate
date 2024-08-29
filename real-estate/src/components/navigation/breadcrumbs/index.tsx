@@ -16,7 +16,7 @@ function BasicBreadcrumbs(props: Props) {
         <Link underline="hover" color="inherit" href="#">
           {props.district}
         </Link>
-        <Typography color="text.primary">{props.city}</Typography>
+        <Typography color="#1f5678">{props.city}</Typography>
       </Breadcrumbs>
     </div>
   );

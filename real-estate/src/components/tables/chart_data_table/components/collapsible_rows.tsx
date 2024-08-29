@@ -17,7 +17,6 @@ import "../styles.scss";
 
 interface Props {
   row: RowData;
-  isIconCell?: boolean;
 }
 
 function CollapsibleRows(props: Props) {

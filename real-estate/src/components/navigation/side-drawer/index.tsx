@@ -36,8 +36,7 @@ function SideDrawer() {
       text: "Investment Analysis",
       icon: <PeopleOutlineIcon />,
       url: "/investment-analysis"
-    },
-    { id: 3, text: "Activities", icon: <FactCheckIcon />, url: "/activities" }
+    }
   ];
 
   const secondaryPages: Array<{}> = [

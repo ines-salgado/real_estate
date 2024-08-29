@@ -13,7 +13,11 @@ function App() {
       element: <InvestmentAnalysis />
     },
     {
-      path: "/activities" || "/get-started" || "/settings",
+      path: "/get-started",
+      element: <h1>work in progress...</h1>
+    },
+    {
+      path: "/settings",
       element: <h1>work in progress...</h1>
     }
   ]);
