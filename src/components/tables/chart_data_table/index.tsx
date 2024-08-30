@@ -1,7 +1,6 @@
 import { Table, TableBody, TableCell, TableRow } from '@mui/material';
-import { createData } from '../utils/chart_data_model';
-import CollapsibleRows from './components/collapsible_rows';
-import InputRows from './components/input_rows';
+import { createData } from '../../../models/chart';
+import { CollapsibleRows, InputRows } from './components';
 
 function ChartDataTable() {
   const rows = [createData()];

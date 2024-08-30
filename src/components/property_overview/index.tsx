@@ -8,7 +8,10 @@ import {
   CardMedia,
 } from '@mui/material';
 import { BasicBreadcrumbs, BasicChips, ReportButton } from '..';
-import { imageDataJson, cardDataJson } from './mock_data';
+import {
+  imageDataJson,
+  cardDataJson,
+} from '../../data/investment_analysis/mock_data';
 import './styles.scss';
 
 function PropertyOverview() {
