@@ -26,7 +26,7 @@ function CustomTable(props: Props) {
   const [orderBy, setOrderBy] = React.useState<TableDataType>('location');
 
   const [page, setPage] = React.useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(25);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(15);
 
   const rows = stableSort(
     locationRankData,
@@ -75,7 +75,7 @@ function CustomTable(props: Props) {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[25, 50, 100]}
+        rowsPerPageOptions={[10, 25, 50, 75, 100]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
