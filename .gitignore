@@ -3,5 +3,8 @@
 # dependencies
 /node_modules
 
+/build
+/.husky
+
 # System Files
 .DS_Store
