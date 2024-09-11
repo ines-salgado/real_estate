@@ -11,7 +11,7 @@ import { BasicBreadcrumbs, BasicChips, ReportButton } from '..';
 import {
   imageDataJson,
   cardDataJson,
-} from '../../data/investment_analysis/mock_data';
+} from '../../data/mock_data/investment_analysis';
 import './styles.scss';
 
 function PropertyOverview() {

@@ -1,5 +1,5 @@
 import { Typography, Box, Unstable_Grid2 as Grid } from '@mui/material';
-import { cardsDataJson } from '../../data/market_analysis/mock_data';
+import { cardsDataJson } from '../../data/mock_data/market_analysis';
 import { SelectInput } from '../inputs';
 import PropertyCard from './components/property_card';
 import './styles.scss';

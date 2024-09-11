@@ -1,6 +1,7 @@
 import { LineChart } from '@mui/x-charts/LineChart';
 
 function AreaChart() {
+  // mock data
   const data = [
     {
       x: new Date(2019, 0, 1),

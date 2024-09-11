@@ -15,14 +15,7 @@ interface TableData {
   codLocation: string;
 }
 
-interface SmallTableData {
-  index: number;
-  location: string;
-  mediumPrice: number;
-  mediumPriceBySquare: number;
-}
-
-type TableDataType = keyof TableData | keyof SmallTableData;
+type TableDataType = keyof TableData;
 
 interface HeadCell {
   disablePadding: boolean;

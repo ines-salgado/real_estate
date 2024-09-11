@@ -15,6 +15,7 @@ interface RowData {
   rehabCosts: CostsData;
 }
 
+// mock data
 function createData(): RowData {
   return {
     name: 'Frozen yoghurt',

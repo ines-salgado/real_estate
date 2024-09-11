@@ -18,6 +18,7 @@ interface Props {
 function CustomAccordion(props: Props) {
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
+  /* mock data */
   const populationData = [
     { title: 'Population Density (nrº/km²)', value: 999999, percentage: '10%' },
     { title: 'Migration Balance (nrº)', value: 556200, percentage: '10%' },
@@ -50,6 +51,7 @@ function CustomAccordion(props: Props) {
       populationData: populationData,
     },
   ];
+  /* *** */
 
   const handleExpand =
     (panel: string) => (_event: any, isExpanded: boolean) => {

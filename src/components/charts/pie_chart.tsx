@@ -2,6 +2,7 @@ import { pieArcLabelClasses, PieChart } from '@mui/x-charts';
 import { Unstable_Grid2 as Grid } from '@mui/material';
 
 function CustomPieChart() {
+  // mock data
   const data = [
     { id: 0, value: 10, color: '#61a2cb' },
     { id: 1, value: 15, color: '#346584' },

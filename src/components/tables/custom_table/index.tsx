@@ -13,7 +13,7 @@ import {
   Order,
 } from '../../../utils/data_comparator';
 import { TableDataType } from '../../../models/table';
-import locationRankData from '../../../data/dashboard/location_rank.json';
+import locationRankData from '../../../data/location_rank.json';
 import { CustomTableHead, CustomTableBody } from './components';
 import './styles.scss';
 
