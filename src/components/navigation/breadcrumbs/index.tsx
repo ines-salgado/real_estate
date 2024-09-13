@@ -1,22 +1,20 @@
-import { Typography, Breadcrumbs, Link } from '@mui/material';
+import { Breadcrumbs } from '@mui/material';
+import regionPathsJson from '../../../data/region_paths.json';
 
 interface Props {
-  country: string;
-  district: string;
-  city: string;
+  tableRegion: string;
 }
 
 function BasicBreadcrumbs(props: Props) {
   return (
     <div role="presentation" onClick={() => {}}>
       <Breadcrumbs separator="›">
-        <Link underline="hover" color="inherit" href="#">
-          {props.country}
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          {props.district}
-        </Link>
-        <Typography color="#1f5678">{props.city}</Typography>
+        <span>Portugal</span>
+        <span>Continente </span>
+        {Object.values(regionPathsJson).map(
+          (region: string) =>
+            region.includes(props.tableRegion) && <span>{region}</span>,
+        )}
       </Breadcrumbs>
     </div>
   );

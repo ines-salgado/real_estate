@@ -41,7 +41,7 @@ function PropertyOverview() {
         <Typography variant="h6">Property Overview</Typography>
         <ReportButton />
       </Grid>
-      <BasicBreadcrumbs country="Portugal" district="Lisboa" city="Cacém" />
+      <BasicBreadcrumbs tableRegion="Sintra" />
       <Grid
         display="flex"
         direction="row"
