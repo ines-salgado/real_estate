@@ -72,9 +72,6 @@ function SideDrawer() {
             </ListItem>
           ))}
         </List>
-        <Typography variant="h6" className="drawer__subheader">
-          Support
-        </Typography>
       </Drawer>
     </Box>
   );
