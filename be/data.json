@@ -1,0 +1,222 @@
+{
+    "dashboard": {
+        "key indicators": {
+            "Edif\u00edcios conclu\u00eddos por localiza\u00e7\u00e3o (N)": {
+                "Value": 15099.0,
+                "Date": 2022.0
+            },
+            "Apartamentos conclu\u00eddos (N)": {
+                "Value": 1335.0,
+                "Date": 2022.0
+            },
+            "Apartamentos licenciados (N)": {
+                "Value": 1592.0,
+                "Date": 2022.0
+            },
+            "Contratos de compra e venda (N) por localiza\u00e7\u00e3o": {
+                "Value": 220156.0,
+                "Date": 2019.0
+            },
+            "Transa\u00e7\u00f5es (N.\u00ba) de alojamentos": {
+                "Value": 130815.0,
+                "Date": 2023.0
+            },
+            "Remunera\u00e7\u00e3o m\u00e9dia mensal (\u20ac) por trabalhador": {
+                "Value": 1507.0,
+                "Date": 2023.0
+            },
+            "Ganho m\u00e9dio mensal (\u20ac) por regi\u00e3o": {
+                "Value": 1294.1,
+                "Date": 2021.0
+            },
+            "Densidade populacional (N.\u00ba/km\u00b2)": {
+                "Value": 112.5,
+                "Date": 2022.0
+            },
+            "\u00cdndice de pre\u00e7os da habita\u00e7\u00e3o": {
+                "Value": 212.45,
+                "Date": 2024.0
+            }
+        },
+        "comparative table": {
+            "0": {
+                "Location": "Amadora",
+                "AVG Price (Sell)": 0.00017398281164854312,
+                "AVG Price per m\u00b2 (Sell)": 0.09217638691322905,
+                "Properties Sold (Sell)": 85,
+                "AVG Price (Rent)": 1262,
+                "AVG Price per m\u00b2 (Rent)": 16,
+                "Properties Sold (Rent)": 36,
+                "Price-to-Rent Ratio": 0.08938547486033521,
+                "Market Value": "20.48M",
+                "1 Year Performance": 1.0,
+                "Potential Yield": 0.829971181556196,
+                "Affordability Score": 0.0605786148617376,
+                "Affordability Rank": 2.0,
+                "Profitability Score": 0.9149855907780979,
+                "Profitability Rank": 1.0
+            },
+            "1": {
+                "Location": "Cascais",
+                "AVG Price (Sell)": 1.0,
+                "AVG Price per m\u00b2 (Sell)": 1.0,
+                "Properties Sold (Sell)": 87,
+                "AVG Price (Rent)": 2650,
+                "AVG Price per m\u00b2 (Rent)": 23,
+                "Properties Sold (Rent)": 83,
+                "Price-to-Rent Ratio": 0.9999999999999999,
+                "Market Value": "81.46M",
+                "1 Year Performance": 0.8539473684210528,
+                "Potential Yield": 0.0,
+                "Affordability Score": 1.0,
+                "Affordability Rank": 6.0,
+                "Profitability Score": 0.4269736842105264,
+                "Profitability Rank": 5.0
+            },
+            "2": {
+                "Location": "Loures",
+                "AVG Price (Sell)": 0.13271581417485417,
+                "AVG Price per m\u00b2 (Sell)": 0.1581792318634424,
+                "Properties Sold (Sell)": 64,
+                "AVG Price (Rent)": 1679,
+                "AVG Price per m\u00b2 (Rent)": 18,
+                "Properties Sold (Rent)": 21,
+                "Price-to-Rent Ratio": 0.13407821229050276,
+                "Market Value": "21.32M",
+                "1 Year Performance": 0.5657894736842104,
+                "Potential Yield": 0.7636887608069164,
+                "Affordability Score": 0.14165775277626644,
+                "Affordability Rank": 3.0,
+                "Profitability Score": 0.6647391172455634,
+                "Profitability Rank": 3.0
+            },
+            "3": {
+                "Location": "Odivelas",
+                "AVG Price (Sell)": 0.12880767134790672,
+                "AVG Price per m\u00b2 (Sell)": 0.1459459459459459,
+                "Properties Sold (Sell)": 54,
+                "AVG Price (Rent)": 1487,
+                "AVG Price per m\u00b2 (Rent)": 16,
+                "Properties Sold (Rent)": 34,
+                "Price-to-Rent Ratio": 0.26815642458100564,
+                "Market Value": "17.84M",
+                "1 Year Performance": 0.5460526315789473,
+                "Potential Yield": 0.5763688760806919,
+                "Affordability Score": 0.18097001395828607,
+                "Affordability Rank": 4.0,
+                "Profitability Score": 0.5612107538298197,
+                "Profitability Rank": 4.0
+            },
+            "4": {
+                "Location": "Oeiras",
+                "AVG Price (Sell)": 0.35168396669307567,
+                "AVG Price per m\u00b2 (Sell)": 0.4295874822190613,
+                "Properties Sold (Sell)": 72,
+                "AVG Price (Rent)": 1698,
+                "AVG Price per m\u00b2 (Rent)": 17,
+                "Properties Sold (Rent)": 50,
+                "Price-to-Rent Ratio": 0.6201117318435755,
+                "Market Value": "34.95M",
+                "1 Year Performance": 0.0,
+                "Potential Yield": 0.23054755043227682,
+                "Affordability Score": 0.4671277269185708,
+                "Affordability Rank": 5.0,
+                "Profitability Score": 0.11527377521613841,
+                "Profitability Rank": 6.0
+            },
+            "5": {
+                "Location": "Sintra",
+                "AVG Price (Sell)": 0.0,
+                "AVG Price per m\u00b2 (Sell)": 0.0,
+                "Properties Sold (Sell)": 155,
+                "AVG Price (Rent)": 1379,
+                "AVG Price per m\u00b2 (Rent)": 16,
+                "Properties Sold (Rent)": 47,
+                "Price-to-Rent Ratio": 0.0,
+                "Market Value": "37.34M",
+                "1 Year Performance": 0.4881578947368421,
+                "Potential Yield": 1.0,
+                "Affordability Score": 0.0,
+                "Affordability Rank": 1.0,
+                "Profitability Score": 0.7440789473684211,
+                "Profitability Rank": 2.0
+            }
+        },
+        "Affordability table": {
+            "0": {
+                "Location": "Amadora",
+                "Affordability Score": 0.0605786148617376,
+                "Affordability Rank": 2.0
+            },
+            "1": {
+                "Location": "Cascais",
+                "Affordability Score": 1.0,
+                "Affordability Rank": 6.0
+            },
+            "2": {
+                "Location": "Loures",
+                "Affordability Score": 0.14165775277626644,
+                "Affordability Rank": 3.0
+            },
+            "3": {
+                "Location": "Odivelas",
+                "Affordability Score": 0.18097001395828607,
+                "Affordability Rank": 4.0
+            },
+            "4": {
+                "Location": "Oeiras",
+                "Affordability Score": 0.4671277269185708,
+                "Affordability Rank": 5.0
+            },
+            "5": {
+                "Location": "Sintra",
+                "Affordability Score": 0.0,
+                "Affordability Rank": 1.0
+            }
+        },
+        "profitable cities": {
+            "0": {
+                "Location": "Amadora",
+                "Profitability Score": 0.9149855907780979,
+                "Profitability Rank": 1.0
+            },
+            "5": {
+                "Location": "Sintra",
+                "Profitability Score": 0.7440789473684211,
+                "Profitability Rank": 2.0
+            },
+            "2": {
+                "Location": "Loures",
+                "Profitability Score": 0.6647391172455634,
+                "Profitability Rank": 3.0
+            },
+            "3": {
+                "Location": "Odivelas",
+                "Profitability Score": 0.5612107538298197,
+                "Profitability Rank": 4.0
+            },
+            "1": {
+                "Location": "Cascais",
+                "Profitability Score": 0.4269736842105264,
+                "Profitability Rank": 5.0
+            },
+            "4": {
+                "Location": "Oeiras",
+                "Profitability Score": 0.11527377521613841,
+                "Profitability Rank": 6.0
+            }
+        }
+    },
+    "Market Analysis": {
+        "key indicatores Market": [
+            {
+                "Popula\u00e7\u00e3o desempregada com idade entre 16 e 74 anos (N.\u00ba) por Grupo et\u00e1rio; Mensal (2) ": 391.2,
+                "Avaliacoes Total": 430.0,
+                "Pre\u00e7o m\u00e9dio_sell": 781410.0,
+                "Novas propriedades \u00fanicas_sell": 35.0,
+                "Propriedades vendida e retiradas_sell": 30.0,
+                "Pre\u00e7o m\u00e9dio_rent": 2192.0
+            }
+        ]
+    }
+}

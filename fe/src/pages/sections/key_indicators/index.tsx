@@ -2,17 +2,17 @@ import { Box, Unstable_Grid2 as Grid, Typography } from '@mui/material';
 import './styles.scss';
 
 interface Props {
-  title: string;
+  data: any;
   isSmallComp?: boolean;
   hasPercentage?: boolean;
 }
 
 function KeyIndicatores(props: Props) {
   const GridValues = () => {
-    const keyValues = (
-      <Grid xs={3} className="ind__keys">
-        <p className="ind__keys__title">Real Estate Price Index</p>
-        <span className="ind__keys__value">212,45</span>
+    const keyValues = Object.entries(props.data).map(([key, value], id) => (
+      <Grid key={id} xs={3} className="ind__keys">
+        <p className="ind__keys__title">{key}</p>
+        <span className="ind__keys__value">{value}</span>
         <section>
           {props.hasPercentage && (
             <span className="ind__keys__percentage">+40%</span>
@@ -20,7 +20,7 @@ function KeyIndicatores(props: Props) {
           <span className="ind__keys__date">last 1 year</span>
         </section>
       </Grid>
-    );
+    ));
 
     return (
       <Grid
