@@ -14,6 +14,9 @@
   }
 
   &__keys {
+    position: relative;
+    min-height: 140px;
+
     &.MuiGrid2-root {
       padding: 10px 15px;
       box-shadow: $box-shadow;
@@ -23,7 +26,7 @@
 
     &__title {
       font-weight: 500;
-      font-size: 14px;
+      font-size: 15px;
       margin: 2px auto;
     }
 
@@ -36,11 +39,18 @@
       text-align: right;
       display: flex;
       flex-direction: column;
-      margin-top: -15px;
+      position: absolute;
+      bottom: 8px;
+      right: 19px;
     }
 
     &__percentage {
       color: $text_menuColor;
+      font-weight: bold;
+    }
+
+    &__update {
+      font-size: small;
       font-weight: bold;
     }
 

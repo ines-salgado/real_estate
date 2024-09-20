@@ -12,18 +12,19 @@ import {
   getComparator,
   Order,
 } from '../../../utils/data_comparator';
-import { TableDataType } from '../../../models/table';
+import DashboardData from '../../../models/dashboard';
 import locationRankData from '../../../data/location_rank.json';
 import { CustomTableHead, CustomTableBody } from './components';
 import './styles.scss';
 
 interface Props {
+  data: DashboardData['comparTable'];
   isSmallTable?: boolean;
 }
 
 function CustomTable(props: Props) {
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<TableDataType>('location');
+  const [orderBy, setOrderBy] = React.useState<string | number>('Location');
 
   const [page, setPage] = React.useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(15);
@@ -42,7 +43,7 @@ function CustomTable(props: Props) {
     setPage(0);
   };
 
-  const handleRequestSort = (_event: any, property: TableDataType) => {
+  const handleRequestSort = (_event: any, property: string | number) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
@@ -59,6 +60,7 @@ function CustomTable(props: Props) {
           size="small"
         >
           <CustomTableHead
+            data={props.data}
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}

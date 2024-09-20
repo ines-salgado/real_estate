@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { Order } from '../../../../utils/data_comparator';
-import { TableDataType } from '../../../../models/table';
 import '../styles.scss';
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
   page: number;
   rowsPerPage: number;
   order: Order;
-  orderBy: TableDataType;
+  orderBy: any;
   isSmallTable?: boolean;
 }
 
