@@ -14,8 +14,6 @@ import {
   FlashOnOutlined as FlashOnIcon,
   PeopleOutlineOutlined as PeopleOutlineIcon,
   BarChartOutlined as BarChartIcon,
-  SettingsOutlined as SettingsIcon,
-  LightbulbOutlined as LightbulbIcon,
 } from '@mui/icons-material';
 import './styles.scss';
 
@@ -36,16 +34,6 @@ function SideDrawer() {
       icon: <PeopleOutlineIcon />,
       url: '/investment-analysis',
     },
-  ];
-
-  const secondaryPages: Array<{}> = [
-    {
-      id: 4,
-      text: 'Get Started',
-      icon: <LightbulbIcon />,
-      url: '/get-started',
-    },
-    { id: 5, text: 'Settings', icon: <SettingsIcon />, url: '/settings' },
   ];
 
   return (
@@ -87,25 +75,6 @@ function SideDrawer() {
         <Typography variant="h6" className="drawer__subheader">
           Support
         </Typography>
-        <List>
-          {secondaryPages.map((page: any) => (
-            <ListItem key={page.id} className="list__item">
-              <ListItemButton
-                component={Link}
-                href={page.url}
-                underline="none"
-                color="inherit"
-                className="list__item__btn"
-              >
-                <ListItemIcon>{page.icon}</ListItemIcon>
-                <ListItemText
-                  primary={page.text}
-                  className="list__item__text"
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
     </Box>
   );

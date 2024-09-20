@@ -12,14 +12,6 @@ function App() {
       path: '/investment-analysis',
       element: <InvestmentAnalysis />,
     },
-    {
-      path: '/get-started',
-      element: <h1>work in progress...</h1>,
-    },
-    {
-      path: '/settings',
-      element: <h1>work in progress...</h1>,
-    },
   ]);
 
   return (
