@@ -44,8 +44,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:fix": "eslint . --fix",
-    "format:write": "npx prettier . --write",
-    "format:check": "npx prettier . --check",
+    "prettier": "npx prettier . --write",
     "prepare": "husky"
   },
   "lint-staged": {

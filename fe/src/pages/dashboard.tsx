@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { Box, Unstable_Grid2 as Grid } from '@mui/material';
-import DashboardData from '../models/dashboard';
+import { DashboardData } from '../models';
 import { PageTitle, CustomTable, Links } from '../components';
 import { KeyIndicatores } from './sections';
 import './styles.scss';
 
 function Dashboard() {
   const [keys, setKeys] = React.useState<DashboardData['keyInd'] | null>(null);
-  const [compTable, setCompTable] = React.useState<
-    DashboardData['comparTable'] | null
-  >(null);
-  const [profTable, setProfTable] = React.useState<
+  const [comparTable, setComparTable] = React.useState<
     DashboardData['comparTable'] | null
   >(null);
   const [afforTable, setAfforTable] = React.useState<
-    DashboardData['comparTable'] | null
+    DashboardData['afforTable'] | null
+  >(null);
+  const [profTable, setProfTable] = React.useState<
+    DashboardData['profTable'] | null
   >(null);
 
   React.useEffect(() => {
@@ -22,7 +22,7 @@ function Dashboard() {
       .then((response) => response.json())
       .then((json) => {
         setKeys(json.dashboard?.KeyIndicators || null);
-        setCompTable(json.dashboard?.ComparativeTable || null);
+        setComparTable(json.dashboard?.ComparativeTable || null);
         setProfTable(json.dashboard?.profitableCities || null);
         setAfforTable(json.dashboard?.AffordabilityTable || null);
       })
@@ -42,15 +42,29 @@ function Dashboard() {
         )}
         <br />
         <br />
-        {compTable && <CustomTable data={compTable} />}
+        {comparTable && (
+          <CustomTable data={comparTable} tableType="comparTable" />
+        )}
         <br />
         <br />
         <Grid container spacing={2} direction="row">
           <Grid xs={6}>
-            {compTable && <CustomTable data={compTable} isSmallTable />}
+            {afforTable && (
+              <CustomTable
+                data={afforTable}
+                tableType="afforTable"
+                isSmallTable
+              />
+            )}
           </Grid>
           <Grid xs={6}>
-            {compTable && <CustomTable data={compTable} isSmallTable />}
+            {profTable && (
+              <CustomTable
+                data={profTable}
+                tableType="profTable"
+                isSmallTable
+              />
+            )}
           </Grid>
         </Grid>
         <br />

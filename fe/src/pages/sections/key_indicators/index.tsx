@@ -1,5 +1,5 @@
 import { Box, Unstable_Grid2 as Grid, Typography } from '@mui/material';
-import DashboardData from '../../../models/dashboard';
+import { DashboardData } from '../../../models';
 import './styles.scss';
 
 interface Props {

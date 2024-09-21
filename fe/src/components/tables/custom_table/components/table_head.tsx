@@ -6,31 +6,24 @@ import {
   Box,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-import DashboardData from '../../../../models/dashboard';
+import { DashboardData } from '../../../../models';
 import { Order } from '../../../../utils/data_comparator';
+import {
+  afforTableOrderedKeys,
+  comparTableOrderedKeys,
+  profTableOrderedKeys,
+  TableType,
+} from '../utils';
 import '../styles.scss';
 
 interface Props {
-  data: DashboardData['comparTable'];
+  data: DashboardData[TableType];
   onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
   order: Order;
   orderBy: string | number;
+  tableType: TableType;
   isSmallTable?: boolean;
 }
-
-const orderedColumns = [
-  'Location',
-  'AVG Price (Sell)',
-  'AVG Price per m² (Sell)',
-  'Properties Sold (Sell)',
-  'AVG Price (Rent)',
-  'AVG Price per m² (Rent)',
-  'Properties Sold (Rent)',
-  'Price-to-Rent Ratio',
-  'Market Value',
-  '1 Year Performance',
-  'Potential Yield',
-];
 
 function CustomTableHead(props: Props) {
   const createSortHandler =
@@ -47,7 +40,14 @@ function CustomTableHead(props: Props) {
   return (
     <TableHead className="th">
       <TableRow className="th__row">
-        {orderedColumns
+        {(props.tableType === 'comparTable'
+          ? comparTableOrderedKeys
+          : props.tableType === 'afforTable'
+            ? afforTableOrderedKeys
+            : props.tableType === 'profTable'
+              ? profTableOrderedKeys
+              : []
+        )
           .filter((key) => key in firstRow)
           .map((key) => ({
             index: key,
