@@ -13,7 +13,6 @@ import {
   Order,
 } from '../../../utils/data_comparator';
 import DashboardData from '../../../models/dashboard';
-import locationRankData from '../../../data/location_rank.json';
 import { CustomTableHead, CustomTableBody } from './components';
 import './styles.scss';
 
@@ -29,10 +28,13 @@ function CustomTable(props: Props) {
   const [page, setPage] = React.useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(15);
 
-  const rows = stableSort(
-    locationRankData,
-    getComparator(order, orderBy),
-  ).slice();
+  const rows =
+    props.data || typeof props.data == 'object'
+      ? stableSort(
+          Object.values(props.data),
+          getComparator(order, orderBy),
+        ).slice()
+      : null;
 
   const handleChangePage = (_event: any, newPage: number) => setPage(newPage);
 
@@ -48,6 +50,10 @@ function CustomTable(props: Props) {
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
+
+  if (!props.data || typeof props.data !== 'object') {
+    return null;
+  }
 
   return (
     <Box className="customTable" overflow="hidden">
@@ -79,7 +85,7 @@ function CustomTable(props: Props) {
       <TablePagination
         rowsPerPageOptions={[10, 25, 50, 75, 100]}
         component="div"
-        count={rows.length}
+        count={rows ? rows.length : 0}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

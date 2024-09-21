@@ -5,7 +5,11 @@ import { Order } from '../../../../utils/data_comparator';
 import '../styles.scss';
 
 interface Props {
-  rows: any[];
+  rows:
+    | {
+        [key: string]: string | number;
+      }[]
+    | null;
   page: number;
   rowsPerPage: number;
   order: Order;
@@ -13,57 +17,56 @@ interface Props {
   isSmallTable?: boolean;
 }
 
+const orderedKeys = [
+  'AVG Price (Sell)',
+  'AVG Price per m² (Sell)',
+  'Properties Sold (Sell)',
+  'AVG Price (Rent)',
+  'AVG Price per m² (Rent)',
+  'Properties Sold (Rent)',
+  'Price-to-Rent Ratio',
+  'Market Value',
+  '1 Year Performance',
+  'Potential Yield',
+];
+
 function CustomTableBody(props: Props) {
-  const rowData = (data: string | number) => (
-    <TableCell className="tb__row__data" align="right">
-      {data}
-    </TableCell>
-  );
+  const rowData = (row: { [key: string]: string | number }) => {
+    return orderedKeys.map((key, id) => (
+      <TableCell key={id} className="tb__row__data" align="center">
+        {row[key] !== undefined ? row[key] : 'N/A'}
+      </TableCell>
+    ));
+  };
 
   return (
     <TableBody className="tb">
-      {props.rows
-        .slice(
-          props.page * props.rowsPerPage,
-          props.page * props.rowsPerPage + props.rowsPerPage,
-        )
-        .map((row) => (
-          <TableRow
-            key={row.index}
-            className="tb__row"
-            hover
-            onClick={() => {}}
-          >
-            <TableCell
-              className="tb__row__data"
-              component="th"
-              scope="row"
-              padding="none"
-            >
-              <Link to="/market-analysis" state={{ city: row.location }}>
-                <TableCell component="th" scope="row">
-                  {row.location}
-                </TableCell>
-              </Link>
-            </TableCell>
-            {rowData(row.mediumPrice)}
-            {rowData(row.mediumPriceBySquare)}
-            {!props.isSmallTable && (
-              <>
-                {rowData(row.totalStock)}
-                {rowData(row.mediumMarketTime)}
-                {rowData(row.mediumPriceOfRenting)}
-                {rowData(row.mediumPriceBySquareOfRenting)}
-                {rowData(row.totalStockOfRenting)}
-                {rowData(row.mediumMarketTimeOfRenting)}
-                {rowData(row.marketValue)}
-                {rowData(row.yieldInd)}
-                {rowData(row.marketValueCategory)}
-                {rowData(row.codLocation)}
-              </>
-            )}
-          </TableRow>
-        ))}
+      {props.rows &&
+        props.rows
+          .slice(
+            props.page * props.rowsPerPage,
+            props.page * props.rowsPerPage + props.rowsPerPage,
+          )
+          .map((row, id) => (
+            <TableRow key={id} className="tb__row" hover>
+              <TableCell
+                className="tb__row__data"
+                component="th"
+                scope="row"
+                padding="none"
+                align="center"
+              >
+                {'Location' in row ? (
+                  <Link to="/market-analysis" state={{ city: row.Location }}>
+                    {row.Location}
+                  </Link>
+                ) : (
+                  'N/A'
+                )}
+              </TableCell>
+              {rowData(row)}
+            </TableRow>
+          ))}
     </TableBody>
   );
 }

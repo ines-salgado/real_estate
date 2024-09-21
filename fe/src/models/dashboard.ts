@@ -15,20 +15,17 @@ interface DashboardData {
   ];
   comparTable: [
     {
-      '1 Year Performance': number;
-      'AVG Price (Rent)': number;
-      'AVG Price (Sell)': number;
-      'AVG Price per m² (Rent)': number;
-      'Affordability Rank': number;
-      'Affordability Score': number;
       Location: string;
-      'Market Value': string;
-      'Potential Yield': number;
-      'Price-to-Rent Ratio': number;
-      'Profitability Rank': number;
-      'Profitability Score': number;
-      'Properties Sold (Rent)': number;
+      'AVG Price (Sell)': number;
+      'AVG Price per m² (Sell)': number;
       'Properties Sold (Sell)': number;
+      'AVG Price (Rent)': number;
+      'AVG Price per m² (Rent)': number;
+      'Properties Sold (Rent)': number;
+      'Price-to-Rent Ratio': number;
+      'Market Value': string;
+      '1 Year Performance': number;
+      'Potential Yield': number;
     },
   ];
 

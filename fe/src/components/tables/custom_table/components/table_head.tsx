@@ -10,13 +10,6 @@ import DashboardData from '../../../../models/dashboard';
 import { Order } from '../../../../utils/data_comparator';
 import '../styles.scss';
 
-interface HeadCell {
-  disablePadding: boolean;
-  index: string; // index should be a string for column names
-  label: string; // label is the header name for each column
-  numeric: boolean;
-}
-
 interface Props {
   data: DashboardData['comparTable'];
   onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
@@ -25,31 +18,50 @@ interface Props {
   isSmallTable?: boolean;
 }
 
+const orderedColumns = [
+  'Location',
+  'AVG Price (Sell)',
+  'AVG Price per m² (Sell)',
+  'Properties Sold (Sell)',
+  'AVG Price (Rent)',
+  'AVG Price per m² (Rent)',
+  'Properties Sold (Rent)',
+  'Price-to-Rent Ratio',
+  'Market Value',
+  '1 Year Performance',
+  'Potential Yield',
+];
+
 function CustomTableHead(props: Props) {
   const createSortHandler =
     (property: string) => (event: React.MouseEvent<unknown>) => {
       props.onRequestSort(event, property);
     };
 
+  if (!props.data || typeof props.data !== 'object') {
+    return null;
+  }
+
   const firstRow = Object.values(props.data)[0] as Record<string, any>;
 
   return (
     <TableHead className="th">
       <TableRow className="th__row">
-        {Object.keys(firstRow)
-          .map((key, index) => ({
-            index: key, // key as the unique identifier
-            numeric: typeof firstRow[key] === 'number', // check if value is numeric
+        {orderedColumns
+          .filter((key) => key in firstRow)
+          .map((key) => ({
+            index: key,
+            numeric: typeof firstRow[key] === 'number',
             disablePadding: true,
-            label: key, // use the key as label for the column
+            label: key,
           }))
-          .slice(0, props.isSmallTable ? 3 : undefined) // Slice for small table
+          .slice(0, props.isSmallTable ? 3 : undefined)
           .map((headCell) => (
             <TableCell
               className="th__row__cell"
               key={headCell.index}
-              align={headCell.label === 'Location' ? 'left' : 'right'}
-              padding={headCell.disablePadding ? 'none' : 'normal'}
+              align="center"
+              padding="none"
               sortDirection={
                 props.orderBy === headCell.index ? props.order : false
               }
