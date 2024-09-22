@@ -21,10 +21,10 @@ function Dashboard() {
     fetch('http://127.0.0.1:5000/data')
       .then((response) => response.json())
       .then((json) => {
-        setKeys(json.dashboard?.KeyIndicators || null);
-        setComparTable(json.dashboard?.ComparativeTable || null);
-        setProfTable(json.dashboard?.profitableCities || null);
-        setAfforTable(json.dashboard?.AffordabilityTable || null);
+        setKeys(json.Dashboard?.KeyIndicators || null);
+        setComparTable(json.Dashboard?.ComparativeTable || null);
+        setProfTable(json.Dashboard?.ProfitableCities || null);
+        setAfforTable(json.Dashboard?.AffordabilityTable || null);
       })
       .catch((error) => console.error('Error:', error));
   }, []);
@@ -35,8 +35,9 @@ function Dashboard() {
       <Box className="pageContainer">
         {keys && (
           <KeyIndicatores
+            page="dashboard"
             title="Real Estate Price Index"
-            data={keys}
+            dashboardData={keys}
             hasPercentage
           />
         )}

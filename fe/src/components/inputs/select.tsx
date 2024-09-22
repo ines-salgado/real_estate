@@ -9,8 +9,8 @@ import {
 
 interface Props {
   label: string;
+  options: string[] | null;
   routeValue?: string;
-  options: string[];
 }
 
 function SelectInput(props: Props) {
@@ -33,11 +33,12 @@ function SelectInput(props: Props) {
         label={props.label}
         onChange={handleChange}
       >
-        {props.options.map((option: string, index: number) => (
-          <MenuItem key={index} value={option}>
-            {option}
-          </MenuItem>
-        ))}
+        {props.options &&
+          props.options.map((option: string, index: number) => (
+            <MenuItem key={index} value={option}>
+              {option}
+            </MenuItem>
+          ))}
       </Select>
     </FormControl>
   );

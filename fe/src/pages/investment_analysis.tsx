@@ -33,6 +33,7 @@ function InvestmentAnalysis() {
         <PropertyOverview />
         <br /> <br />
         <KeyIndicatores
+          page="investment_analysis"
           title="Financial Summary / Performance Metrics"
           isSmallComp
         />
