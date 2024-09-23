@@ -1,12 +1,26 @@
 interface MarketAnalysisData {
   keyInd: {
     location: {
-      'Popula\u00e7\u00e3o desempregada com idade entre 16 e 74 anos (N.\u00ba) por Grupo et\u00e1rio; Mensal (2) ': number;
-      'Avaliacoes Total': number;
-      'Pre\u00e7o m\u00e9dio_sell': number;
-      'Novas propriedades \u00fanicas_sell': number;
-      'Propriedades vendida e retiradas_sell': number;
-      'Pre\u00e7o m\u00e9dio_rent': number;
+      title: {
+        values: number;
+        percentages: number;
+      };
+      values: {
+        'Pre\u00e7o m\u00e9dio_sell': number;
+        'Novas propriedades \u00fanicas_sell': number;
+        'Propriedades vendida e retiradas_sell': number;
+        'Pre\u00e7o m\u00e9dio_rent': number;
+        'Novas propriedades \u00fanicas_rent': number;
+        'Propriedades vendida e retiradas_rent': number;
+      };
+      percentages: {
+        'Pre\u00e7o m\u00e9dio_sell': number;
+        'Novas propriedades \u00fanicas_sell': number;
+        'Propriedades vendida e retiradas_sell': number;
+        'Pre\u00e7o m\u00e9dio_rent': number;
+        'Novas propriedades \u00fanicas_rent': number;
+        'Propriedades vendida e retiradas_rent': number;
+      };
     };
   };
   sellRentOverTime: {

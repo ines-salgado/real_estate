@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Unstable_Grid2 as Grid, Typography } from '@mui/material';
 import { DashboardData, MarketAnalysisData, PageType } from '../../../models';
 import './styles.scss';
@@ -84,7 +83,7 @@ function KeyIndicatores(props: Props) {
           ) : props.marketAnalysisData && isSameLocation ? (
             Object.values(props.marketAnalysisData).map((values) =>
               Object.entries(values).map(([key, value], id) =>
-                renderKeyValues(id, key, value, false),
+                renderKeyValues(id, key, '', false),
               ),
             )
           ) : (
