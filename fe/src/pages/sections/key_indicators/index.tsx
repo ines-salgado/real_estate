@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Unstable_Grid2 as Grid, Typography } from '@mui/material';
 import { DashboardData, MarketAnalysisData, PageType } from '../../../models';
 import './styles.scss';
