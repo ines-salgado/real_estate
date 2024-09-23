@@ -1,0 +1,66 @@
+@import '../../../utils/colours.scss';
+
+.drawer {
+  display: block;
+
+  & .MuiDrawer-paper {
+    box-sizing: border-box;
+    width: 230px;
+    box-shadow: -4px 0px 5px black;
+    color: $text_baseColor;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 10px 5px 0px;
+  }
+
+  &__subheader.MuiTypography-root {
+    text-align: left;
+    color: black;
+    margin: 20px 10px 5px 26px;
+  }
+}
+
+.list__item {
+  padding: 5px 10px;
+  margin-right: -10px;
+
+  & .MuiListItemIcon-root {
+    color: black;
+  }
+
+  &__btn.MuiListItemButton-root {
+    border-radius: 10px;
+    width: 208px;
+
+    &:hover,
+    :focus,
+    &.activeBtn {
+      transition: 0.2s all;
+      color: $text_menuColor;
+      background-color: $bg_menuColor;
+
+      & .MuiListItemIcon-root {
+        color: $text_menuColor;
+      }
+    }
+  }
+
+  &__text {
+    &.activeText .MuiListItemText-primary {
+      font-weight: 500;
+    }
+
+    .MuiListItemText-primary {
+      font-weight: 400;
+
+      &:hover,
+      :focus {
+        font-weight: 500;
+      }
+    }
+  }
+}

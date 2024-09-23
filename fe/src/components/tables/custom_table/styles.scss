@@ -1,0 +1,70 @@
+@import '../../../utils/colours.scss';
+
+.customTable {
+  padding: 20px 35px 35px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+// table head
+.th {
+  background-color: $text_menuColor;
+
+  .MuiSvgIcon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__row__cell {
+    &.MuiTableCell-root {
+      padding: 10px 5px;
+      color: white !important;
+      min-width: 122px;
+    }
+
+    span {
+      line-height: 1.2rem;
+      margin: 0 auto;
+    }
+
+    .MuiTableSortLabel-root:hover {
+      color: white;
+    }
+
+    .MuiTableSortLabel-icon {
+      position: absolute !important;
+      right: -25px !important;
+      bottom: 1px !important;
+      &:hover {
+        color: white;
+      }
+    }
+
+    .Mui-active {
+      color: white !important;
+
+      .MuiTableSortLabel-icon {
+        color: white !important;
+        opacity: 0.5 !important;
+        position: absolute !important;
+        right: -25px !important;
+        bottom: 1px !important;
+      }
+    }
+  }
+}
+
+// table body
+.tb__row {
+  cursor: pointer;
+  line-height: 33px;
+
+  &__data {
+    border-bottom: none !important;
+    th {
+      border: none;
+      text-decoration: $text_menuColor underline;
+    }
+  }
+}
