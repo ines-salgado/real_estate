@@ -9,7 +9,6 @@ interface Props {
   marketAnalysisData?: MarketAnalysisData['keyInd'];
   location?: string;
   isSmallComp?: boolean;
-  hasPercentage?: boolean;
 }
 
 function KeyIndicatores(props: Props) {

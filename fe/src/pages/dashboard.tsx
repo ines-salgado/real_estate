@@ -38,7 +38,6 @@ function Dashboard() {
             page="dashboard"
             title="Real Estate Price Index"
             dashboardData={keys}
-            hasPercentage
           />
         )}
         <br />

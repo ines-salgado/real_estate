@@ -77,7 +77,6 @@ function MarketAnalysis() {
             marketAnalysisData={keys}
             location={routeCity}
             isSmallComp
-            hasPercentage={false}
           />
         )}
         <br /> <br />
