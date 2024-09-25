@@ -2,24 +2,8 @@ interface MarketAnalysisData {
   keyInd: {
     location: {
       title: {
-        values: number;
-        percentages: number;
-      };
-      values: {
-        'Pre\u00e7o m\u00e9dio_sell': number;
-        'Novas propriedades \u00fanicas_sell': number;
-        'Propriedades vendida e retiradas_sell': number;
-        'Pre\u00e7o m\u00e9dio_rent': number;
-        'Novas propriedades \u00fanicas_rent': number;
-        'Propriedades vendida e retiradas_rent': number;
-      };
-      percentages: {
-        'Pre\u00e7o m\u00e9dio_sell': number;
-        'Novas propriedades \u00fanicas_sell': number;
-        'Propriedades vendida e retiradas_sell': number;
-        'Pre\u00e7o m\u00e9dio_rent': number;
-        'Novas propriedades \u00fanicas_rent': number;
-        'Propriedades vendida e retiradas_rent': number;
+        value: number;
+        percentage: number;
       };
     };
   };

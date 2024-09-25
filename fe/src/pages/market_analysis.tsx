@@ -15,7 +15,7 @@ import './styles.scss';
 function MarketAnalysis() {
   const location = useLocation();
 
-  const [routeCity, setRouteCity] = React.useState<string>('Cascais');
+  const [routeCity, setRouteCity] = React.useState<string>('Amadora');
 
   const [comparTableLocations, setComparTableLocations] = React.useState<
     DashboardData['comparTable'] | null

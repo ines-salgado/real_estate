@@ -13,13 +13,13 @@ interface Props {
 }
 
 function KeyIndicatores(props: Props) {
-  const renderKeyValues = (
+  const renderKeyComponent = (
     id: number,
-    key: string,
-    value: string | number,
-    hasSection: boolean,
-    percentageValue?: number,
-    dateValue?: number,
+    keyTitle: string,
+    value: number,
+    percentage: number,
+    hasUpdateSection: boolean = false,
+    date?: number,
   ) => (
     <Grid
       key={id}
@@ -33,28 +33,50 @@ function KeyIndicatores(props: Props) {
       }
       className="ind__keys"
     >
-      <p className="ind__keys__title">{key}</p>
+      <p className="ind__keys__title">{keyTitle}</p>
       <span className="ind__keys__value">{value}</span>
-      {!!hasSection && (
-        <section>
-          {props.hasPercentage && (
-            <span className="ind__keys__percentage">
-              {percentageValue?.toFixed(2)}%
-            </span>
-          )}
+      <section>
+        <span className="ind__keys__percentage">{percentage?.toFixed(2)}%</span>
+        {hasUpdateSection && (
           <div>
             <span className="ind__keys__update">Last update: </span>
-            <span className="ind__keys__date">{dateValue}</span>
+            <span className="ind__keys__date">{date}</span>
           </div>
-        </section>
-      )}
+        )}
+      </section>
     </Grid>
   );
 
+  // dashboard page
+  const renderDashboardKeys =
+    props.dashboardData &&
+    Object.entries(props.dashboardData).map(([key, value], id) =>
+      renderKeyComponent(
+        id,
+        key,
+        value.Value,
+        value['Percentage Change'],
+        true,
+        value.Date,
+      ),
+    );
+
+  // market analysis page
   const isSameLocation: boolean | undefined =
     props.marketAnalysisData &&
     Object.keys(props.marketAnalysisData).some(
       (location: string) => location === props.location,
+    );
+
+  const renderMarketKeys =
+    props.marketAnalysisData &&
+    isSameLocation &&
+    Object.values(props.marketAnalysisData).map((dataValue) =>
+      Object.entries(dataValue).map(([key, value], id) => {
+        let marketValue = Object.values(value)[0];
+        let marketPercentage = Object.values(value)[1];
+        return renderKeyComponent(id, key, marketValue, marketPercentage);
+      }),
     );
 
   return (
@@ -69,23 +91,10 @@ function KeyIndicatores(props: Props) {
           gap="20px" // todo
           marginBottom={props.isSmallComp ? 0 : '20px'}
         >
-          {props.dashboardData ? (
-            Object.entries(props.dashboardData).map(([key, value], id) =>
-              renderKeyValues(
-                id,
-                key,
-                value.Value,
-                true,
-                value['Percentage Change'],
-                value.Date,
-              ),
-            )
-          ) : props.marketAnalysisData && isSameLocation ? (
-            Object.values(props.marketAnalysisData).map((values) =>
-              Object.entries(values).map(([key, value], id) =>
-                renderKeyValues(id, key, '', false),
-              ),
-            )
+          {props.page === 'dashboard' ? (
+            renderDashboardKeys
+          ) : props.page === 'market_analysis' ? (
+            renderMarketKeys
           ) : (
             <div>No data available</div>
           )}
