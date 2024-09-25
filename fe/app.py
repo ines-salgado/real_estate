@@ -9,9 +9,9 @@ CORS(app)
 def get_dados():
     with open('data.json', mode='r') as files:
         dados = json.load(files)
-        text = files.read()
-    # return jsonify(dados) 
-    return text
+        # text = files.read()
+    return jsonify(dados) 
+    # return text
 
 if __name__ == '__main__':
     app.run(debug=True)
