@@ -8,3 +8,5 @@
 
 # System Files
 .DS_Store
+
+.vercel
