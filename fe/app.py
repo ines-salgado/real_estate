@@ -7,9 +7,11 @@ CORS(app)
 
 @app.route('/data', methods=['GET'])
 def get_dados():
-    with open('data.json', 'r') as f:
-        dados = json.load(f)
-    return jsonify(dados) 
+    with open('data.json', mode='r') as files:
+        dados = json.load(files)
+        text = files.read()
+    # return jsonify(dados) 
+    return text
 
 if __name__ == '__main__':
     app.run(debug=True)
