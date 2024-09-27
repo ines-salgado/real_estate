@@ -1,0 +1,35 @@
+@import '../../utils/colours.scss';
+
+.investmentContainer {
+  width: 100%;
+  padding: 20px 35px 35px;
+  background-color: white;
+  border-radius: 4px;
+
+  section > div {
+    margin: 15px 20px 10px 0 !important;
+  }
+
+  .card {
+    margin-top: 10px;
+
+    &__media {
+      width: 170px !important;
+      height: 120px !important;
+    }
+
+    &__content {
+      padding: 0 !important;
+
+      .MuiTypography-root {
+        padding: 3px 5px;
+      }
+
+      &__data {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
+}

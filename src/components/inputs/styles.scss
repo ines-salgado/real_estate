@@ -1,0 +1,10 @@
+@import '../../utils/colours.scss';
+
+.reportBtn {
+  background-color: $text_menuColor !important;
+  text-transform: capitalize !important;
+}
+
+.textField {
+  color: $text_menuColor !important;
+}
