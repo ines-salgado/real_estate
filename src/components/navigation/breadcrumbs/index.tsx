@@ -1,5 +1,5 @@
-import { Breadcrumbs } from '@mui/material';
-import regionPathsJson from '../../../mock_data/region_paths.json';
+import { Breadcrumbs } from "@mui/material";
+import regionPathsJson from "../../../utils/region_paths.json";
 
 interface Props {
   tableRegion: string;
@@ -13,7 +13,7 @@ function BasicBreadcrumbs(props: Props) {
         <span>Continente </span>
         {Object.values(regionPathsJson).map(
           (region: string) =>
-            region.includes(props.tableRegion) && <span>{region}</span>,
+            region.includes(props.tableRegion) && <span>{region}</span>
         )}
       </Breadcrumbs>
     </div>

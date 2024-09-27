@@ -6,13 +6,13 @@ import {
   Card,
   CardContent,
   CardMedia,
-} from '@mui/material';
-import { BasicBreadcrumbs, BasicChips, ReportButton } from '..';
+} from "@mui/material";
+import { BasicBreadcrumbs, BasicChips, ReportButton } from "..";
 import {
   imageDataJson,
   cardDataJson,
-} from '../../mock_data/mock_data/investment_analysis';
-import './styles.scss';
+} from "../../mock_data/investment_analysis";
+import "./styles.scss";
 
 function PropertyOverview() {
   const imageData = JSON.parse(imageDataJson);

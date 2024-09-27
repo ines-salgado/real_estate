@@ -19,22 +19,23 @@ function Dashboard() {
   >(null);
 
   React.useEffect(() => {
-    if (window.location.origin === "http://localhost:3000") {
-      fetch("http://127.0.0.1:5000/data")
-        .then((response) => response.json())
-        .then((json) => {
-          setKeys(json.Dashboard?.KeyIndicators || null);
-          setComparTable(json.Dashboard?.ComparativeTable || null);
-          setProfTable(json.Dashboard?.ProfitableCities || null);
-          setAfforTable(json.Dashboard?.AffordabilityTable || null);
-        })
-        .catch((error) => console.error("Error:", error));
-    } else {
-      setKeys((jsonData as any).Dashboard?.KeyIndicators || null);
-      setComparTable((jsonData as any).Dashboard?.ComparativeTable || null);
-      setProfTable((jsonData as any).Dashboard?.ProfitableCities || null);
-      setAfforTable((jsonData as any).Dashboard?.AffordabilityTable || null);
-    }
+    fetch("http://127.0.0.1:5000/data")
+      .then((response) => response.json())
+      .then((json) => {
+        setKeys(json.Dashboard?.KeyIndicators || null);
+        setComparTable(json.Dashboard?.ComparativeTable || null);
+        setProfTable(json.Dashboard?.ProfitableCities || null);
+        setAfforTable(json.Dashboard?.AffordabilityTable || null);
+      })
+      .catch((error) => {
+        setKeys((jsonData as any).Dashboard?.KeyIndicators);
+        setComparTable((jsonData as any).Dashboard?.ComparativeTable);
+        setProfTable((jsonData as any).Dashboard?.ProfitableCities);
+        setAfforTable((jsonData as any).Dashboard?.AffordabilityTable);
+
+        window.location.origin === "http://localhost:3000" &&
+          console.error("Error:", error);
+      });
   }, []);
 
   return (

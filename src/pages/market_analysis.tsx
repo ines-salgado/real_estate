@@ -27,18 +27,19 @@ function MarketAnalysis() {
   );
 
   React.useEffect(() => {
-    if (window.location.origin === "http://localhost:3000") {
-      fetch("http://127.0.0.1:5000/data")
-        .then((response) => response.json())
-        .then((json) => {
-          setKeys(json.MarketAnalysis?.KeyIndicatorsMarket || null);
-          setComparTableLocations(json.Dashboard?.ComparativeTable || null);
-        })
-        .catch((error) => console.log("error: ", error));
-    } else {
-      setKeys((jsonData as any).MarketAnalysis?.KeyIndicatorsMarket);
-      setComparTableLocations((jsonData as any).Dashboard?.ComparativeTable);
-    }
+    fetch("http://127.0.0.1:5000/data")
+      .then((response) => response.json())
+      .then((json) => {
+        setKeys(json.MarketAnalysis?.KeyIndicatorsMarket || null);
+        setComparTableLocations(json.Dashboard?.ComparativeTable || null);
+      })
+      .catch((error) => {
+        setKeys((jsonData as any).MarketAnalysis?.KeyIndicatorsMarket);
+        setComparTableLocations((jsonData as any).Dashboard?.ComparativeTable);
+
+        window.location.origin === "http://localhost:3000" &&
+          console.log("error: ", error);
+      });
   }, []);
 
   React.useMemo(() => {
@@ -82,7 +83,6 @@ function MarketAnalysis() {
             title="Real Estate Price Index"
             marketAnalysisData={keys}
             location={routeCity}
-            isSmallComp
           />
         )}
         <br /> <br />
