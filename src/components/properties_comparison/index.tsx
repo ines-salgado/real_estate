@@ -1,14 +1,14 @@
-import { Typography, Box, Unstable_Grid2 as Grid } from "@mui/material";
-import { cardsDataJson } from "../../mock_data/market_analysis";
-import { SelectInput } from "../inputs";
-import PropertyCard from "./components/property_card";
-import "./styles.scss";
+import { Typography, Box, Unstable_Grid2 as Grid } from '@mui/material';
+import { cardsDataJson } from '../../mock_data/market_analysis';
+import { SelectInput } from '../inputs';
+import PropertyCard from './components/property_card';
+import './styles.scss';
 
 function PropertiesComparison() {
   const cardsData = JSON.parse(cardsDataJson);
 
-  const typeOptions: string[] = ["T1", "T2", "T3"];
-  const yeildOptions: string[] = ["ascending", "descending"];
+  const typeOptions: string[] = ['T1', 'T2', 'T3'];
+  const yeildOptions: string[] = ['ascending', 'descending'];
 
   return (
     <Box className="investmentContainer">

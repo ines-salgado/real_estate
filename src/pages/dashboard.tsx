@@ -1,25 +1,25 @@
-import * as React from "react";
-import { Box, Unstable_Grid2 as Grid } from "@mui/material";
-import { DashboardData } from "../models";
-import { PageTitle, CustomTable, Links } from "../components";
-import { KeyIndicatores } from "./sections";
-import jsonData from "../data/data.json";
-import "./styles.scss";
+import * as React from 'react';
+import { Box, Unstable_Grid2 as Grid } from '@mui/material';
+import { DashboardData } from '../models';
+import { PageTitle, CustomTable, Links } from '../components';
+import { KeyIndicatores } from './sections';
+import jsonData from '../data/data.json';
+import './styles.scss';
 
 function Dashboard() {
-  const [keys, setKeys] = React.useState<DashboardData["keyInd"] | null>(null);
+  const [keys, setKeys] = React.useState<DashboardData['keyInd'] | null>(null);
   const [comparTable, setComparTable] = React.useState<
-    DashboardData["comparTable"] | null
+    DashboardData['comparTable'] | null
   >(null);
   const [afforTable, setAfforTable] = React.useState<
-    DashboardData["afforTable"] | null
+    DashboardData['afforTable'] | null
   >(null);
   const [profTable, setProfTable] = React.useState<
-    DashboardData["profTable"] | null
+    DashboardData['profTable'] | null
   >(null);
 
   React.useEffect(() => {
-    fetch("http://127.0.0.1:5000/data")
+    fetch('http://127.0.0.1:5000/data')
       .then((response) => response.json())
       .then((json) => {
         setKeys(json.Dashboard?.KeyIndicators || null);
@@ -33,8 +33,8 @@ function Dashboard() {
         setProfTable((jsonData as any).Dashboard?.ProfitableCities);
         setAfforTable((jsonData as any).Dashboard?.AffordabilityTable);
 
-        window.location.origin === "http://localhost:3000" &&
-          console.error("Error:", error);
+        window.location.origin === 'http://localhost:3000' &&
+          console.error('Error:', error);
       });
   }, []);
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TableCell, TableRow } from '@mui/material';
-import { RowData } from '../../../../models/chart';
+import { RowData } from '../../../../mock_data/chart';
 import { BasicTextField } from '../../../inputs';
 
 interface Props {

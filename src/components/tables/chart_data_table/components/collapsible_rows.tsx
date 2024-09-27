@@ -12,7 +12,7 @@ import {
   KeyboardArrowDown as ArrowDownIcon,
   KeyboardArrowUp as ArrowUpIcon,
 } from '@mui/icons-material';
-import { CostsData, RowData } from '../../../../models/chart';
+import { CostsData, RowData } from '../../../../mock_data/chart';
 import '../styles.scss';
 
 interface Props {

@@ -1,26 +1,26 @@
-import { Box } from "@mui/material";
-import { PageTitle, PropertyOverview, SimpleTabs } from "../components";
+import { Box } from '@mui/material';
+import { PageTitle, PropertyOverview, SimpleTabs } from '../components';
 import {
   InvestmentProjections,
   KeyIndicatores,
   PurchaseTabs,
-} from "./sections";
-import "./styles.scss";
+} from './sections';
+import './styles.scss';
 
 function InvestmentAnalysis() {
   const tabsData = {
-    title: "",
+    title: '',
     data: [
       {
-        tabLabel: "Purchase & Rehab",
+        tabLabel: 'Purchase & Rehab',
         comp: <PurchaseTabs hasPieChart />,
       },
       {
-        tabLabel: "Financing (Purchase)",
+        tabLabel: 'Financing (Purchase)',
         comp: <PurchaseTabs />,
       },
       {
-        tabLabel: "Cash Flow (1 year)",
+        tabLabel: 'Cash Flow (1 year)',
         comp: <PurchaseTabs hasPieChart />,
       },
     ],

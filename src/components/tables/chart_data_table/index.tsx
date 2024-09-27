@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableRow } from '@mui/material';
-import { createData } from '../../../models/chart';
+import { createData } from '../../../mock_data/chart';
 import { CollapsibleRows, InputRows } from './components';
 
 function ChartDataTable() {
