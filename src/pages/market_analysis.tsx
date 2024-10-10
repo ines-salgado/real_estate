@@ -25,20 +25,30 @@ function MarketAnalysis() {
   const [keys, setKeys] = React.useState<MarketAnalysisData['keyInd'] | null>(
     null,
   );
+  const [propertyMarket, setPropertyMarket] = React.useState<
+    MarketAnalysisData['propertyMarketData'] | null
+  >(null);
+  const [marketDynamics, setMarketDynamics] = React.useState<
+    MarketAnalysisData['marketDynamics'] | null
+  >(null);
 
   React.useEffect(() => {
     fetch('http://127.0.0.1:5000/data')
       .then((response) => response.json())
       .then((json) => {
-        setKeys(json.MarketAnalysis?.KeyIndicatorsMarket || null);
         setComparTableLocations(json.Dashboard?.ComparativeTable || null);
+        setKeys(json.MarketAnalysis?.KeyIndicatorsMarket || null);
+        setPropertyMarket(json.MarketAnalysis?.PropertyMarketdata || null);
+        setMarketDynamics(json.MarketAnalysis?.MarketDynamics || null);
       })
       .catch((error) => {
-        setKeys((jsonData as any).MarketAnalysis?.KeyIndicatorsMarket);
         setComparTableLocations((jsonData as any).Dashboard?.ComparativeTable);
+        setKeys((jsonData as any).MarketAnalysis?.KeyIndicatorsMarket);
+        setPropertyMarket((jsonData as any).MarketAnalysis?.PropertyMarketdata);
+        setMarketDynamics((jsonData as any).MarketAnalysis?.MarketDynamics);
 
-        window.location.origin === 'http://localhost:3000' &&
-          console.log('error: ', error);
+        // window.location.origin === 'http://localhost:3000' &&
+        //   console.log('error: ', error);
       });
   }, []);
 
@@ -86,9 +96,11 @@ function MarketAnalysis() {
           />
         )}
         <br /> <br />
-        <SimpleTabs tabsData={tabsData} />
+        {marketDynamics && <SimpleTabs tabsData={tabsData} />}
         <br /> <br />
-        <PropertiesComparison />
+        {propertyMarket && (
+          <PropertiesComparison data={propertyMarket} location={routeCity} />
+        )}
         <br /> <br />
       </Box>
     </>
