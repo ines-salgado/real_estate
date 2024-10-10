@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   Typography,
   Box,
@@ -32,16 +33,16 @@ function PropertiesComparison(props: Props) {
     index: number,
     image: string,
     title: string,
-    location: string,
+    propertyId: number,
     cardContent: any,
   ) => (
     <Card key={index} className="card">
-      <CardActionArea href="/investment-analysis">
+      <CardActionArea href={`/investment-analysis#${propertyId}`}>
         <CardMedia component="img" image={image} className="card__media" />
         <CardContent className="card__content">
           <Typography variant="body1">{title}</Typography>
           <Typography variant="body2" color="text.secondary" align="right">
-            {location}
+            {props.location}
           </Typography>
         </CardContent>
         <Divider />
@@ -79,7 +80,7 @@ function PropertiesComparison(props: Props) {
             id,
             value.mainImage,
             value.title,
-            value.localizacao,
+            value.id,
             renderCardContent({
               Price: `${priceWithDots(value.price)} €`,
               'Sale Price per Sqm': value['sale-price-per-sqm_value'],

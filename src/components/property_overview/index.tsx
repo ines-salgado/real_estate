@@ -13,27 +13,32 @@ import './styles.scss';
 
 interface Props {
   data: InvestmentAnalysisData['propertyMarketData'];
+  propertyId: any;
 }
 
 function PropertyOverview(props: Props) {
   const selectedProperty = props.data.find(
-    (property) => property.id === 3922655141,
+    (property) => property.id === (props.propertyId || 3922655141), // default property
   );
 
   const priceWithDots = (price?: number) =>
     price && price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
-  const dataRender = (name: string, value: string | number | undefined) => (
+  const dataRender = (data: { [key: string]: string | number | undefined }) => (
     <section>
-      <div className="card__content__data">
-        <Typography variant="body2" fontSize="17px">
-          {name}
-        </Typography>
-        <Typography variant="body2" fontSize="17px">
-          {value}
-        </Typography>
-      </div>
-      <Divider />
+      {Object.entries(data).map(([name, value], id) => (
+        <div key={id}>
+          <div className="card__content__data">
+            <Typography variant="body2" fontSize="17px">
+              {name}
+            </Typography>
+            <Typography variant="body2" fontSize="17px">
+              {value}
+            </Typography>
+          </div>
+          <Divider />
+        </div>
+      ))}
     </section>
   );
 
@@ -79,32 +84,18 @@ function PropertyOverview(props: Props) {
                 gap="20px"
               >
                 <Grid xs={6}>
-                  {dataRender(
-                    'Bedrooms Value',
-                    selectedProperty?.bedrooms_value,
-                  )}
-                  {dataRender(
-                    'Bedrooms Value',
-                    selectedProperty?.bedrooms_value,
-                  )}
-                  {dataRender(
-                    'Bedrooms Value',
-                    selectedProperty?.bedrooms_value,
-                  )}
+                  {dataRender({
+                    'Bedrooms Value1': selectedProperty?.bedrooms_value,
+                    'Bedrooms Value2': selectedProperty?.bedrooms_value,
+                    'Bedrooms Value3': selectedProperty?.bedrooms_value,
+                  })}
                 </Grid>
                 <Grid xs={6}>
-                  {dataRender(
-                    'Bedrooms Value',
-                    selectedProperty?.bedrooms_value,
-                  )}
-                  {dataRender(
-                    'Bedrooms Value',
-                    selectedProperty?.bedrooms_value,
-                  )}
-                  {dataRender(
-                    'Bedrooms Value',
-                    selectedProperty?.bedrooms_value,
-                  )}
+                  {dataRender({
+                    'Bedrooms Value1': selectedProperty?.bedrooms_value,
+                    'Bedrooms Value2': selectedProperty?.bedrooms_value,
+                    'Bedrooms Value3': selectedProperty?.bedrooms_value,
+                  })}
                 </Grid>
               </Grid>
               <br />

@@ -15,23 +15,7 @@ function InvestmentAnalysis() {
     InvestmentAnalysisData['propertyMarketData'] | null
   >(null);
 
-  React.useEffect(() => {
-    fetch('http://127.0.0.1:5000/data')
-      .then((response) => response.json())
-      .then((json) => {
-        setPropertyMarketData(
-          json.InvestmentAnalysis?.PropertyMarketdata || null,
-        );
-      })
-      .catch((error) => {
-        setPropertyMarketData(
-          (jsonData as any).InvestmentAnalysis?.PropertyMarketdata,
-        );
-
-        window.location.origin === 'http://localhost:3000' &&
-          console.log('error: ', error);
-      });
-  }, []);
+  const propertyId = Number(window.location.hash.substring(1));
 
   const tabsData = {
     title: '',
@@ -51,11 +35,31 @@ function InvestmentAnalysis() {
     ],
   };
 
+  React.useEffect(() => {
+    fetch('http://127.0.0.1:5000/data')
+      .then((response) => response.json())
+      .then((json) => {
+        setPropertyMarketData(
+          json.InvestmentAnalysis?.PropertyMarketdata || null,
+        );
+      })
+      .catch((error) => {
+        setPropertyMarketData(
+          (jsonData as any).InvestmentAnalysis?.PropertyMarketdata,
+        );
+
+        window.location.origin === 'http://localhost:3000' &&
+          console.log('error: ', error);
+      });
+  }, []);
+
   return (
     <>
       <PageTitle title="Investment Analysis" />
       <Box className="pageContainer">
-        {propertyMarketData && <PropertyOverview data={propertyMarketData} />}
+        {propertyMarketData && (
+          <PropertyOverview data={propertyMarketData} propertyId={propertyId} />
+        )}
         <br /> <br />
         <KeyIndicatores
           page="investment_analysis"
