@@ -85,16 +85,21 @@ function PropertyOverview(props: Props) {
               >
                 <Grid xs={6}>
                   {dataRender({
-                    'Bedrooms Value1': selectedProperty?.bedrooms_value,
-                    'Bedrooms Value2': selectedProperty?.bedrooms_value,
-                    'Bedrooms Value3': selectedProperty?.bedrooms_value,
+                    'Sale Price per Sqm':
+                      selectedProperty?.['sale-price-per-sqm_value'],
+                    'Bedrooms Value': selectedProperty?.bedrooms_value,
+                    'Bathrooms Value': selectedProperty?.bathrooms_value,
+                    'Area Value': selectedProperty?.area_value,
                   })}
                 </Grid>
                 <Grid xs={6}>
                   {dataRender({
-                    'Bedrooms Value1': selectedProperty?.bedrooms_value,
-                    'Bedrooms Value2': selectedProperty?.bedrooms_value,
-                    'Bedrooms Value3': selectedProperty?.bedrooms_value,
+                    'Days on Market':
+                      selectedProperty?.['days-on-market_value'],
+                    'New Rental Yield Value':
+                      selectedProperty?.['new-rental-yield_value'],
+                    'Energy Rating':
+                      selectedProperty?.['energy-rating-estate-page_value'],
                   })}
                 </Grid>
               </Grid>

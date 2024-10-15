@@ -21,7 +21,6 @@ function MarketAnalysis() {
   const [comparTableLocations, setComparTableLocations] = React.useState<
     DashboardData['comparTable'] | null
   >(null);
-
   const [keys, setKeys] = React.useState<MarketAnalysisData['keyInd'] | null>(
     null,
   );
@@ -47,8 +46,8 @@ function MarketAnalysis() {
         setPropertyMarket((jsonData as any).MarketAnalysis?.PropertyMarketdata);
         setMarketDynamics((jsonData as any).MarketAnalysis?.MarketDynamics);
 
-        // window.location.origin === 'http://localhost:3000' &&
-        //   console.log('error: ', error);
+        window.location.origin === 'http://localhost:3000' &&
+          console.log('error: ', error);
       });
   }, []);
 
@@ -59,9 +58,15 @@ function MarketAnalysis() {
     }
   }, [location.state]);
 
+  // for select input
   const locationOptions: string[] | null =
     comparTableLocations &&
     Object.values(comparTableLocations).map((loc) => loc.Location);
+
+  // filter location from dashboard
+  const isSameLocation: boolean | null =
+    keys &&
+    Object.keys(keys).some((location: string) => location === routeCity);
 
   const tabsData = {
     title: 'Market Forecasts',
@@ -92,7 +97,7 @@ function MarketAnalysis() {
             page="market_analysis"
             title="Real Estate Price Index"
             marketAnalysisData={keys}
-            location={routeCity}
+            isSameLocation={isSameLocation}
           />
         )}
         <br /> <br />
