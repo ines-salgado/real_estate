@@ -1,3 +1,9 @@
+interface LocationData {
+  data: string;
+  preco_medio_venda: number;
+  preco_medio_aluguel: number;
+}
+
 interface MarketAnalysisData {
   keyInd: {
     location: {
@@ -8,13 +14,7 @@ interface MarketAnalysisData {
     };
   };
   sellRentOverTime: {
-    id: {
-      Date: string;
-      codLocation: string;
-      'Pre\u00e7o m\u00e9dio_sell': number;
-      'Pre\u00e7o m\u00e9dio_rent': number;
-      localizacao: string;
-    };
+    [location: string]: LocationData[];
   };
   marketPhaseTrendsYearly: {
     id: {

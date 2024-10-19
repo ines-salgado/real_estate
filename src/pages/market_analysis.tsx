@@ -7,11 +7,11 @@ import {
   SelectInput,
   SimpleTabs,
   PropertiesComparison,
-  AreaChart,
 } from '../components';
 import { MarketDynamics, KeyIndicatores } from './sections';
 import jsonData from '../data/data.json';
 import './styles.scss';
+import { DoubleYLineChart } from '../components/charts';
 
 function MarketAnalysis() {
   const location = useLocation();
@@ -27,6 +27,9 @@ function MarketAnalysis() {
   const [propertyMarket, setPropertyMarket] = React.useState<
     MarketAnalysisData['propertyMarketData'] | null
   >(null);
+  const [sellRentOvertime, setSellRentOvertime] = React.useState<
+    MarketAnalysisData['sellRentOverTime'] | null
+  >(null);
   const [marketDynamics, setMarketDynamics] = React.useState<
     MarketAnalysisData['marketDynamics'] | null
   >(null);
@@ -38,12 +41,16 @@ function MarketAnalysis() {
         setComparTableLocations(json.Dashboard?.ComparativeTable || null);
         setKeys(json.MarketAnalysis?.KeyIndicatorsMarket || null);
         setPropertyMarket(json.MarketAnalysis?.PropertyMarketdata || null);
+        setSellRentOvertime(json.MarketAnalysis?.SellAndRentOverTime || null);
         setMarketDynamics(json.MarketAnalysis?.MarketDynamics || null);
       })
       .catch((error) => {
         setComparTableLocations((jsonData as any).Dashboard?.ComparativeTable);
         setKeys((jsonData as any).MarketAnalysis?.KeyIndicatorsMarket);
         setPropertyMarket((jsonData as any).MarketAnalysis?.PropertyMarketdata);
+        setSellRentOvertime(
+          (jsonData as any).MarketAnalysis?.SellAndRentOverTime,
+        );
         setMarketDynamics((jsonData as any).MarketAnalysis?.MarketDynamics);
 
         window.location.origin === 'http://localhost:3000' &&
@@ -73,11 +80,13 @@ function MarketAnalysis() {
     data: [
       {
         tabLabel: 'Property Market Trends',
-        comp: <AreaChart />,
+        comp: sellRentOvertime && (
+          <DoubleYLineChart data={sellRentOvertime} location={routeCity} />
+        ),
       },
       {
         tabLabel: 'Market Dynamics',
-        comp: <MarketDynamics />,
+        comp: marketDynamics && <MarketDynamics />,
       },
     ],
   };
@@ -101,7 +110,7 @@ function MarketAnalysis() {
           />
         )}
         <br /> <br />
-        {marketDynamics && <SimpleTabs tabsData={tabsData} />}
+        <SimpleTabs tabsData={tabsData} />
         <br /> <br />
         {propertyMarket && (
           <PropertiesComparison data={propertyMarket} location={routeCity} />
