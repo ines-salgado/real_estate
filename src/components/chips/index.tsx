@@ -2,7 +2,7 @@ import { Chip, Stack } from '@mui/material';
 import './styles.scss';
 
 interface Props {
-  data: string[];
+  data: string[] | undefined;
 }
 
 function BasicChips(props: Props) {
@@ -13,9 +13,15 @@ function BasicChips(props: Props) {
       spacing={1}
       marginTop="5px"
     >
-      {props.data.map((data: string, index: number) => (
-        <Chip className="chip" key={index} label={data} />
-      ))}
+      {props.data &&
+        props.data.map((data: string, index: number) => (
+          <Chip
+            className="chip"
+            sx={{ fontSize: '16px !important' }}
+            key={index}
+            label={data}
+          />
+        ))}
     </Stack>
   );
 }

@@ -7,7 +7,7 @@ interface Props {
   title: string;
   dashboardData?: DashboardData['keyInd'];
   marketAnalysisData?: MarketAnalysisData['keyInd'];
-  location?: string;
+  isSameLocation?: boolean | null;
 }
 
 function KeyIndicatores(props: Props) {
@@ -60,15 +60,9 @@ function KeyIndicatores(props: Props) {
     );
 
   // market analysis page
-  const isSameLocation: boolean | undefined =
-    props.marketAnalysisData &&
-    Object.keys(props.marketAnalysisData).some(
-      (location: string) => location === props.location,
-    );
-
   const renderMarketKeys =
     props.marketAnalysisData &&
-    isSameLocation &&
+    props.isSameLocation &&
     Object.values(props.marketAnalysisData).map((dataValue) =>
       Object.entries(dataValue).map(([key, value], id) => {
         let marketValue = Object.values(value)[0];

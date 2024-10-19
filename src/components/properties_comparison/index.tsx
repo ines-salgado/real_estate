@@ -1,37 +1,98 @@
-import { Typography, Box, Unstable_Grid2 as Grid } from '@mui/material';
-import { cardsDataJson } from '../../mock_data/market_analysis';
+import * as React from 'react';
+import {
+  Typography,
+  Box,
+  Unstable_Grid2 as Grid,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Divider,
+} from '@mui/material';
 import { SelectInput } from '../inputs';
-import PropertyCard from './components/property_card';
+import { MarketAnalysisData } from '../../models';
 import './styles.scss';
 
-function PropertiesComparison() {
-  const cardsData = JSON.parse(cardsDataJson);
+interface Props {
+  data: MarketAnalysisData['propertyMarketData'];
+  location: string;
+}
 
+function PropertiesComparison(props: Props) {
   const typeOptions: string[] = ['T1', 'T2', 'T3'];
   const yeildOptions: string[] = ['ascending', 'descending'];
+
+  const selectedLocation = props.data.filter(
+    (location) => location.localizacao === props.location,
+  );
+
+  const priceWithDots = (price?: number) =>
+    price && price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+  const renderCard = (
+    index: number,
+    image: string,
+    title: string,
+    propertyId: number,
+    cardContent: any,
+  ) => (
+    <Card key={index} className="card">
+      <CardActionArea href={`/investment-analysis#${propertyId}`}>
+        <CardMedia component="img" image={image} className="card__media" />
+        <CardContent className="card__content">
+          <Typography variant="body1">{title}</Typography>
+          <Typography variant="body2" color="text.secondary" align="right">
+            {props.location}
+          </Typography>
+        </CardContent>
+        <Divider />
+      </CardActionArea>
+      {cardContent}
+    </Card>
+  );
+
+  const renderCardContent = (data: {
+    [key: string]: string | number | undefined;
+  }) => (
+    <CardContent className="card__content">
+      {Object.entries(data).map(([name, value], id) => (
+        <div key={id}>
+          <div className="card__content__data">
+            <Typography variant="body2">{name}</Typography>
+            <Typography variant="body2">{value}</Typography>
+          </div>
+          <Divider />
+        </div>
+      ))}
+    </CardContent>
+  );
 
   return (
     <Box className="investmentContainer">
       <Typography variant="h6">Real Estate Investment Analysis</Typography>
       <section>
-        <SelectInput label="Typology" options={typeOptions} routeValue="" />
-        <SelectInput
-          label="Projected yeild"
-          options={yeildOptions}
-          routeValue=""
-        />
+        <SelectInput label="Typology" options={typeOptions} />
+        <SelectInput label="Projected yeild" options={yeildOptions} />
       </section>
-      <Grid display="flex" direction="row" gap="10px" justifyContent="center">
-        {cardsData.map((card: any, index: number) => (
-          <PropertyCard
-            key={index}
-            image={card.image}
-            alt={card.alt}
-            title={card.title}
-            subTitle={card.subTitle}
-            data={card.data}
-          />
-        ))}
+      <Grid className="gridContainer">
+        {selectedLocation.map((value, id) =>
+          renderCard(
+            id,
+            value.mainImage,
+            value.title,
+            value.id,
+            renderCardContent({
+              Price: `${priceWithDots(value.price)} €`,
+              'Sale Price per Sqm': value['sale-price-per-sqm_value'],
+              'Bedrooms Value': value.bedrooms_value,
+              'Bathrooms Value': value.bathrooms_value,
+              'Area Value': value.area_value,
+              'Days on Market': value['days-on-market_value'],
+              'New Rental Yield Value': value['new-rental-yield_value'],
+              'Energy Rating': value['energy-rating-estate-page_value'],
+            }),
+          ),
+        )}
       </Grid>
     </Box>
   );

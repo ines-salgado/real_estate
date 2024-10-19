@@ -7,32 +7,39 @@ import {
   CardContent,
   CardMedia,
 } from '@mui/material';
+import { InvestmentAnalysisData } from '../../models';
 import { BasicBreadcrumbs, BasicChips, ReportButton } from '..';
-import {
-  imageDataJson,
-  cardDataJson,
-} from '../../mock_data/investment_analysis';
 import './styles.scss';
 
-function PropertyOverview() {
-  const imageData = JSON.parse(imageDataJson);
-  const cardData = JSON.parse(cardDataJson);
+interface Props {
+  data: InvestmentAnalysisData['propertyMarketData'];
+  propertyId: any;
+}
 
-  const firstColumn = cardData.data.slice(0, 4);
-  const secondColumn = cardData.data.slice(4, 8);
+function PropertyOverview(props: Props) {
+  const selectedProperty = props.data.find(
+    (property) => property.id === (props.propertyId || 3922655141), // default property
+  );
 
-  const dataRender = (column: Array<{}>) => (
-    <Grid xs={6} direction="column" width="50%">
-      {column.map((element: any, index: number) => (
-        <div key={index}>
+  const priceWithDots = (price?: number) =>
+    price && price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+  const dataRender = (data: { [key: string]: string | number | undefined }) => (
+    <section>
+      {Object.entries(data).map(([name, value], id) => (
+        <div key={id}>
           <div className="card__content__data">
-            <Typography variant="body2">{element.name}</Typography>
-            <Typography variant="body2">{element.value}</Typography>
+            <Typography variant="body2" fontSize="17px">
+              {name}
+            </Typography>
+            <Typography variant="body2" fontSize="17px">
+              {value}
+            </Typography>
           </div>
           <Divider />
         </div>
       ))}
-    </Grid>
+    </section>
   );
 
   return (
@@ -41,19 +48,19 @@ function PropertyOverview() {
         <Typography variant="h6">Property Overview</Typography>
         <ReportButton />
       </Grid>
-      <BasicBreadcrumbs tableRegion="Sintra" />
+      <BasicBreadcrumbs tableRegion="Amadora" />
       <Grid
         display="flex"
         direction="row"
         justifyContent="space-between"
         gap="15px"
+        height="500px"
       >
         <Grid xs={8} width="55%">
           <Card className="card">
             <CardMedia
               component="img"
-              image={imageData.image}
-              alt={imageData.alt}
+              image={selectedProperty?.mainImage}
               width="100%"
               className="card__media"
             />
@@ -62,25 +69,46 @@ function PropertyOverview() {
         <Grid xs={4} width="45%">
           <Card className="card">
             <CardContent className="card__content">
-              <Typography variant="body1">{cardData.title}</Typography>
-              <Typography variant="body1" fontWeight="500">
-                Price: {cardData.price}
+              <Typography variant="body1" fontSize="20px">
+                {selectedProperty?.title}
+              </Typography>
+              <Typography variant="body1" fontSize="19px" fontWeight="500">
+                Price: {priceWithDots(selectedProperty?.price)} €
               </Typography>
               <Grid
+                xs={12}
                 display="flex"
                 direction="row"
                 justifyContent="space-evenly"
                 marginTop="10px"
-                gap="10px"
+                gap="20px"
               >
-                {dataRender(firstColumn)}
-                {dataRender(secondColumn)}
+                <Grid xs={6}>
+                  {dataRender({
+                    'Sale Price per Sqm':
+                      selectedProperty?.['sale-price-per-sqm_value'],
+                    'Bedrooms Value': selectedProperty?.bedrooms_value,
+                    'Bathrooms Value': selectedProperty?.bathrooms_value,
+                    'Area Value': selectedProperty?.area_value,
+                  })}
+                </Grid>
+                <Grid xs={6}>
+                  {dataRender({
+                    'Days on Market':
+                      selectedProperty?.['days-on-market_value'],
+                    'New Rental Yield Value':
+                      selectedProperty?.['new-rental-yield_value'],
+                    'Energy Rating':
+                      selectedProperty?.['energy-rating-estate-page_value'],
+                  })}
+                </Grid>
               </Grid>
+              <br />
               <div className="card__content__chips">
-                <Typography variant="body1" fontWeight={500}>
+                <Typography variant="body1" fontSize="19px" fontWeight="500">
                   Characteristics:
                 </Typography>
-                <BasicChips data={cardData.chips} />
+                <BasicChips data={selectedProperty?.combined_features} />
               </div>
             </CardContent>
           </Card>

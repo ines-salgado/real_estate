@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Box } from '@mui/material';
 import { PageTitle, PropertyOverview, SimpleTabs } from '../components';
 import {
@@ -5,9 +6,17 @@ import {
   KeyIndicatores,
   PurchaseTabs,
 } from './sections';
+import { InvestmentAnalysisData } from '../models';
+import jsonData from '../data/data.json';
 import './styles.scss';
 
 function InvestmentAnalysis() {
+  const [propertyMarketData, setPropertyMarketData] = React.useState<
+    InvestmentAnalysisData['propertyMarketData'] | null
+  >(null);
+
+  const propertyId = Number(window.location.hash.substring(1));
+
   const tabsData = {
     title: '',
     data: [
@@ -26,11 +35,31 @@ function InvestmentAnalysis() {
     ],
   };
 
+  React.useEffect(() => {
+    fetch('http://127.0.0.1:5000/data')
+      .then((response) => response.json())
+      .then((json) => {
+        setPropertyMarketData(
+          json.InvestmentAnalysis?.PropertyMarketdata || null,
+        );
+      })
+      .catch((error) => {
+        setPropertyMarketData(
+          (jsonData as any).InvestmentAnalysis?.PropertyMarketdata,
+        );
+
+        window.location.origin === 'http://localhost:3000' &&
+          console.log('error: ', error);
+      });
+  }, []);
+
   return (
     <>
       <PageTitle title="Investment Analysis" />
       <Box className="pageContainer">
-        <PropertyOverview />
+        {propertyMarketData && (
+          <PropertyOverview data={propertyMarketData} propertyId={propertyId} />
+        )}
         <br /> <br />
         <KeyIndicatores
           page="investment_analysis"

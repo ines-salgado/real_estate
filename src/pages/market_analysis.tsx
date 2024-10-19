@@ -7,11 +7,11 @@ import {
   SelectInput,
   SimpleTabs,
   PropertiesComparison,
-  AreaChart,
 } from '../components';
 import { MarketDynamics, KeyIndicatores } from './sections';
 import jsonData from '../data/data.json';
 import './styles.scss';
+import { DoubleYLineChart } from '../components/charts';
 
 function MarketAnalysis() {
   const location = useLocation();
@@ -21,21 +21,37 @@ function MarketAnalysis() {
   const [comparTableLocations, setComparTableLocations] = React.useState<
     DashboardData['comparTable'] | null
   >(null);
-
   const [keys, setKeys] = React.useState<MarketAnalysisData['keyInd'] | null>(
     null,
   );
+  const [propertyMarket, setPropertyMarket] = React.useState<
+    MarketAnalysisData['propertyMarketData'] | null
+  >(null);
+  const [sellRentOvertime, setSellRentOvertime] = React.useState<
+    MarketAnalysisData['sellRentOverTime'] | null
+  >(null);
+  const [marketDynamics, setMarketDynamics] = React.useState<
+    MarketAnalysisData['marketDynamics'] | null
+  >(null);
 
   React.useEffect(() => {
     fetch('http://127.0.0.1:5000/data')
       .then((response) => response.json())
       .then((json) => {
-        setKeys(json.MarketAnalysis?.KeyIndicatorsMarket || null);
         setComparTableLocations(json.Dashboard?.ComparativeTable || null);
+        setKeys(json.MarketAnalysis?.KeyIndicatorsMarket || null);
+        setPropertyMarket(json.MarketAnalysis?.PropertyMarketdata || null);
+        setSellRentOvertime(json.MarketAnalysis?.SellAndRentOverTime || null);
+        setMarketDynamics(json.MarketAnalysis?.MarketDynamics || null);
       })
       .catch((error) => {
-        setKeys((jsonData as any).MarketAnalysis?.KeyIndicatorsMarket);
         setComparTableLocations((jsonData as any).Dashboard?.ComparativeTable);
+        setKeys((jsonData as any).MarketAnalysis?.KeyIndicatorsMarket);
+        setPropertyMarket((jsonData as any).MarketAnalysis?.PropertyMarketdata);
+        setSellRentOvertime(
+          (jsonData as any).MarketAnalysis?.SellAndRentOverTime,
+        );
+        setMarketDynamics((jsonData as any).MarketAnalysis?.MarketDynamics);
 
         window.location.origin === 'http://localhost:3000' &&
           console.log('error: ', error);
@@ -49,20 +65,28 @@ function MarketAnalysis() {
     }
   }, [location.state]);
 
+  // for select input
   const locationOptions: string[] | null =
     comparTableLocations &&
     Object.values(comparTableLocations).map((loc) => loc.Location);
+
+  // filter location from dashboard
+  const isSameLocation: boolean | null =
+    keys &&
+    Object.keys(keys).some((location: string) => location === routeCity);
 
   const tabsData = {
     title: 'Market Forecasts',
     data: [
       {
         tabLabel: 'Property Market Trends',
-        comp: <AreaChart />,
+        comp: sellRentOvertime && (
+          <DoubleYLineChart data={sellRentOvertime} location={routeCity} />
+        ),
       },
       {
         tabLabel: 'Market Dynamics',
-        comp: <MarketDynamics />,
+        comp: marketDynamics && <MarketDynamics />,
       },
     ],
   };
@@ -82,13 +106,15 @@ function MarketAnalysis() {
             page="market_analysis"
             title="Real Estate Price Index"
             marketAnalysisData={keys}
-            location={routeCity}
+            isSameLocation={isSameLocation}
           />
         )}
         <br /> <br />
         <SimpleTabs tabsData={tabsData} />
         <br /> <br />
-        <PropertiesComparison />
+        {propertyMarket && (
+          <PropertiesComparison data={propertyMarket} location={routeCity} />
+        )}
         <br /> <br />
       </Box>
     </>

@@ -6,15 +6,24 @@
   background-color: white;
   border-radius: 4px;
 
+  .gridContainer {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    overflow: auto;
+    gap: 30px;
+  }
+
   section > div {
     margin: 15px 20px 10px 0 !important;
   }
 
   .card {
     margin-top: 10px;
+    min-width: 250px;
 
     &__media {
-      width: 170px !important;
+      width: 250px !important;
       height: 120px !important;
     }
 
