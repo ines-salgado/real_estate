@@ -13,14 +13,10 @@ import './styles.scss';
 
 interface Props {
   data: InvestmentAnalysisData['propertyMarketData'];
-  propertyId: any;
+  selectedProperty: any;
 }
 
 function PropertyOverview(props: Props) {
-  const selectedProperty = props.data.find(
-    (property) => property.id === (props.propertyId || 3922655141), // default property
-  );
-
   const priceWithDots = (price?: number) =>
     price && price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
@@ -60,7 +56,7 @@ function PropertyOverview(props: Props) {
           <Card className="card">
             <CardMedia
               component="img"
-              image={selectedProperty?.mainImage}
+              image={props.selectedProperty?.mainImage}
               width="100%"
               className="card__media"
             />
@@ -70,10 +66,10 @@ function PropertyOverview(props: Props) {
           <Card className="card">
             <CardContent className="card__content">
               <Typography variant="body1" fontSize="20px">
-                {selectedProperty?.title}
+                {props.selectedProperty?.title}
               </Typography>
               <Typography variant="body1" fontSize="19px" fontWeight="500">
-                Price: {priceWithDots(selectedProperty?.price)} €
+                Price: {priceWithDots(props.selectedProperty?.price)} €
               </Typography>
               <Grid
                 xs={12}
@@ -86,20 +82,22 @@ function PropertyOverview(props: Props) {
                 <Grid xs={6}>
                   {dataRender({
                     'Sale Price per Sqm':
-                      selectedProperty?.['sale-price-per-sqm_value'],
-                    'Bedrooms Value': selectedProperty?.bedrooms_value,
-                    'Bathrooms Value': selectedProperty?.bathrooms_value,
-                    'Area Value': selectedProperty?.area_value,
+                      props.selectedProperty?.['sale-price-per-sqm_value'],
+                    'Bedrooms Value': props.selectedProperty?.bedrooms_value,
+                    'Bathrooms Value': props.selectedProperty?.bathrooms_value,
+                    'Area Value': props.selectedProperty?.area_value,
                   })}
                 </Grid>
                 <Grid xs={6}>
                   {dataRender({
                     'Days on Market':
-                      selectedProperty?.['days-on-market_value'],
+                      props.selectedProperty?.['days-on-market_value'],
                     'New Rental Yield Value':
-                      selectedProperty?.['new-rental-yield_value'],
+                      props.selectedProperty?.['new-rental-yield_value'],
                     'Energy Rating':
-                      selectedProperty?.['energy-rating-estate-page_value'],
+                      props.selectedProperty?.[
+                        'energy-rating-estate-page_value'
+                      ],
                   })}
                 </Grid>
               </Grid>
@@ -108,7 +106,7 @@ function PropertyOverview(props: Props) {
                 <Typography variant="body1" fontSize="19px" fontWeight="500">
                   Characteristics:
                 </Typography>
-                <BasicChips data={selectedProperty?.combined_features} />
+                <BasicChips data={props.selectedProperty?.combined_features} />
               </div>
             </CardContent>
           </Card>

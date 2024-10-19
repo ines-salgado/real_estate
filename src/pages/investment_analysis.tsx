@@ -7,6 +7,7 @@ import {
   PurchaseTabs,
 } from './sections';
 import { InvestmentAnalysisData } from '../models';
+import { calcularIndicadores } from '../utils/keys_calculator';
 import jsonData from '../data/data.json';
 import './styles.scss';
 
@@ -15,7 +16,17 @@ function InvestmentAnalysis() {
     InvestmentAnalysisData['propertyMarketData'] | null
   >(null);
 
+  const [keyInd, setKeyInd] = React.useState<
+    InvestmentAnalysisData['keyInd'] | null
+  >(null);
+
   const propertyId = Number(window.location.hash.substring(1));
+
+  const selectedProperty =
+    propertyMarketData &&
+    propertyMarketData.find(
+      (property) => property.id === (propertyId || 3922655141), // default property
+    );
 
   const tabsData = {
     title: '',
@@ -53,24 +64,49 @@ function InvestmentAnalysis() {
       });
   }, []);
 
+  React.useEffect(() => {
+    if (selectedProperty) {
+      setKeyInd(
+        calcularIndicadores(
+          selectedProperty?.price, // preço da compra
+          2000, // custos escritura
+          selectedProperty?.price / 5, // entrada
+          1000, // custos reparação
+          10000, // avaliação VPT
+          5000000, // valor financiado
+          20, // prazo em anos
+          4, // tan anual
+          200, // renda mensal
+          1000, // despesas mensais
+        ),
+      );
+    }
+  }, [selectedProperty]);
+
   return (
     <>
       <PageTitle title="Investment Analysis" />
-      <Box className="pageContainer">
-        {propertyMarketData && (
-          <PropertyOverview data={propertyMarketData} propertyId={propertyId} />
-        )}
-        <br /> <br />
-        <KeyIndicatores
-          page="investment_analysis"
-          title="Financial Summary / Performance Metrics"
-        />
-        <br /> <br />
-        <SimpleTabs tabsData={tabsData} />
-        <br /> <br />
-        <InvestmentProjections />
-        <br /> <br />
-      </Box>
+      {propertyMarketData && (
+        <Box className="pageContainer">
+          <PropertyOverview
+            data={propertyMarketData}
+            selectedProperty={selectedProperty}
+          />
+          <br /> <br />
+          {keyInd && (
+            <KeyIndicatores
+              page="investment_analysis"
+              title="Financial Summary / Performance Metrics"
+              investmentAnalysisData={keyInd}
+            />
+          )}
+          <br /> <br />
+          <SimpleTabs tabsData={tabsData} />
+          <br /> <br />
+          <InvestmentProjections />
+          <br /> <br />
+        </Box>
+      )}
     </>
   );
 }

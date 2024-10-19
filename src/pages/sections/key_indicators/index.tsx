@@ -1,5 +1,10 @@
 import { Box, Unstable_Grid2 as Grid, Typography } from '@mui/material';
-import { DashboardData, MarketAnalysisData, PageType } from '../../../models';
+import {
+  DashboardData,
+  InvestmentAnalysisData,
+  MarketAnalysisData,
+  PageType,
+} from '../../../models';
 import './styles.scss';
 
 interface Props {
@@ -7,6 +12,7 @@ interface Props {
   title: string;
   dashboardData?: DashboardData['keyInd'];
   marketAnalysisData?: MarketAnalysisData['keyInd'];
+  investmentAnalysisData?: InvestmentAnalysisData['keyInd'];
   isSameLocation?: boolean | null;
 }
 
@@ -14,8 +20,11 @@ function KeyIndicatores(props: Props) {
   const renderKeyComponent = (
     id: number,
     keyTitle: string,
-    value: number,
-    percentage: number,
+    value: number | null,
+    hasPercentageSimbol: boolean,
+    hasEuroSimbol: boolean,
+    hasPercentage?: boolean,
+    percentage?: number,
     date?: number,
   ) => (
     <Grid
@@ -28,14 +37,29 @@ function KeyIndicatores(props: Props) {
           ? { width: '22%', minHeight: '110px' }
           : props.page === 'market_analysis'
             ? { width: '29.8%', minHeight: '100px' }
-            : {}
+            : props.page === 'investment_analysis'
+              ? {
+                  width: '17.2%',
+                  padding: '20px !important',
+                  textAlign: 'center',
+                }
+              : {}
       }
       className="ind__keys"
     >
-      <p className="ind__keys__title">{keyTitle}</p>
-      <span className="ind__keys__value">{value}</span>
+      <p className="ind__keys__title" style={{ marginBottom: '5px' }}>
+        {keyTitle}
+      </p>
+      <span className="ind__keys__value">
+        {Number.isInteger(value) ? value : value && value.toFixed(2)}
+        {hasPercentageSimbol ? ' %' : hasEuroSimbol && ' €'}
+      </span>
       <section>
-        <span className="ind__keys__percentage">{percentage?.toFixed(2)}%</span>
+        {hasPercentage && (
+          <span className="ind__keys__percentage">
+            {percentage?.toFixed(2)}%
+          </span>
+        )}
         {props.page === 'dashboard' && (
           <div>
             <span className="ind__keys__update">Last update: </span>
@@ -54,6 +78,9 @@ function KeyIndicatores(props: Props) {
         id,
         key,
         value.Value,
+        false,
+        false,
+        true,
         value['Percentage Change'],
         value.Date,
       ),
@@ -67,8 +94,30 @@ function KeyIndicatores(props: Props) {
       Object.entries(dataValue).map(([key, value], id) => {
         let marketValue = Object.values(value)[0];
         let marketPercentage = Object.values(value)[1];
-        return renderKeyComponent(id, key, marketValue, marketPercentage);
+        return renderKeyComponent(
+          id,
+          key,
+          marketValue,
+          false,
+          false,
+          true,
+          marketPercentage,
+        );
       }),
+    );
+
+  const renderInvestmentKeys =
+    props.investmentAnalysisData &&
+    Object.entries(props.investmentAnalysisData).map(([key, value], id) =>
+      renderKeyComponent(
+        id,
+        key,
+        value,
+        key === 'ROI',
+        key === 'Cash Flow' ||
+          key === 'Cash on Cash' ||
+          key === 'Initial Capital',
+      ),
     );
 
   return (
@@ -87,6 +136,8 @@ function KeyIndicatores(props: Props) {
             renderDashboardKeys
           ) : props.page === 'market_analysis' ? (
             renderMarketKeys
+          ) : props.page === 'investment_analysis' ? (
+            renderInvestmentKeys
           ) : (
             <div>No data available</div>
           )}
