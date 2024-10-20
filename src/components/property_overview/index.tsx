@@ -7,12 +7,10 @@ import {
   CardContent,
   CardMedia,
 } from '@mui/material';
-import { InvestmentAnalysisData } from '../../models';
 import { BasicBreadcrumbs, BasicChips, ReportButton } from '..';
 import './styles.scss';
 
 interface Props {
-  data: InvestmentAnalysisData['propertyMarketData'];
   selectedProperty: any;
 }
 

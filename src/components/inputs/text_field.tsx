@@ -12,9 +12,9 @@ function BasicTextField(props: Props) {
       <TextField
         id="outlined"
         value={props.value}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          props.setValue(event.target.value);
-        }}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          props.setValue(event.target.value)
+        }
         className="textField"
         size="small"
       />

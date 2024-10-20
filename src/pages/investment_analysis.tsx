@@ -33,15 +33,27 @@ function InvestmentAnalysis() {
     data: [
       {
         tabLabel: 'Purchase & Rehab',
-        comp: <PurchaseTabs hasPieChart />,
+        comp: (
+          <PurchaseTabs
+            data={selectedProperty ? [selectedProperty] : []}
+            hasPieChart
+          />
+        ),
       },
       {
         tabLabel: 'Financing (Purchase)',
-        comp: <PurchaseTabs />,
+        comp: (
+          <PurchaseTabs data={selectedProperty ? [selectedProperty] : []} />
+        ),
       },
       {
         tabLabel: 'Cash Flow (1 year)',
-        comp: <PurchaseTabs hasPieChart />,
+        comp: (
+          <PurchaseTabs
+            data={selectedProperty ? [selectedProperty] : []}
+            hasPieChart
+          />
+        ),
       },
     ],
   };
@@ -88,10 +100,7 @@ function InvestmentAnalysis() {
       <PageTitle title="Investment Analysis" />
       {propertyMarketData && (
         <Box className="pageContainer">
-          <PropertyOverview
-            data={propertyMarketData}
-            selectedProperty={selectedProperty}
-          />
+          <PropertyOverview selectedProperty={selectedProperty || {}} />
           <br /> <br />
           {keyInd && (
             <KeyIndicatores

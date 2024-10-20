@@ -107,7 +107,6 @@ interface InvestmentAnalysisData {
     // noiAnual: noiAnual,
     // dscr: dscr,
     'Payback (Years)': number | null;
-
     // grm: number | null;
     // ganhoNaCompra: number;
   };
