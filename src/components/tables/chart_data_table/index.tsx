@@ -21,7 +21,52 @@ interface Props {
 }
 
 function ChartDataTable(props: Props) {
-  const [inputValue, setInputValue] = React.useState<string>('');
+  const price =
+    props.selectedProperty &&
+    Object.values(props.selectedProperty).map((value) => value.price);
+
+  const initialValues = {
+    afterRepairValue: Number.isInteger(Number(price) * 0.8)
+      ? (Number(price) * 0.8).toString()
+      : (Number(price) * 0.8).toFixed(2).toString(),
+    amountFinanced: Number.isInteger(Number(price) * 0.8)
+      ? (Number(price) * 0.8).toString()
+      : (Number(price) * 0.8).toFixed(2).toString(),
+    downPayment: Number.isInteger(Number(price) * 0.2)
+      ? (Number(price) * 0.2).toString()
+      : (Number(price) * 0.2).toFixed(2).toString(),
+    purchaseCosts: '1000',
+    closingCosts: '500',
+    financingCosts: '400',
+    otherCosts: '100',
+    rehabCosts: '2000',
+  };
+
+  const [afterRepairValue, setAfterRepairValue] = React.useState<string>(
+    initialValues.afterRepairValue,
+  );
+  const [amountFinanced, setAmountFinanced] = React.useState<string>(
+    initialValues.amountFinanced,
+  );
+  const [downPayment, setDownPayment] = React.useState<string>(
+    initialValues.downPayment,
+  );
+  const [purchaseCosts, setPurchaseCosts] = React.useState<string>(
+    initialValues.purchaseCosts,
+  );
+  const [closingCosts, setClosingCosts] = React.useState<string>(
+    initialValues.closingCosts,
+  );
+  const [financingCosts, setFinancingCosts] = React.useState<string>(
+    initialValues.financingCosts,
+  );
+  const [otherCosts, setOtherCosts] = React.useState<string>(
+    initialValues.otherCosts,
+  );
+  const [rehabCosts, setRehabCosts] = React.useState<string>(
+    initialValues.rehabCosts,
+  );
+  const [totalNeeded, setTotalNeeded] = React.useState<string>('');
 
   const [open, setOpen] = React.useState<boolean>(false);
   const borderBottom = open ? '1px solid rgba(224, 224, 224, 1)' : 'initial';
@@ -41,31 +86,28 @@ function ChartDataTable(props: Props) {
     </TableCell>
   );
 
-  const renderRowStatic = (title: string, value: string | number) => (
+  const renderRowStatic = (title: string, value: string) => (
     <TableRow>
       {renderRowTitle(title)}
       <TableCell align="right">{value}</TableCell>
     </TableRow>
   );
 
-  const renderRowInput = (title: string, value: string | number) => (
+  const renderRowInput = (title: string, value: string, setValue: any) => (
     <TableRow>
       {renderRowTitle(title)}
       <TableCell align="right">
-        <BasicTextField
-          value={inputValue || String(value)}
-          setValue={setInputValue}
-        />
+        <BasicTextField value={value} setValue={setValue} />
       </TableCell>
     </TableRow>
   );
 
-  const renderRowCollapsible = (title: string) => (
+  const renderRowCollapsible = (
     <>
       <TableRow>
-        {renderRowTitle(title, true)}
+        {renderRowTitle('Purchase Costs', true)}
         <TableCell sx={{ borderBottom: borderBottom }} align="right">
-          5000
+          {purchaseCosts}
         </TableCell>
       </TableRow>
       <TableRow>
@@ -74,9 +116,17 @@ function ChartDataTable(props: Props) {
             <Box>
               <Table size="small">
                 <TableBody>
-                  {renderRowInput('Closing cost', 5000)}
-                  {renderRowInput('Financing cost', 5000)}
-                  {renderRowInput('Other cost', 5000)}
+                  {renderRowInput(
+                    'Closing cost',
+                    closingCosts,
+                    setClosingCosts,
+                  )}
+                  {renderRowInput(
+                    'Financing cost',
+                    financingCosts,
+                    setFinancingCosts,
+                  )}
+                  {renderRowInput('Other cost', otherCosts, setOtherCosts)}
                 </TableBody>
               </Table>
             </Box>
@@ -86,20 +136,72 @@ function ChartDataTable(props: Props) {
     </>
   );
 
+  React.useEffect(() => {
+    const amountFinancedValue = Number(afterRepairValue) * 0.8;
+    const downPaymentValue = Number(afterRepairValue) * 0.2;
+    const purchaseCostsValue =
+      Number(closingCosts) + Number(financingCosts) + Number(otherCosts);
+    const totalCashNeededValue =
+      Number(downPayment) + Number(purchaseCosts) + Number(rehabCosts);
+
+    amountFinanced === initialValues.amountFinanced &&
+      setAmountFinanced(
+        Number.isInteger(amountFinancedValue)
+          ? amountFinancedValue.toString()
+          : amountFinancedValue.toFixed(2).toString(),
+      );
+    downPayment === initialValues.downPayment &&
+      setDownPayment(
+        Number.isInteger(downPaymentValue)
+          ? downPaymentValue.toString()
+          : downPaymentValue.toFixed(2).toString(),
+      );
+    setPurchaseCosts(
+      Number.isInteger(purchaseCostsValue)
+        ? purchaseCostsValue.toString()
+        : purchaseCostsValue.toFixed(2).toString(),
+    );
+    setTotalNeeded(
+      Number.isInteger(totalCashNeededValue)
+        ? totalCashNeededValue.toString()
+        : totalCashNeededValue.toFixed(2).toString(),
+    );
+  }, [
+    afterRepairValue,
+    closingCosts,
+    financingCosts,
+    otherCosts,
+    downPayment,
+    purchaseCosts,
+    rehabCosts,
+    totalNeeded,
+    amountFinanced,
+    initialValues.amountFinanced,
+    initialValues.downPayment,
+  ]);
+
   return (
     <Table sx={{ width: '53%' }}>
       {props.selectedProperty &&
         Object.values(props.selectedProperty).map((value, id) => (
           <TableBody key={id}>
             {renderRowStatic('Price:', `${value.price} €`)}
-            {renderRowInput('After Repair Value:', `${value.price} €`)}
-            {renderRowInput('Amount Financed:', `${value.price * 0.8} €`)}
+            {renderRowInput(
+              'After Repair Value:',
+              afterRepairValue,
+              setAfterRepairValue,
+            )}
+            {renderRowInput(
+              'Amount Financed:',
+              amountFinanced,
+              setAmountFinanced,
+            )}
             <Divider />
-            {renderRowStatic('Down Payment:', `${value.price} €`)}
-            {renderRowCollapsible('Purchase Costs')}
-            {renderRowInput('Rehab Costs:', `${value.price} €`)}
+            {renderRowInput('Down Payment:', downPayment, setDownPayment)}
+            {renderRowCollapsible}
+            {renderRowInput('Rehab Costs:', rehabCosts, setRehabCosts)}
             <Divider />
-            {renderRowStatic('otal Cash Needed:', `${value.price} €`)}
+            {renderRowStatic('Total Cash Needed:', totalNeeded)}
           </TableBody>
         ))}
     </Table>
