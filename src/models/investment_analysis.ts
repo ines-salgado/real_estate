@@ -97,6 +97,19 @@ interface InvestmentAnalysisData {
     moving_avg_Reducao_sell: number;
     moving_avg_Reducao_rent: number;
   }>;
+  keyInd: {
+    ROI: number | null;
+    'Cash Flow': number;
+    // cashflowMensal: cashflowMensal,
+    'Cash on Cash': number | null;
+    'Initial Capital': number;
+    // capRatePercent: capRate,
+    // noiAnual: noiAnual,
+    // dscr: dscr,
+    'Payback (Years)': number | null;
+    // grm: number | null;
+    // ganhoNaCompra: number;
+  };
 }
 
 export default InvestmentAnalysisData;
