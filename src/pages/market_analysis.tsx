@@ -70,11 +70,6 @@ function MarketAnalysis() {
     comparTableLocations &&
     Object.values(comparTableLocations).map((loc) => loc.Location);
 
-  // filter location from dashboard
-  const isSameLocation: boolean | null =
-    keys &&
-    Object.keys(keys).some((location: string) => location === routeCity);
-
   const tabsData = {
     title: 'Market Forecasts',
     data: [
@@ -106,7 +101,6 @@ function MarketAnalysis() {
             page="market_analysis"
             title="Real Estate Price Index"
             marketAnalysisData={keys}
-            isSameLocation={isSameLocation}
           />
         )}
         <br /> <br />

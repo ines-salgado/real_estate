@@ -13,7 +13,6 @@ interface Props {
   dashboardData?: DashboardData['keyInd'];
   marketAnalysisData?: MarketAnalysisData['keyInd'];
   investmentAnalysisData?: InvestmentAnalysisData['keyInd'];
-  isSameLocation?: boolean | null;
 }
 
 function KeyIndicatores(props: Props) {
@@ -89,21 +88,22 @@ function KeyIndicatores(props: Props) {
   // market analysis page
   const renderMarketKeys =
     props.marketAnalysisData &&
-    props.isSameLocation &&
-    Object.values(props.marketAnalysisData).map((dataValue) =>
-      Object.entries(dataValue).map(([key, value], id) => {
-        let marketValue = Object.values(value)[0];
-        let marketPercentage = Object.values(value)[1];
-        return renderKeyComponent(
-          id,
-          key,
-          marketValue,
-          false,
-          false,
-          true,
-          marketPercentage,
-        );
-      }),
+    Object.entries(props.marketAnalysisData).map(
+      ([dataKey, dataValue]) =>
+        dataKey === 'Amadora' &&
+        Object.entries(dataValue).map(([key, value], id) => {
+          let marketValue = Object.values(value)[0];
+          let marketPercentage = Object.values(value)[1];
+          return renderKeyComponent(
+            id,
+            key,
+            marketValue,
+            false,
+            false,
+            true,
+            marketPercentage,
+          );
+        }),
     );
 
   const renderInvestmentKeys =
