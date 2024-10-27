@@ -1,17 +1,18 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Unstable_Grid2 as Grid, Box } from '@mui/material';
 import { DashboardData, MarketAnalysisData } from '../models';
 import {
   PageTitle,
   SelectInput,
   SimpleTabs,
   PropertiesComparison,
+  CustomAccordion,
 } from '../components';
-import { MarketDynamics, KeyIndicatores } from './sections';
+import { DoubleYLineChart } from '../components/charts';
+import { KeyIndicatores } from './sections';
 import jsonData from '../data/data.json';
 import './styles.scss';
-import { DoubleYLineChart } from '../components/charts';
 
 function MarketAnalysis() {
   const location = useLocation();
@@ -58,7 +59,7 @@ function MarketAnalysis() {
       });
   }, []);
 
-  React.useMemo(() => {
+  React.useEffect(() => {
     if (location.state) {
       const { city } = location.state;
       setRouteCity(city);
@@ -76,12 +77,27 @@ function MarketAnalysis() {
       {
         tabLabel: 'Property Market Trends',
         comp: sellRentOvertime && (
-          <DoubleYLineChart data={sellRentOvertime} location={routeCity} />
+          <DoubleYLineChart
+            location={routeCity}
+            selectedTab="Property Market Trends"
+            sellAndRentData={sellRentOvertime}
+          />
         ),
       },
       {
         tabLabel: 'Market Dynamics',
-        comp: marketDynamics && <MarketDynamics />,
+        comp: marketDynamics && (
+          <Grid display="flex" justifyContent="space-between" direction="row">
+            <CustomAccordion
+              location={routeCity}
+              marketDynamicsData={marketDynamics}
+            />
+            <DoubleYLineChart
+              location={routeCity}
+              selectedTab="Property Market Trends"
+            />
+          </Grid>
+        ),
       },
     ],
   };
@@ -94,12 +110,14 @@ function MarketAnalysis() {
           label="City"
           options={locationOptions}
           routeValue={routeCity}
+          setRouteValue={setRouteCity}
         />
         <br /> <br />
         {keys && (
           <KeyIndicatores
             page="market_analysis"
             title="Real Estate Price Index"
+            location={routeCity}
             marketAnalysisData={keys}
           />
         )}

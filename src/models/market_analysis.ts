@@ -1,9 +1,3 @@
-interface LocationData {
-  data: string;
-  preco_medio_venda: number;
-  preco_medio_aluguel: number;
-}
-
 interface MarketAnalysisData {
   keyInd: {
     location: {
@@ -14,7 +8,11 @@ interface MarketAnalysisData {
     };
   };
   sellRentOverTime: {
-    [location: string]: LocationData[];
+    [location: string]: {
+      data: string;
+      preco_medio_venda: number;
+      preco_medio_aluguel: number;
+    }[];
   };
   marketPhaseTrendsYearly: {
     id: {
@@ -25,29 +23,34 @@ interface MarketAnalysisData {
       'Transaction Change (%)': number;
     };
   };
-  marketDynamics: Array<{
-    Date: string;
-    localizacao: string;
-    'Subida de pre\u00e7o_sell': number;
-    'Redu\u00e7\u00e3o de pre\u00e7o_sell': number;
-    'Novas propriedades \u00fanicas_sell': number;
-    'Propriedades vendida e retiradas_sell': number;
-    'Subida de pre\u00e7o_rent': number;
-    'Redu\u00e7\u00e3o de pre\u00e7o_rent': number;
-    'Novas propriedades \u00fanicas_rent': number;
-    'Propriedades vendida e retiradas_rent': number;
-    'Popula\u00e7\u00e3o desempregada com idade entre 16 e 74 anos (N.\u00ba) por Grupo et\u00e1rio; Mensal (2) ': number;
-    'N\u00famero de benefici\u00e1rios de subs\u00eddio de desemprego (milhares)-mensal': number;
-    'Desemprego registado no final do per\u00edodo-Total-Mensal': number;
-    'Desemprego registado ao longo do per\u00edodo-Total-Mensal': number;
-    '1 m\u00eas (Euribor)': number;
-    '3 meses (Euribor)': number;
-    '6 meses (Euribor)': number;
-    '12 meses (Euribor)': number;
-    'Endividamento dos particulares-TVA': number;
-    'Endividamento dos particulares': number;
-    'Endividamento dos particulares junto de empresas n\u00e3o financeiras': number;
-  }>;
+  marketDynamics: {
+    [location: string]: {
+      date: string;
+      location: string;
+      '# Total evaluations by the Bank': number;
+      '# Apartment evaluations by the Bank': number;
+      '# House evaluations': number;
+      'Avg. monthly payment': number;
+      'Amortized capital': number;
+      'Total interest': number;
+      'Euribor 1 month': number;
+      'Euribor 3 month': number;
+      'Euribor 6 month': number;
+      'Euribor 12 month': number;
+      'Price increase in sell': number;
+      'Price reduction in sell': number;
+      'New unique properties in sell': number;
+      'Sold and removed properties in sell': number;
+      'Price increase in rent': number;
+      'Price reduction in rent': number;
+      'New unique properties in rent': number;
+      'Sold and removed properties in rent': number;
+      'Price to rent ratio': number;
+      '# Unemployment benefit recipients (thousands)': number;
+      'Registered unemployment': number;
+      'Unemployment throughout the period': number;
+    }[];
+  };
   propertyMarketData: Array<{
     title: string;
     mainImage: string;

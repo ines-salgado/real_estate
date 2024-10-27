@@ -10,6 +10,7 @@ import './styles.scss';
 interface Props {
   page: PageType;
   title: string;
+  location?: string;
   dashboardData?: DashboardData['keyInd'];
   marketAnalysisData?: MarketAnalysisData['keyInd'];
   investmentAnalysisData?: InvestmentAnalysisData['keyInd'];
@@ -90,7 +91,7 @@ function KeyIndicatores(props: Props) {
     props.marketAnalysisData &&
     Object.entries(props.marketAnalysisData).map(
       ([dataKey, dataValue]) =>
-        dataKey === 'Amadora' &&
+        dataKey === props.location &&
         Object.entries(dataValue).map(([key, value], id) => {
           let marketValue = Object.values(value)[0];
           let marketPercentage = Object.values(value)[1];

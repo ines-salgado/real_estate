@@ -11,13 +11,14 @@ interface Props {
   label: string;
   options: string[] | null;
   routeValue?: string;
+  setRouteValue?: any;
 }
 
 function SelectInput(props: Props) {
   const [state, setState] = React.useState<string>('');
 
   const handleChange = (event: SelectChangeEvent) =>
-    setState(event.target.value);
+    props.setRouteValue(event.target.value) || setState(event.target.value);
 
   return (
     <FormControl
