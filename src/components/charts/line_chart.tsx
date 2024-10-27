@@ -4,24 +4,37 @@ import { LineChart } from '@mui/x-charts/LineChart';
 import { MarketAnalysisData } from '../../models';
 
 interface Props {
-  data: MarketAnalysisData['sellRentOverTime'];
   location: string;
+  selectedTab?: 'Property Market Trends' | 'Market Dynamics';
+  sellAndRentData?: MarketAnalysisData['sellRentOverTime'];
+  marketDynamicsData?: MarketAnalysisData['marketDynamics'];
 }
 
 function DoubleYLineChart(props: Props) {
-  const selectedLocData = props.data[props.location];
+  const sellAndRentData =
+    props.sellAndRentData && props.sellAndRentData[props.location];
+  const marketDynamicsData =
+    props.marketDynamicsData && props.marketDynamicsData[props.location];
 
-  if (!selectedLocData) {
+  if (
+    (props.selectedTab === 'Property Market Trends' && !sellAndRentData) ||
+    (props.selectedTab === 'Market Dynamics' && !marketDynamicsData)
+  ) {
     return <div>No data available for this location</div>;
   }
 
-  const sortedData = selectedLocData.sort(
-    (a, b) => new Date(a.data).getTime() - new Date(b.data).getTime(),
-  );
+  const sortedData = () => {
+    const dateCompar = (date1: string, date2: string) =>
+      new Date(date1).getTime() - new Date(date2).getTime();
 
-  const dates = sortedData.map((entry) => new Date(entry.data).getTime());
-  const salePrices = sortedData.map((entry) => entry.preco_medio_venda);
-  const rentPrices = sortedData.map((entry) => entry.preco_medio_aluguel);
+    return sellAndRentData
+      ? sellAndRentData.sort((a, b) => dateCompar(a.data, b.data))
+      : [];
+  };
+
+  const dates = sortedData().map((entry) => new Date(entry.data).getTime());
+  const salePrices = sortedData().map((entry) => entry.preco_medio_venda);
+  const rentPrices = sortedData().map((entry) => entry.preco_medio_aluguel);
 
   const initialSalePrices = salePrices.map((price, idx) =>
     idx < salePrices.length - 50 ? price : null,

@@ -9,63 +9,141 @@ import {
   Typography,
 } from '@mui/material';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import { MarketAnalysisData } from '../../models';
 import './styles.scss';
 
 interface Props {
-  width: string;
+  location: string;
+  marketDynamicsData?: MarketAnalysisData['marketDynamics'];
 }
 
 function CustomAccordion(props: Props) {
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
-  /* mock data */
-  const populationData = [
-    { title: 'Population Density (nrº/km²)', value: 999999, percentage: '10%' },
-    { title: 'Migration Balance (nrº)', value: 556200, percentage: '10%' },
-    { title: 'Faro', value: 242700, percentage: '10%' },
-  ];
-
-  const accordionData = [
-    {
-      title: 'Population',
-      populationData: populationData,
-    },
-    {
-      title: 'Job Market',
-      populationData: populationData,
-    },
-    {
-      title: 'Crime',
-      populationData: populationData,
-    },
-    {
-      title: 'Construction',
-      populationData: populationData,
-    },
-    {
-      title: 'Real Estate Market',
-      populationData: populationData,
-    },
-    {
-      title: 'Industry',
-      populationData: populationData,
-    },
-  ];
-  /* *** */
+  const accordionData =
+    props.marketDynamicsData &&
+    props.marketDynamicsData[props.location].map((data) => [
+      {
+        title: 'Evaluations',
+        data: [
+          {
+            title: 'Total evaluations by the Bank',
+            value: data['# Apartment evaluations by the Bank'],
+          },
+          {
+            title: 'Apartment evaluations by the Bank',
+            value: data['# House evaluations'],
+          },
+          {
+            title: 'House evaluations',
+            value: data['# Total evaluations by the Bank'],
+          },
+        ],
+      },
+      {
+        title: 'Credits',
+        data: [
+          {
+            title: 'Avg. monthly payment',
+            value: data['Avg. monthly payment'],
+          },
+          {
+            title: 'Amortized capital',
+            value: data['Amortized capital'],
+          },
+          {
+            title: 'Total interest',
+            value: data['Total interest'],
+          },
+          {
+            title: 'Euribor 1 month',
+            value: data['Euribor 1 month'],
+          },
+          {
+            title: 'Euribor 3 month',
+            value: data['Euribor 3 month'],
+          },
+          {
+            title: 'Euribor 6 month',
+            value: data['Euribor 6 month'],
+          },
+          {
+            title: 'Euribor 12 month',
+            value: data['Euribor 12 month'],
+          },
+        ],
+      },
+      {
+        title: 'Prices',
+        data: [
+          {
+            title: 'Price increase in sell',
+            value: data['Price increase in sell'],
+          },
+          {
+            title: 'Price reduction in sell',
+            value: data['Price reduction in sell'],
+          },
+          {
+            title: 'New unique properties in sell',
+            value: data['New unique properties in sell'],
+          },
+          {
+            title: 'Sold and removed properties in sell',
+            value: data['Sold and removed properties in sell'],
+          },
+          {
+            title: 'Price increase in rent',
+            value: data['Price increase in rent'],
+          },
+          {
+            title: 'Price reduction in rent',
+            value: data['Price reduction in rent'],
+          },
+          {
+            title: 'New unique properties in rent',
+            value: data['New unique properties in rent'],
+          },
+          {
+            title: 'Sold and removed properties in rent',
+            value: data['Sold and removed properties in rent'],
+          },
+          {
+            title: 'Price to rent ratio',
+            value: data['Price to rent ratio'],
+          },
+        ],
+      },
+      {
+        title: 'Employment',
+        data: [
+          {
+            title: 'Unemployment benefit recipients (thousands)',
+            value: data['# Unemployment benefit recipients (thousands)'],
+          },
+          {
+            title: 'Registered unemployment',
+            value: data['Registered unemployment'],
+          },
+          {
+            title: 'Unemployment throughout the period',
+            value: data['Unemployment throughout the period'],
+          },
+        ],
+      },
+    ]);
 
   const handleExpand =
     (panel: string) => (_event: any, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
     };
 
-  const AccordionContent = ({
-    panel,
-    title,
-  }: {
-    panel: string;
-    title: string;
-  }) => (
-    <Accordion expanded={expanded === panel} onChange={handleExpand(panel)}>
+  const renderAccordionContent = (index: number, panel: string, data: any) => (
+    <Accordion
+      key={index}
+      expanded={expanded === panel}
+      onChange={handleExpand(panel)}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls={`${panel}bh-content`}
@@ -73,44 +151,40 @@ function CustomAccordion(props: Props) {
         className="accordion__summary"
       >
         <Typography variant="body1" fontSize="15px">
-          {title}
+          {data && data.title}
         </Typography>
       </AccordionSummary>
       <AccordionDetails className="accordion__details">
-        {/* replace with data */}
-        {populationData.map((data, index) => (
-          <Link
-            key={index}
-            component="button"
-            className="accordion__details__link"
-          >
-            <Typography className="accordion__details__title">
-              {data.title}
-            </Typography>
-            <div className="accordion__details__values">
-              <Typography>{data.value}</Typography>
-              <Typography>{data.percentage}</Typography>
-            </div>
-          </Link>
-        ))}
+        {data &&
+          Object.values(data).map((subData: any, id: number) => (
+            <Link
+              key={id}
+              component="button"
+              className="accordion__details__link"
+            >
+              <Typography className="accordion__details__title">
+                {subData.title}
+              </Typography>
+              <div className="accordion__details__values">
+                <Typography>{subData.data}</Typography>
+              </div>
+            </Link>
+          ))}
       </AccordionDetails>
     </Accordion>
   );
 
   return (
-    <Grid className="accordion__grid" width={props.width}>
+    <Grid className="accordion__grid" width="100%">
       <section>
         <Typography variant="body1">Indicator</Typography>
         <Typography variant="body1">Value</Typography>
       </section>
       <Box className="accordion__box">
-        {accordionData.map((data, index) => (
-          <AccordionContent
-            key={index}
-            panel={`panel${index}`}
-            title={data.title}
-          />
-        ))}
+        {accordionData &&
+          accordionData.map((data, id) =>
+            renderAccordionContent(id, `panel${id}`, data[id]),
+          )}
       </Box>
     </Grid>
   );
