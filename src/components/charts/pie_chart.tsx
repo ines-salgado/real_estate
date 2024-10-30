@@ -27,6 +27,30 @@ function CustomPieChart(props: Props) {
     },
   ];
 
+  const renderLegend = (color: string, value: string) => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '10px',
+        marginTop: '16px',
+        marginLeft: '50px',
+      }}
+    >
+      <SquareIcon sx={{ color: color }} />
+      <Typography
+        sx={{
+          color: color,
+          marginTop: '2px',
+          fontWeight: 'bold',
+        }}
+      >
+        {value} €
+      </Typography>
+    </div>
+  );
+
   return (
     <Grid height="100%" width="47%" marginRight="-8%">
       <PieChart
@@ -45,69 +69,9 @@ function CustomPieChart(props: Props) {
         ]}
         height={330}
       />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: '10px',
-          marginTop: '16px',
-          marginLeft: '50px',
-        }}
-      >
-        <SquareIcon sx={{ color: '#61a2cb' }} />
-        <Typography
-          sx={{
-            color: '#61a2cb',
-            marginTop: '2px',
-            fontWeight: 'bold',
-          }}
-        >
-          Rehab Costs: {props.rehabCosts} €
-        </Typography>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: '10px',
-          marginTop: '16px',
-          marginLeft: '50px',
-        }}
-      >
-        <SquareIcon sx={{ color: '#346584' }} />
-        <Typography
-          sx={{
-            color: '#346584',
-            marginTop: '2px',
-            fontWeight: 'bold',
-          }}
-        >
-          Down Payment: {props.downPayment} €
-        </Typography>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: '10px',
-          marginTop: '16px',
-          marginLeft: '50px',
-        }}
-      >
-        <SquareIcon sx={{ color: '#21445c' }} />
-        <Typography
-          sx={{
-            color: '#21445c',
-            marginTop: '2px',
-            fontWeight: 'bold',
-          }}
-        >
-          Purchase Costs: {props.purchaseCosts} €
-        </Typography>
-      </div>
+      {renderLegend('#61a2cb', `Rehab Costs: ${props.rehabCosts}`)}
+      {renderLegend('#346584', `Down Payment: ${props.downPayment}`)}
+      {renderLegend('#21445c', `Purchase Costs: ${props.purchaseCosts}`)}
     </Grid>
   );
 }
