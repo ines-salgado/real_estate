@@ -35,6 +35,10 @@ function MarketAnalysis() {
     MarketAnalysisData['marketDynamics'] | null
   >(null);
 
+  const [yAxisTitle, setYAxisTitle] = React.useState<string>(
+    '# Total evaluations by the Bank',
+  );
+
   React.useEffect(() => {
     fetch('http://127.0.0.1:5000/data')
       .then((response) => response.json())
@@ -76,25 +80,34 @@ function MarketAnalysis() {
     data: [
       {
         tabLabel: 'Property Market Trends',
-        comp: sellRentOvertime && (
+        comp: sellRentOvertime && marketDynamics && (
           <DoubleYLineChart
             location={routeCity}
             selectedTab="Property Market Trends"
             sellAndRentData={sellRentOvertime}
+            marketDynamicsData={marketDynamics}
           />
         ),
       },
       {
         tabLabel: 'Market Dynamics',
         comp: marketDynamics && (
-          <Grid display="flex" justifyContent="space-between" direction="row">
+          <Grid
+            display="flex"
+            justifyContent="space-between"
+            direction="row"
+            gap="20px"
+          >
             <CustomAccordion
               location={routeCity}
               marketDynamicsData={marketDynamics}
+              setYAxisTitle={setYAxisTitle}
             />
             <DoubleYLineChart
               location={routeCity}
-              selectedTab="Property Market Trends"
+              selectedTab="Market Dynamics"
+              marketDynamicsData={marketDynamics}
+              yAxisTitle={yAxisTitle}
             />
           </Grid>
         ),

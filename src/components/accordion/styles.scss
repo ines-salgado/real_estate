@@ -1,19 +1,17 @@
 @import '../../utils/colours.scss';
 
 .accordion {
-  &__grid {
-    section {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 15px;
-      background-color: $text_menuColor;
-      color: white;
-      box-shadow: $light_boxShadow;
+  &__grid section {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: $text_menuColor;
+    color: white;
+    box-shadow: $light_boxShadow;
 
-      .MuiTypography-root {
-        font-weight: 500;
-        font-size: 16px;
-      }
+    .MuiTypography-root {
+      font-weight: 500;
+      font-size: 16px;
     }
   }
 
@@ -29,6 +27,7 @@
   &__details {
     display: flex;
     flex-direction: column;
+    padding: 6px 0 !important;
 
     &.MuiAccordionDetails-root {
       padding: 0px;
@@ -50,23 +49,8 @@
     &__title {
       text-decoration: underline solid $text_menuColor !important;
       font-size: 14px !important;
-      padding: 5px 0 5px 15px !important;
-    }
-
-    &__values {
-      margin-top: 2px;
-      display: flex;
-      flex-direction: row;
-      padding: 5px 10px 5px 0;
-
-      .MuiTypography-root {
-        font-size: 12px !important;
-
-        &:last-of-type {
-          margin-left: 10px;
-          color: $text_menuColor;
-        }
-      }
+      padding: 5px 15px !important;
+      text-align: left;
     }
   }
 }

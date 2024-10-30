@@ -5,6 +5,12 @@ import { renderRowInput, renderRowStatic, renderRowCollapsible } from './utils';
 
 interface Props {
   selectedProperty: InvestmentAnalysisData['propertyMarketData'];
+  downPayment: string;
+  purchaseCosts: string;
+  rehabCosts: string;
+  setDownPayment: any;
+  setPurchaseCosts: any;
+  setRehabCosts: any;
 }
 
 function ChartDataTable(props: Props) {
@@ -22,16 +28,9 @@ function ChartDataTable(props: Props) {
       ? (Number(price) * 0.8).toString()
       : (Number(price) * 0.8).toFixed(2).toString(),
   );
-  const [downPayment, setDownPayment] = React.useState<string>(
-    Number.isInteger(Number(price) * 0.2)
-      ? (Number(price) * 0.2).toString()
-      : (Number(price) * 0.2).toFixed(2).toString(),
-  );
-  const [purchaseCosts, setPurchaseCosts] = React.useState<string>('1000');
   const [closingCosts, setClosingCosts] = React.useState<string>('500');
   const [financingCosts, setFinancingCosts] = React.useState<string>('400');
   const [otherCosts, setOtherCosts] = React.useState<string>('100');
-  const [rehabCosts, setRehabCosts] = React.useState<string>('2000');
   const [totalNeeded, setTotalNeeded] = React.useState<string>('');
 
   const [open, setOpen] = React.useState<boolean>(false);
@@ -45,33 +44,37 @@ function ChartDataTable(props: Props) {
         ? amountFinancedValue.toString()
         : amountFinancedValue.toFixed(2).toString(),
     );
-    setDownPayment(
+    props.setDownPayment(
       Number.isInteger(downPaymentValue)
         ? downPaymentValue.toString()
         : downPaymentValue.toFixed(2).toString(),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [afterRepairValue]);
 
   React.useEffect(() => {
     const purchaseCostsValue =
       Number(closingCosts) + Number(financingCosts) + Number(otherCosts);
 
-    setPurchaseCosts(
+    props.setPurchaseCosts(
       Number.isInteger(purchaseCostsValue)
         ? purchaseCostsValue.toString()
         : purchaseCostsValue.toFixed(2).toString(),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [closingCosts, financingCosts, otherCosts]);
 
   React.useEffect(() => {
     const totalCashNeededValue =
-      Number(downPayment) + Number(purchaseCosts) + Number(rehabCosts);
+      Number(props.downPayment) +
+      Number(props.purchaseCosts) +
+      Number(props.rehabCosts);
     setTotalNeeded(
       Number.isInteger(totalCashNeededValue)
         ? totalCashNeededValue.toString()
         : totalCashNeededValue.toFixed(2).toString(),
     );
-  }, [downPayment, purchaseCosts, rehabCosts]);
+  }, [props.downPayment, props.purchaseCosts, props.rehabCosts]);
 
   return (
     <Table sx={{ width: '53%' }}>
@@ -81,23 +84,23 @@ function ChartDataTable(props: Props) {
             {renderRowStatic('Price:', `${value.price} €`)}
             {renderRowInput(
               'After Repair Value:',
-              `${afterRepairValue} €`,
+              `${afterRepairValue}`,
               setAfterRepairValue,
             )}
             {renderRowInput(
               'Amount Financed:',
-              `${amountFinanced} €`,
+              `${amountFinanced}`,
               setAmountFinanced,
             )}
             <Divider />
             {renderRowInput(
               'Down Payment:',
-              `${downPayment} €`,
-              setDownPayment,
+              `${props.downPayment}`,
+              props.setDownPayment,
             )}
             {renderRowCollapsible(
               'Purchase Costs',
-              purchaseCosts,
+              props.purchaseCosts,
               [
                 {
                   title: 'Closing Costs',
@@ -118,7 +121,11 @@ function ChartDataTable(props: Props) {
               open,
               setOpen,
             )}
-            {renderRowInput('Rehab Costs:', `${rehabCosts} €`, setRehabCosts)}
+            {renderRowInput(
+              'Rehab Costs:',
+              `${props.rehabCosts}`,
+              props.setRehabCosts,
+            )}
             <Divider />
             {renderRowStatic('Total Cash Needed:', `${totalNeeded} €`)}
           </TableBody>

@@ -17,6 +17,7 @@ function BasicTextField(props: Props) {
         }
         className="textField"
         size="small"
+        sx={{ width: '100px' }}
       />
     </Box>
   );
