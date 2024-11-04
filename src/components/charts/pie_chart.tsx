@@ -1,15 +1,26 @@
 import { PieChart } from '@mui/x-charts';
-import { Unstable_Grid2 as Grid, Typography } from '@mui/material';
-import SquareIcon from '@mui/icons-material/Square';
+import { Unstable_Grid2 as Grid } from '@mui/material';
 
 interface Props {
-  downPayment: string;
-  purchaseCosts: string;
-  rehabCosts: string;
+  activeTab: 'purchaseAndRehab' | 'financing' | 'cashFlow';
+  // purchase and rehab
+  downPayment?: string;
+  purchaseCosts?: string;
+  rehabCosts?: string;
+  // cash flow
+  vacancy?: string;
+  imi?: string;
+  is?: string;
+  insurance?: string;
+  condominium?: string;
+  maintenance?: string;
+  others?: string;
+  loanPayment?: string;
+  cashFlow?: string;
 }
 
 function CustomPieChart(props: Props) {
-  const data = [
+  const purchaseAndRehabData = [
     {
       id: 0,
       value: Number(props.rehabCosts),
@@ -27,36 +38,79 @@ function CustomPieChart(props: Props) {
     },
   ];
 
-  const renderLegend = (color: string, value: string) => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: '10px',
-        marginTop: '16px',
-        marginLeft: '50px',
-      }}
-    >
-      <SquareIcon sx={{ color: color }} />
-      <Typography
-        sx={{
-          color: color,
-          marginTop: '2px',
-          fontWeight: 'bold',
-        }}
-      >
-        {value} €
-      </Typography>
-    </div>
-  );
+  const cashFlowData = [
+    {
+      id: 0,
+      value: Number(props.vacancy),
+      label: 'Vacancy',
+      color: '#E8C7DE',
+    },
+    {
+      id: 1,
+      value: Number(props.imi),
+      label: 'IMI',
+      color: '#61a2cb',
+    },
+    {
+      id: 2,
+      value: Number(props.is),
+      label: 'IS',
+      color: '#21445c',
+    },
+    {
+      id: 3,
+      value: Number(props.insurance),
+      label: 'Insurance',
+      color: '#E4D6A7',
+    },
+    {
+      id: 4,
+      value: Number(props.condominium),
+      label: 'Condominium',
+      color: '#478978',
+    },
+    {
+      id: 5,
+      value: Number(props.maintenance),
+      label: 'Maintenance',
+      color: '#9B2915',
+    },
+    {
+      id: 6,
+      value: Number(props.others),
+      label: 'Others',
+      color: '#50A2A7',
+    },
+    {
+      id: 7,
+      value: Number(props.loanPayment),
+      label: 'Loan Payment',
+      color: '#1B2021',
+    },
+    {
+      id: 8,
+      value: Number(props.cashFlow),
+      label: 'Cash Flow',
+      color: '#E9B44C',
+    },
+  ];
 
   return (
-    <Grid height="100%" width="47%" marginRight="-8%">
+    <Grid height="100%" width="40%" marginRight="-8%">
+      <h2 style={{ margin: '10% 8% 5%' }}>
+        {props.activeTab === 'purchaseAndRehab'
+          ? 'Total Cash Needed'
+          : props.activeTab === 'cashFlow' && 'Income Distribution'}
+      </h2>
       <PieChart
         series={[
           {
-            data: data,
+            data:
+              props.activeTab === 'purchaseAndRehab'
+                ? purchaseAndRehabData
+                : props.activeTab === 'cashFlow'
+                  ? cashFlowData
+                  : [],
             innerRadius: 20,
             outerRadius: 150,
             paddingAngle: 0,
@@ -67,13 +121,15 @@ function CustomPieChart(props: Props) {
             cy: 150,
           },
         ]}
-        height={330}
+        {...pieParams}
       />
-      {renderLegend('#61a2cb', `Rehab Costs: ${props.rehabCosts}`)}
-      {renderLegend('#346584', `Down Payment: ${props.downPayment}`)}
-      {renderLegend('#21445c', `Purchase Costs: ${props.purchaseCosts}`)}
     </Grid>
   );
 }
+
+const pieParams = {
+  height: 440,
+  slotProps: { legend: { hidden: true } },
+};
 
 export default CustomPieChart;

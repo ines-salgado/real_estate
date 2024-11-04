@@ -79,7 +79,7 @@ const renderRowCollapsible = (
                 {secondaryValues.map((secValue) =>
                   renderRowInput(
                     secValue.title,
-                    `${secValue.value} €`,
+                    secValue.value,
                     secValue.setValue,
                   ),
                 )}

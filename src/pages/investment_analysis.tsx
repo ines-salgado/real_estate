@@ -36,6 +36,7 @@ function InvestmentAnalysis() {
         comp: (
           <PurchaseTabs
             data={selectedProperty ? [selectedProperty] : []}
+            activeTab="purchaseAndRehab"
             hasPieChart
           />
         ),
@@ -43,7 +44,11 @@ function InvestmentAnalysis() {
       {
         tabLabel: 'Financing (Purchase)',
         comp: (
-          <PurchaseTabs data={selectedProperty ? [selectedProperty] : []} />
+          <PurchaseTabs
+            data={selectedProperty ? [selectedProperty] : []}
+            activeTab="financing"
+            hasBarChart
+          />
         ),
       },
       {
@@ -51,6 +56,7 @@ function InvestmentAnalysis() {
         comp: (
           <PurchaseTabs
             data={selectedProperty ? [selectedProperty] : []}
+            activeTab="cashFlow"
             hasPieChart
           />
         ),
