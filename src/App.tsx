@@ -14,11 +14,23 @@ function App() {
     },
     {
       path: '/get-started',
-      element: <h1>work in progress...</h1>,
+      element: (
+        <img
+          alt="Pudgy Penguins working on it"
+          src="https://media.giphy.com/media/VHOF8pfPZOt9p018zw/giphy.gif"
+          style={{ borderRadius: '20px' }}
+        />
+      ),
     },
     {
       path: '/settings',
-      element: <h1>work in progress...</h1>,
+      element: (
+        <img
+          alt="Funny Penguin working on it"
+          src="https://media.giphy.com/media/551ZQUFsQ9ufdCLnPA/giphy.gif"
+          style={{ borderRadius: '20px' }}
+        />
+      ),
     },
   ]);
 

@@ -56,7 +56,7 @@ function PurchaseAndRehabTable(props: Props) {
     const totalCashNeededValue =
       Number(downPayment) + Number(purchaseCosts) + Number(rehabCosts);
     onChange('totalNeeded', formatNumber(totalCashNeededValue));
-  }, [downPayment, purchaseCosts, rehabCosts, onChange, formatNumber]);
+  }, [downPayment, purchaseCosts, rehabCosts]);
 
   return (
     <Table sx={{ width: '60%' }}>
