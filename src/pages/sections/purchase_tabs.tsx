@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Unstable_Grid2 as Grid } from '@mui/material';
-import { InvestmentAnalysisData } from '../../../models';
+import { InvestmentAnalysisData } from '../../models';
 import {
   PurchaseAndRehabTable,
   FinancingTable,
   CashFlowTable,
   CustomPieChart,
   CustomBarChart,
-} from '../../../components';
+} from '../../components';
 
 interface Props {
   data: InvestmentAnalysisData['propertyMarketData'];

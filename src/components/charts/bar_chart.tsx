@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { BarChart } from '@mui/x-charts';
 
-const xLabels = ['Data', 'Page B'];
-
 interface Props {
   amountFinanced: string;
   financedCosts: string;
@@ -10,11 +8,14 @@ interface Props {
 }
 
 function CustomBarChart(props: Props) {
+  const xLabels = ['Data', 'Page B'];
+
   const data = [
     Number(props.financedCosts),
     Number(props.mtic),
     Number(props.amountFinanced),
   ];
+
   return (
     <BarChart
       series={[{ data: data, label: 'data', id: 'data', stack: 'total' }]}

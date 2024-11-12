@@ -16,23 +16,22 @@ function DoubleYLineChart(props: Props) {
   const marketDynamicsData =
     props.marketDynamicsData && props.marketDynamicsData[props.location];
 
+  const newDateFormat = (date: string) => new Date(date).getTime();
+  const sortDate = (date1: string, date2: string) =>
+    newDateFormat(date1) - newDateFormat(date2);
+
   // sort by date
   const sellAndRentSortedData =
-    sellAndRentData &&
-    sellAndRentData.sort(
-      (a, b) => new Date(a.data).getTime() - new Date(b.data).getTime(),
-    );
+    sellAndRentData && sellAndRentData.sort((a, b) => sortDate(a.data, b.data));
 
   const marketDynamicsSortedData =
     marketDynamicsData &&
-    marketDynamicsData.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    );
+    marketDynamicsData.sort((a, b) => sortDate(a.date, b.date));
 
   const dates = sellAndRentSortedData
-    ? sellAndRentSortedData.map((entry) => new Date(entry.data).getTime())
+    ? sellAndRentSortedData.map((entry) => newDateFormat(entry.data))
     : marketDynamicsSortedData &&
-      marketDynamicsSortedData.map((entry) => new Date(entry.date).getTime());
+      marketDynamicsSortedData.map((entry) => newDateFormat(entry.date));
 
   // sellAndRentData
   const salePrices =
@@ -55,8 +54,11 @@ function DoubleYLineChart(props: Props) {
       idx >= salePrices.length - 50 ? price : null,
     );
 
-  const minSalePrice = salePrices && Math.min(...salePrices) * 0.95;
-  const minRentPrice = rentPrices && Math.min(...rentPrices) * 0.95;
+  const minPrice = (prices: number[] | undefined) =>
+    prices && Math.min(...prices) * 0.95;
+
+  const minSalePrice = minPrice(salePrices);
+  const minRentPrice = minPrice(rentPrices);
   //////////////////////
 
   // marketDynamicsData

@@ -4,7 +4,7 @@ import {
   InvestmentAnalysisData,
   MarketAnalysisData,
   PageType,
-} from '../../../models';
+} from '../../models';
 import './styles.scss';
 
 interface Props {
