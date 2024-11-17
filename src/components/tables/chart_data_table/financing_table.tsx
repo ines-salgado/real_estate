@@ -41,6 +41,19 @@ function FinancingTable(props: Props) {
     onChange('loanToCost', formatNumber(loanToCostValue));
   }, [loanToCost, price, purchaseCosts]);
 
+  React.useEffect(() => {
+    const r = Number(taeg) / 12 / 100;
+    const totalMonths = Number(loanYears) * 12;
+    const monthlyPaymentsValue =
+      (Number(amountFinanced) * r * Math.pow(1 + r, totalMonths)) /
+      (Math.pow(1 + r, totalMonths) - 1);
+
+    const mticValue = monthlyPaymentsValue * totalMonths;
+
+    onChange('monthlyPayment', formatNumber(monthlyPaymentsValue));
+    onChange('mtic', formatNumber(mticValue));
+  }, [monthlyPayment, loanYears]);
+
   return (
     <Table sx={{ width: '60%' }}>
       {selectedProperty &&

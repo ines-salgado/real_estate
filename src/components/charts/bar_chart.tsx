@@ -2,25 +2,56 @@ import * as React from 'react';
 import { BarChart } from '@mui/x-charts';
 
 interface Props {
+  price: string;
   amountFinanced: string;
   financedCosts: string;
+  downPayment: string;
   mtic: string;
 }
 
 function CustomBarChart(props: Props) {
-  const xLabels = ['Data', 'Page B'];
+  const labels = {
+    financedCosts: 'Financed Costs',
+    price: 'Price',
+    credit: 'Credit',
+    interest: 'Interest',
+  } as const;
 
-  const data = [
-    Number(props.financedCosts),
-    Number(props.mtic),
-    Number(props.amountFinanced),
+  const addLabels = <T extends { dataKey: keyof typeof labels }>(series: T[]) =>
+    series.map((item) => ({
+      ...item,
+      label: labels[item.dataKey],
+      valueFormatter: (v: number | null) =>
+        v ? `$ ${v.toLocaleString()}k` : '-',
+    }));
+
+  const balanceSheet = [
+    {
+      title: 'Total Costs',
+      financedCosts: Number(props.financedCosts),
+      price: Number(props.price),
+    },
+    {
+      title: 'Loan Details',
+      credit:
+        Number(props.downPayment) +
+        Number(props.amountFinanced) +
+        Number(props.financedCosts),
+      interest: Number(props.mtic) - Number(props.price),
+    },
   ];
 
   return (
     <BarChart
-      series={[{ data: data, label: 'data', id: 'data', stack: 'total' }]}
+      dataset={balanceSheet}
+      series={addLabels([
+        { dataKey: 'price', stack: 'total' },
+        { dataKey: 'financedCosts', stack: 'total' },
+        { dataKey: 'credit', stack: 'total' },
+        { dataKey: 'interest', stack: 'total' },
+      ])}
+      xAxis={[{ scaleType: 'band', dataKey: 'title' }]}
       {...barParams}
-      xAxis={[{ data: xLabels, scaleType: 'band' }]}
     />
   );
 }

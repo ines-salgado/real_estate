@@ -29,19 +29,19 @@ function PurchaseTabs(props: Props) {
   const [purchaseState, setPurchaseState] = React.useState({
     afterRepairValue: formatNumber(price),
     amountFinanced: formatNumber(Number(price) * 0.8),
-    closingCosts: '500',
-    financingCosts: '400',
-    otherCosts: '100',
+    closingCosts: '5000',
+    financingCosts: '4000',
+    otherCosts: '1000',
     downPayment: formatNumber(Number(price) * 0.2),
-    purchaseCosts: '1000',
+    purchaseCosts: '10000',
     rehabCosts: '2000',
     totalNeeded: '',
   });
 
   const [financingState, setFinancingState] = React.useState({
     loanYears: '30',
-    taeg: '5%',
-    financedCosts: '950',
+    taeg: '5',
+    financedCosts: '95000',
     loanToCost: '',
     monthlyPayment: '',
     mtic: '',
@@ -119,6 +119,7 @@ function PurchaseTabs(props: Props) {
           {...purchaseState}
           {...financingState}
           {...cashFlowState}
+          price={String(price)}
         />
       )}
     </Grid>

@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
 import { PageTitle, PropertyOverview, SimpleTabs } from '../components';
-import {
-  InvestmentProjections,
-  KeyIndicatores,
-  PurchaseTabs,
-} from './sections';
+import { KeyIndicatores, PurchaseTabs } from './sections';
 import { InvestmentAnalysisData } from '../models';
 import { calcularIndicadores } from '../utils/keys_calculator';
 import jsonData from '../data/data.json';
@@ -117,8 +113,6 @@ function InvestmentAnalysis() {
           )}
           <br /> <br />
           <SimpleTabs tabsData={tabsData} />
-          <br /> <br />
-          <InvestmentProjections />
           <br /> <br />
         </Box>
       )}
