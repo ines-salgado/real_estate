@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Unstable_Grid2 as Grid } from '@mui/material';
 import { InvestmentAnalysisData } from '../../models';
 import {
@@ -12,67 +11,50 @@ import {
 interface Props {
   data: InvestmentAnalysisData['propertyMarketData'];
   activeTab: 'purchaseAndRehab' | 'financing' | 'cashFlow';
+  purchaseState: {
+    afterRepairValue: string;
+    amountFinanced: string;
+    closingCosts: string;
+    financingCosts: string;
+    otherCosts: string;
+    downPayment: string;
+    purchaseCosts: string;
+    rehabCosts: string;
+    totalNeeded: string;
+  };
+  financingState: {
+    loanYears: string;
+    taeg: string;
+    financedCosts: string;
+    loanToCost: string;
+    monthlyPayment: string;
+    mtic: string;
+  };
+  cashFlowState: {
+    grossRent: string;
+    vacancy: string;
+    operatingIncome: string;
+    operatingExpenses: string;
+    imi: string;
+    is: string;
+    insurance: string;
+    condominium: string;
+    maintenance: string;
+    others: string;
+    loanPayment: string;
+    cashFlow: string;
+  };
+  handlePurchaseChange: any;
+  handleFinancingChange: any;
+  handleCashFlowChange: any;
+  formatNumber: any;
   hasPieChart?: boolean;
   hasBarChart?: boolean;
 }
 
 function PurchaseTabs(props: Props) {
-  const formatNumber = (value: number[] | number) =>
-    Number.isInteger(Number(value))
-      ? Number(value).toString()
-      : Number(value).toFixed(2).toString();
-
-  // purchase and rehab
   const price =
     props.data && Object.values(props.data).map((value) => value.price);
-
-  const [purchaseState, setPurchaseState] = React.useState({
-    afterRepairValue: formatNumber(price),
-    amountFinanced: formatNumber(Number(price) * 0.8),
-    closingCosts: '5000',
-    financingCosts: '4000',
-    otherCosts: '1000',
-    downPayment: formatNumber(Number(price) * 0.2),
-    purchaseCosts: '10000',
-    rehabCosts: '2000',
-    totalNeeded: '',
-  });
-
-  const [financingState, setFinancingState] = React.useState({
-    loanYears: '30',
-    taeg: '5',
-    financedCosts: '95000',
-    loanToCost: '',
-    monthlyPayment: '',
-    mtic: '',
-  });
-
-  const [cashFlowState, setCashFlowState] = React.useState({
-    grossRent: formatNumber(
-      props.data &&
-        Object.values(props.data).map((value) => value['Preço médio_rent'])[0],
-    ),
-    vacancy: '',
-    operatingIncome: '',
-    operatingExpenses: '',
-    imi: '40',
-    is: '',
-    insurance: '30',
-    condominium: '35',
-    maintenance: '32',
-    others: '',
-    loanPayment: '300',
-    cashFlow: '0',
-  });
-
-  const handlePurchaseChange = (field: string, value: string) =>
-    setPurchaseState((prev) => ({ ...prev, [field]: value }));
-
-  const handleFinancingChange = (field: string, value: string) =>
-    setFinancingState((prev) => ({ ...prev, [field]: value }));
-
-  const handleCashFlowChange = (field: string, value: string) =>
-    setCashFlowState((prev) => ({ ...prev, [field]: value }));
 
   return (
     <Grid
@@ -83,42 +65,42 @@ function PurchaseTabs(props: Props) {
     >
       {props.activeTab === 'purchaseAndRehab' && (
         <PurchaseAndRehabTable
-          {...purchaseState}
+          {...props.purchaseState}
           selectedProperty={props.data}
-          onChange={handlePurchaseChange}
-          formatNumber={formatNumber}
+          onChange={props.handlePurchaseChange}
+          formatNumber={props.formatNumber}
         />
       )}
       {props.activeTab === 'financing' && (
         <FinancingTable
-          {...purchaseState}
-          {...financingState}
+          {...props.purchaseState}
+          {...props.financingState}
           selectedProperty={props.data}
           price={price}
-          onChange={handleFinancingChange}
-          formatNumber={formatNumber}
+          onChange={props.handleFinancingChange}
+          formatNumber={props.formatNumber}
         />
       )}
       {props.activeTab === 'cashFlow' && (
         <CashFlowTable
-          {...cashFlowState}
+          {...props.cashFlowState}
           selectedProperty={props.data}
-          onChange={handleCashFlowChange}
-          formatNumber={formatNumber}
+          onChange={props.handleCashFlowChange}
+          formatNumber={props.formatNumber}
         />
       )}
       {props.hasPieChart && (
         <CustomPieChart
-          {...purchaseState}
-          {...cashFlowState}
+          {...props.purchaseState}
+          {...props.cashFlowState}
           activeTab={props.activeTab}
         />
       )}
       {props.hasBarChart && (
         <CustomBarChart
-          {...purchaseState}
-          {...financingState}
-          {...cashFlowState}
+          {...props.purchaseState}
+          {...props.financingState}
+          {...props.cashFlowState}
           price={String(price)}
         />
       )}
