@@ -99,7 +99,7 @@ interface InvestmentAnalysisData {
   }>;
   keyInd: {
     ROI: number | null;
-    'Cash Flow': number;
+    'Cash Flow (Annual)': number;
     // cashflowMensal: cashflowMensal,
     'Cash on Cash': number | null;
     'Initial Capital': number;

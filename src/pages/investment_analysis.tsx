@@ -29,8 +29,6 @@ function InvestmentAnalysis() {
       ? Number(value).toString()
       : Number(value).toFixed(2).toString();
 
-  console.log(selectedProperty);
-
   const [purchaseState, setPurchaseState] = React.useState({
     afterRepairValue: '155000', // price
     amountFinanced: '1240', // price * 0.8%
@@ -78,6 +76,8 @@ function InvestmentAnalysis() {
 
   const renderPurchaseTabs = (
     activeTab: 'purchaseAndRehab' | 'financing' | 'cashFlow',
+    hasPieChart: boolean,
+    hasBarChart: boolean,
   ) => (
     <PurchaseTabs
       data={selectedProperty ? [selectedProperty] : []}
@@ -89,7 +89,8 @@ function InvestmentAnalysis() {
       handleFinancingChange={handleFinancingChange}
       handleCashFlowChange={handleCashFlowChange}
       formatNumber={formatNumber}
-      hasPieChart
+      hasPieChart={hasPieChart}
+      hasBarChart={hasBarChart}
     />
   );
 
@@ -98,15 +99,15 @@ function InvestmentAnalysis() {
     data: [
       {
         tabLabel: 'Purchase & Rehab',
-        comp: renderPurchaseTabs('purchaseAndRehab'),
+        comp: renderPurchaseTabs('purchaseAndRehab', true, false),
       },
       {
         tabLabel: 'Financing (Purchase)',
-        comp: renderPurchaseTabs('financing'),
+        comp: renderPurchaseTabs('financing', false, true),
       },
       {
         tabLabel: 'Cash Flow (1 year)',
-        comp: renderPurchaseTabs('cashFlow'),
+        comp: renderPurchaseTabs('cashFlow', true, false),
       },
     ],
   };
@@ -130,23 +131,146 @@ function InvestmentAnalysis() {
   }, []);
 
   React.useEffect(() => {
+    const amountFinancedValue = Number(purchaseState.afterRepairValue) * 0.8;
+    const downPaymentValue = Number(purchaseState.afterRepairValue) * 0.2;
+
+    handlePurchaseChange('amountFinanced', formatNumber(amountFinancedValue));
+    handlePurchaseChange('downPayment', formatNumber(downPaymentValue));
+  }, [purchaseState.afterRepairValue]);
+
+  React.useEffect(() => {
+    const purchaseCostsValue =
+      Number(purchaseState.closingCosts) +
+      Number(purchaseState.financingCosts) +
+      Number(purchaseState.otherCosts);
+
+    handlePurchaseChange('purchaseCosts', formatNumber(purchaseCostsValue));
+  }, [
+    purchaseState.closingCosts,
+    purchaseState.financingCosts,
+    purchaseState.otherCosts,
+  ]);
+
+  React.useEffect(() => {
+    const totalCashNeededValue =
+      Number(purchaseState.downPayment) +
+      Number(purchaseState.purchaseCosts) +
+      Number(purchaseState.rehabCosts);
+    handlePurchaseChange('totalNeeded', formatNumber(totalCashNeededValue));
+  }, [
+    purchaseState.downPayment,
+    purchaseState.purchaseCosts,
+    purchaseState.rehabCosts,
+  ]);
+
+  React.useEffect(() => {
+    const loanToCostValue =
+      Number(purchaseState.amountFinanced) /
+      (Number(selectedProperty?.price) + Number(purchaseState.purchaseCosts));
+    handleFinancingChange('loanToCost', formatNumber(loanToCostValue));
+  }, [
+    financingState.loanToCost,
+    purchaseState.amountFinanced,
+    purchaseState.purchaseCosts,
+    selectedProperty?.price,
+  ]);
+
+  React.useEffect(() => {
+    const r = Number(financingState.taeg) / 12 / 100;
+    const totalMonths = Number(financingState.loanYears) * 12;
+    const monthlyPaymentsValue =
+      (Number(purchaseState.amountFinanced) *
+        r *
+        Math.pow(1 + r, totalMonths)) /
+      (Math.pow(1 + r, totalMonths) - 1);
+
+    const mticValue = monthlyPaymentsValue * totalMonths;
+
+    handleFinancingChange('monthlyPayment', formatNumber(monthlyPaymentsValue));
+    handleFinancingChange('mtic', formatNumber(mticValue));
+  }, [
+    financingState.loanYears,
+    financingState.taeg,
+    purchaseState.amountFinanced,
+  ]);
+
+  React.useEffect(() => {
+    const vacancyValue = Number(cashFlowState.grossRent) * 0.08;
+    handleCashFlowChange('vacancy', formatNumber(vacancyValue));
+
+    const operationIncomeValue =
+      Number(cashFlowState.grossRent) - Number(cashFlowState.vacancy);
+    handleCashFlowChange('operatingIncome', formatNumber(operationIncomeValue));
+
+    console.log(operationIncomeValue, vacancyValue);
+  }, [cashFlowState.grossRent, cashFlowState.vacancy]);
+
+  React.useEffect(() => {
+    const isValue = Number(cashFlowState.grossRent) * 0.1;
+    handleCashFlowChange('is', formatNumber(isValue));
+
+    const operatingExpensesValue =
+      Number(cashFlowState.imi) +
+      Number(cashFlowState.is) +
+      Number(cashFlowState.insurance) +
+      Number(cashFlowState.condominium) +
+      Number(cashFlowState.maintenance) +
+      Number(cashFlowState.others);
+    handleCashFlowChange(
+      'operatingExpenses',
+      formatNumber(operatingExpensesValue),
+    );
+  }, [
+    cashFlowState.condominium,
+    cashFlowState.grossRent,
+    cashFlowState.imi,
+    cashFlowState.insurance,
+    cashFlowState.is,
+    cashFlowState.maintenance,
+    cashFlowState.others,
+  ]);
+
+  React.useEffect(() => {
+    const cashFlowValue =
+      Number(cashFlowState.operatingIncome) -
+      Number(cashFlowState.operatingExpenses) -
+      Number(cashFlowState.loanPayment);
+    handleCashFlowChange('cashFlow', formatNumber(cashFlowValue));
+  }, [
+    cashFlowState.loanPayment,
+    cashFlowState.operatingExpenses,
+    cashFlowState.operatingIncome,
+  ]);
+
+  React.useEffect(() => {
     if (selectedProperty) {
       setKeyInd(
         calcularIndicadores(
-          selectedProperty?.price, // preço da compra
-          2000, // custos escritura
-          selectedProperty?.price / 5, // entrada
-          1000, // custos reparação
-          10000, // avaliação VPT
-          5000000, // valor financiado
-          20, // prazo em anos
-          4, // tan anual
-          200, // renda mensal
-          1000, // despesas mensais
+          selectedProperty?.price || 0,
+          Number(purchaseState.closingCosts),
+          Number(purchaseState.downPayment),
+          Number(purchaseState.rehabCosts),
+          Number(cashFlowState.grossRent),
+          Number(cashFlowState.operatingExpenses),
+          Number(purchaseState.amountFinanced),
+          Number(financingState.loanYears),
+          Number(financingState.taeg),
+          Number(cashFlowState.cashFlow) * 12,
         ),
       );
     }
-  }, [selectedProperty]);
+  }, [
+    cashFlowState.cashFlow,
+    cashFlowState.grossRent,
+    cashFlowState.operatingExpenses,
+    financingState.loanYears,
+    financingState.taeg,
+    purchaseState.amountFinanced,
+    purchaseState.closingCosts,
+    purchaseState.downPayment,
+    purchaseState.rehabCosts,
+    selectedProperty,
+  ]);
 
   return (
     <>

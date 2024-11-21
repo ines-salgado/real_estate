@@ -1,72 +1,49 @@
 function calcularIndicadores(
-  precoCompra: number,
-  custosEscritura: number,
-  entrada: number,
-  custosReparacao: number,
-  avaliacaoVPT: number,
-  valorFinanciado: number,
-  prazoAnos: number,
-  tanAnual: number,
-  rendaMensal: number,
-  totalDespesasMensais: number,
+  purchasePrice: number, // selectedProperty?.price
+  closingCosts: number, // purchaseState.closingCosts
+  downPayment: number, // selectedProperty?.price / 5
+  rehabCosts: number, // purchaseState.rehabCosts
+  grossRent: number, // cashFlowState.grossRent
+  operatingExpenses: number, // cashFlowState.operatingExpenses
+  amountFinanced: number, // purchaseState.amountFinanced
+  loanYears: number, // financingState.loanYears
+  annualInterestRate: number, // financingState.taeg
+  cashFlow: number,
 ) {
-  const custosTotaisProjeto = precoCompra + custosEscritura + custosReparacao;
+  const totalProjectCosts = purchasePrice + closingCosts + rehabCosts;
+  const initialCapitalInvested = downPayment + closingCosts + rehabCosts;
 
-  const capitalInicialInvestido = entrada + custosEscritura + custosReparacao;
+  const monthlyRate = annualInterestRate / 12 / 100; // Monthly interest rate
+  const totalMonths = loanYears * 12;
+  const monthlyLoanPayment =
+    (amountFinanced * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) /
+    (Math.pow(1 + monthlyRate, totalMonths) - 1);
+  const annualLoanPayment = monthlyLoanPayment * 12;
 
-  const n = prazoAnos * 12;
-  const r = tanAnual / 12 / 100; // Converter TAN anual para decimal mensal
-  const P = valorFinanciado;
-  const prestacaoMensal =
-    (P * (r * Math.pow(1 + r, n))) / (Math.pow(1 + r, n) - 1);
-  const prestacaoAnual = prestacaoMensal * 12;
+  const annualRentIncome = grossRent * 12;
+  const annualOperatingExpenses = operatingExpenses * 12;
 
-  const rendaAnual = rendaMensal * 12;
-
-  const despesasAnuais = totalDespesasMensais * 12;
-
-  const cashflowAnual = rendaAnual - prestacaoAnual - despesasAnuais;
-
-  const cashflowMensal = cashflowAnual / 12;
+  // const annualCashFlow =
+  //   annualRentIncome - annualLoanPayment - annualOperatingExpenses;
 
   const roi =
-    custosTotaisProjeto !== 0
-      ? (cashflowAnual / custosTotaisProjeto) * 100
-      : null;
+    totalProjectCosts !== 0 ? (cashFlow / totalProjectCosts) * 100 : null;
 
   const cashOnCashReturn =
-    capitalInicialInvestido !== 0
-      ? (cashflowAnual / capitalInicialInvestido) * 100
+    initialCapitalInvested !== 0
+      ? (cashFlow / initialCapitalInvested) * 100
       : null;
 
-  const noiAnual = rendaAnual - despesasAnuais; // Não inclui prestação do empréstimo
-
-  const capRate = avaliacaoVPT !== 0 ? (noiAnual / avaliacaoVPT) * 100 : null;
-
-  const dscr = prestacaoAnual !== 0 ? noiAnual / prestacaoAnual : null;
-
   const paybackPeriod =
-    cashflowAnual !== 0 ? capitalInicialInvestido / cashflowAnual : null;
+    cashFlow !== 0 ? initialCapitalInvested / cashFlow : null;
 
-  const grm = rendaAnual !== 0 ? precoCompra / rendaAnual : null;
-
-  const ganhoNaCompra = avaliacaoVPT - custosTotaisProjeto;
-
-  const indicadores = {
+  return {
     ROI: roi,
-    'Cash Flow': cashflowAnual,
-    // cashflowMensal: cashflowMensal,
+    'Cash Flow (Annual)': cashFlow,
     'Cash on Cash': cashOnCashReturn,
-    'Initial Capital': capitalInicialInvestido,
-    // capRatePercent: capRate,
-    // noiAnual: noiAnual,
-    // dscr: dscr,
+    'Initial Capital': initialCapitalInvested,
     'Payback (Years)': paybackPeriod,
-    // grm: grm,
-    // ganhoNaCompra: ganhoNaCompra,
   };
-
-  return indicadores;
 }
 
 export { calcularIndicadores };

@@ -16,7 +16,6 @@ interface Props {
   otherCosts: string;
   totalNeeded: string;
   onChange: (field: string, value: string) => void;
-  formatNumber: (value: number[] | number) => string;
 }
 
 function PurchaseAndRehabTable(props: Props) {
@@ -32,31 +31,9 @@ function PurchaseAndRehabTable(props: Props) {
     otherCosts,
     totalNeeded,
     onChange,
-    formatNumber,
   } = props;
 
   const [open, setOpen] = React.useState<boolean>(false);
-
-  React.useEffect(() => {
-    const amountFinancedValue = Number(afterRepairValue) * 0.8;
-    const downPaymentValue = Number(afterRepairValue) * 0.2;
-
-    onChange('amountFinanced', formatNumber(amountFinancedValue));
-    onChange('downPayment', formatNumber(downPaymentValue));
-  }, [afterRepairValue]);
-
-  React.useEffect(() => {
-    const purchaseCostsValue =
-      Number(closingCosts) + Number(financingCosts) + Number(otherCosts);
-
-    onChange('purchaseCosts', formatNumber(purchaseCostsValue));
-  }, [closingCosts, financingCosts, otherCosts]);
-
-  React.useEffect(() => {
-    const totalCashNeededValue =
-      Number(downPayment) + Number(purchaseCosts) + Number(rehabCosts);
-    onChange('totalNeeded', formatNumber(totalCashNeededValue));
-  }, [downPayment, purchaseCosts, rehabCosts]);
 
   return (
     <Table sx={{ width: '60%' }}>
@@ -67,16 +44,16 @@ function PurchaseAndRehabTable(props: Props) {
             {renderRowInput(
               'After Repair Value:',
               `${afterRepairValue}`,
-              (val: string) => props.onChange('afterRepairValue', val),
+              (val: string) => onChange('afterRepairValue', val),
             )}
             {renderRowInput(
               'Amount Financed:',
               `${amountFinanced}`,
-              (val: string) => props.onChange('amountFinanced', val),
+              (val: string) => onChange('amountFinanced', val),
             )}
             <Divider />
             {renderRowInput('Down Payment:', `${downPayment}`, (val: string) =>
-              props.onChange('downPayment', val),
+              onChange('downPayment', val),
             )}
             {renderRowCollapsible(
               'Purchase Costs',
@@ -85,26 +62,24 @@ function PurchaseAndRehabTable(props: Props) {
                 {
                   title: 'Closing Costs',
                   value: closingCosts,
-                  setValue: (val: string) =>
-                    props.onChange('closingCosts', val),
+                  setValue: (val: string) => onChange('closingCosts', val),
                 },
                 {
                   title: 'Financing Costs',
                   value: financingCosts,
-                  setValue: (val: string) =>
-                    props.onChange('financingCosts', val),
+                  setValue: (val: string) => onChange('financingCosts', val),
                 },
                 {
                   title: 'Other Costs',
                   value: otherCosts,
-                  setValue: (val: string) => props.onChange('otherCosts', val),
+                  setValue: (val: string) => onChange('otherCosts', val),
                 },
               ],
               open,
               setOpen,
             )}
             {renderRowInput('Rehab Costs:', `${rehabCosts}`, (val: string) =>
-              props.onChange('rehabCosts', val),
+              onChange('rehabCosts', val),
             )}
             <Divider />
             {renderRowStatic('Total Cash Needed:', `${totalNeeded} €`)}

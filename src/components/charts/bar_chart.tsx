@@ -17,6 +17,8 @@ function CustomBarChart(props: Props) {
     interest: 'Interest',
   } as const;
 
+  console.log(props);
+
   const addLabels = <T extends { dataKey: keyof typeof labels }>(series: T[]) =>
     series.map((item) => ({
       ...item,

@@ -115,7 +115,7 @@ function KeyIndicatores(props: Props) {
         key,
         value,
         key === 'ROI',
-        key === 'Cash Flow' ||
+        key === 'Cash Flow (Annual)' ||
           key === 'Cash on Cash' ||
           key === 'Initial Capital',
       ),

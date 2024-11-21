@@ -68,7 +68,6 @@ function PurchaseTabs(props: Props) {
           {...props.purchaseState}
           selectedProperty={props.data}
           onChange={props.handlePurchaseChange}
-          formatNumber={props.formatNumber}
         />
       )}
       {props.activeTab === 'financing' && (
@@ -76,9 +75,7 @@ function PurchaseTabs(props: Props) {
           {...props.purchaseState}
           {...props.financingState}
           selectedProperty={props.data}
-          price={price}
           onChange={props.handleFinancingChange}
-          formatNumber={props.formatNumber}
         />
       )}
       {props.activeTab === 'cashFlow' && (
@@ -86,7 +83,6 @@ function PurchaseTabs(props: Props) {
           {...props.cashFlowState}
           selectedProperty={props.data}
           onChange={props.handleCashFlowChange}
-          formatNumber={props.formatNumber}
         />
       )}
       {props.hasPieChart && (
