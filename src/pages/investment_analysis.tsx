@@ -250,11 +250,6 @@ function InvestmentAnalysis() {
           Number(purchaseState.closingCosts),
           Number(purchaseState.downPayment),
           Number(purchaseState.rehabCosts),
-          Number(cashFlowState.grossRent),
-          Number(cashFlowState.operatingExpenses),
-          Number(purchaseState.amountFinanced),
-          Number(financingState.loanYears),
-          Number(financingState.taeg),
           Number(cashFlowState.cashFlow) * 12,
         ),
       );
